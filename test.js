@@ -7,13 +7,13 @@ var client = redis.createClient();
 client.select('test'.length);
 client.flushdb();
 
-describe('Request to the root path', function(){
-	it('Returns a 200 status code', function(done){
-		request(app)
-			.get('/')
-			.expect(200, done);
-	});
-});
+// describe('Request to the root path', function(){
+// 	it('Returns a 200 status code', function(done){
+// 		request(app)
+// 			.get('/')
+// 			.expect(200, done);
+// 	});
+// });
 
 describe('Listing customers on /customers', function() {
 	it('Returns 200 status code', function(done){
@@ -75,5 +75,22 @@ describe('Deleting customers', function(){
 		request(app)
 			.delete('/customers/Billy')
 			.expect(204, done);
+	});
+});
+
+describe('Show customer Info', function(){
+
+	before(function(){
+		client.hset('customers', 'Billy', 'My baby cat');
+	});
+
+	after(function(){
+		client.flushdb();
+	});
+
+	it('Returns 200 status code', function(done){
+		request(app)
+			.get('/customers/Billy')
+			.expect(200, done);
 	});
 });
