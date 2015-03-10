@@ -2,6 +2,11 @@
 var express = require('express');
 var app = express();
 
+// Body-parser
+var bodyParser = require('body-parser');
+// We need to catch JSON, need to change
+var urlencoded = bodyParser.urlencoded({ extended: false });
+
 // Redis connection
 var redis = require('redis');
 var client = redis.createClient();
@@ -21,6 +26,15 @@ app.get('/', function(request, response){
 app.get('/customers', function(request, response){
 	//if (error) throw error;
 	response.json("OK");
+});
+
+app.post('/customers', urlencoded, function(request, response){
+	var newCustomer = request.body;
+	client.hset('customers', newCustomer.name, newCustomer.description, function(error){
+		if (error) throw error;
+
+		response.status(201).json(newCustomer.name);
+	});
 });
 
 app.delete('/customers/:name', function(request, response){

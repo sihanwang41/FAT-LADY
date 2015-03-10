@@ -35,6 +35,24 @@ describe('Listing customers on /customers', function() {
 	// });
 });
 
+describe('Creating new customers', function(){
+
+	it('Returns a 201 status code', function(done){
+
+		request(app)
+			.post('/customers')
+			.send('name=Bill&description=Billy+brother')
+			.expect(201, done);
+	});
+
+	it('Returns the customer name', function(done){
+		request(app)
+			.post('/customers')
+			.send('name=Bill&description=Billy+brother')
+			.expect(/bill/i, done);
+	});
+});
+
 describe('Deleting customers', function(){
 
 	before(function(){
