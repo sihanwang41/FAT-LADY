@@ -1,0 +1,99 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'bodyparser', '--save' ]
+2 info using npm@2.0.2
+3 info using node@v0.10.32
+4 verbose node symlink /usr/local/bin/node
+5 warn package.json FAT-LADY@1.0.0 No description
+6 warn package.json FAT-LADY@1.0.0 No README data
+7 info shrinkwrap file "/Users/jialunliu/Documents/SOA_project/FAT-LADY/npm-shrinkwrap.json"
+8 verbose readDependencies returned deps { express: 'https://registry.npmjs.org/express/-/express-4.12.2.tgz' }
+9 verbose cache add [ 'bodyparser', null ]
+10 verbose cache add spec="bodyparser" args=["bodyparser",null]
+11 verbose parsed spec { raw: 'bodyparser',
+11 verbose parsed spec   scope: null,
+11 verbose parsed spec   name: 'bodyparser',
+11 verbose parsed spec   rawSpec: '',
+11 verbose parsed spec   spec: '*',
+11 verbose parsed spec   type: 'range' }
+12 verbose parsed spec { raw: 'bodyparser',
+12 verbose parsed spec   scope: null,
+12 verbose parsed spec   name: 'bodyparser',
+12 verbose parsed spec   rawSpec: '',
+12 verbose parsed spec   spec: '*',
+12 verbose parsed spec   type: 'range' }
+13 verbose addNamed [ 'bodyparser', '*' ]
+14 verbose addNamed [ null, '*' ]
+15 silly lockFile 40aee6fe-bodyparser bodyparser@*
+16 verbose lock bodyparser@* /Users/jialunliu/.npm/40aee6fe-bodyparser.lock
+17 silly addNameRange { name: 'bodyparser', range: '*', hasData: false }
+18 verbose mapToRegistry name bodyparser
+19 verbose mapToRegistry uri https://registry.npmjs.org/bodyparser
+20 verbose request on initialization, where is /bodyparser
+21 verbose request after pass 1, where is /bodyparser
+22 verbose request url raw /bodyparser
+23 verbose request resolving registry [ 'https://registry.npmjs.org/', './bodyparser' ]
+24 verbose request after pass 2, where is https://registry.npmjs.org/bodyparser
+25 verbose request no auth needed
+26 info attempt registry request try #1 at 23:24:49
+27 verbose request id 8d2716dbb4ff9183
+28 http request GET https://registry.npmjs.org/bodyparser
+29 http 404 https://registry.npmjs.org/bodyparser
+30 verbose headers { date: 'Tue, 10 Mar 2015 03:24:49 GMT',
+30 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+30 verbose headers   'content-type': 'application/json',
+30 verbose headers   'cache-control': 'max-age=0',
+30 verbose headers   'content-length': '52',
+30 verbose headers   'accept-ranges': 'bytes',
+30 verbose headers   via: '1.1 varnish',
+30 verbose headers   age: '0',
+30 verbose headers   'x-served-by': 'cache-jfk1020-JFK',
+30 verbose headers   'x-cache': 'MISS',
+30 verbose headers   'x-cache-hits': '0',
+30 verbose headers   'x-timer': 'S1425957889.298380,VS0,VE77',
+30 verbose headers   'keep-alive': 'timeout=10, max=50',
+30 verbose headers   connection: 'Keep-Alive' }
+31 silly registry.get cb [ 404,
+31 silly registry.get   { date: 'Tue, 10 Mar 2015 03:24:49 GMT',
+31 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+31 silly registry.get     'content-type': 'application/json',
+31 silly registry.get     'cache-control': 'max-age=0',
+31 silly registry.get     'content-length': '52',
+31 silly registry.get     'accept-ranges': 'bytes',
+31 silly registry.get     via: '1.1 varnish',
+31 silly registry.get     age: '0',
+31 silly registry.get     'x-served-by': 'cache-jfk1020-JFK',
+31 silly registry.get     'x-cache': 'MISS',
+31 silly registry.get     'x-cache-hits': '0',
+31 silly registry.get     'x-timer': 'S1425957889.298380,VS0,VE77',
+31 silly registry.get     'keep-alive': 'timeout=10, max=50',
+31 silly registry.get     connection: 'Keep-Alive' } ]
+32 silly lockFile 40aee6fe-bodyparser bodyparser@*
+33 silly lockFile 40aee6fe-bodyparser bodyparser@*
+34 verbose stack Error: 404 Not Found: bodyparser
+34 verbose stack     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:258:14)
+34 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:197:65)
+34 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:237:22)
+34 verbose stack     at Request.emit (events.js:98:17)
+34 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1146:14)
+34 verbose stack     at Request.emit (events.js:117:20)
+34 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1097:12)
+34 verbose stack     at IncomingMessage.emit (events.js:117:20)
+34 verbose stack     at _stream_readable.js:943:16
+34 verbose stack     at process._tickCallback (node.js:419:13)
+35 verbose statusCode 404
+36 verbose pkgid bodyparser
+37 verbose cwd /Users/jialunliu/Documents/SOA_project/FAT-LADY
+38 error Darwin 14.1.0
+39 error argv "node" "/usr/local/bin/npm" "install" "bodyparser" "--save"
+40 error node v0.10.32
+41 error npm  v2.0.2
+42 error code E404
+43 error 404 Not Found: bodyparser
+43 error 404
+43 error 404 'bodyparser' is not in the npm registry.
+43 error 404 You should bug the author to publish it (or use the name yourself!)
+43 error 404 It was specified as a dependency of 'FAT-LADY'
+43 error 404
+43 error 404 Note that you can also install from a
+43 error 404 tarball, folder, http url, or git url.
+44 verbose exit [ 1, true ]
