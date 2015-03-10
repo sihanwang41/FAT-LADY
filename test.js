@@ -1,6 +1,12 @@
 var request = require('supertest');
 var app = require('./app');
 
+// Redis connection
+var redis = require('redis');
+var client = redis.createClient();
+client.select('test'.length);
+client.flushdb();
+
 describe('Request to the root path', function(){
 	it('Returns a 200 status code', function(done){
 		request(app)
@@ -27,4 +33,22 @@ describe('Listing customers on /customers', function() {
 	// 		.get('/customers')
 	// 		.expect();
 	// });
+});
+
+describe('Deleting customers', function(){
+
+	before(function(){
+		client.hset('customers', 'Billy', 'My baby cat');
+	});
+
+	after(function(){
+		client.flushdb();
+	});
+	
+
+	it('Returns a 204 Status code', function(done){
+		request(app)
+			.delete('/customers/Billy')
+			.expect(204, done);
+	});
 });
