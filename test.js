@@ -51,6 +51,13 @@ describe('Creating new customers', function(){
 			.send('name=Bill&description=Billy+brother')
 			.expect(/bill/i, done);
 	});
+
+	it('Validates a new customer name and description', function(done){
+		request(app)
+			.post('/customers')
+			.send('name=&description=')
+			.expect(400, done);
+	});
 });
 
 describe('Deleting customers', function(){

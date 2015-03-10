@@ -28,8 +28,13 @@ app.get('/customers', function(request, response){
 	response.json("OK");
 });
 
+// POST on '/customers'
 app.post('/customers', urlencoded, function(request, response){
 	var newCustomer = request.body;
+	if (!newCustomer.name || !newCustomer.description){
+		response.sendStatus(400);
+		//return false;
+	}
 	client.hset('customers', newCustomer.name, newCustomer.description, function(error){
 		if (error) throw error;
 
@@ -37,6 +42,7 @@ app.post('/customers', urlencoded, function(request, response){
 	});
 });
 
+// DELETE on '/customers'
 app.delete('/customers/:name', function(request, response){
 	client.hdel('customers', request.params.name, function(error){
 		if (error) throw error;
