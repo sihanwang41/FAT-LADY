@@ -2,6 +2,10 @@
 var express = require('express');
 var app = express();
 
+app.get('/', function(request, response){
+	response.send(200);
+});
+
 var customers = require('./routes/customers');
 app.use('/customers', customers);
 
