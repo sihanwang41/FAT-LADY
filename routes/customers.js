@@ -94,8 +94,10 @@ router.route('/:id')
         	 });
 	
         	hres.on('end', function () {
-        		console.log("Got response: " + res.statusCode);
-        	    response.status(200).json(json);
+        		console.log("Got response: " + hres.statusCode);
+        		var jsonRes = JSON.parse(json);
+        		//console.log(jsonRes);
+        	    response.status(200).json(jsonRes);
         	});
 
 		}).on('error', function(e){
@@ -104,7 +106,7 @@ router.route('/:id')
 	});
 
 // For sending HTTP request
-var req = http.request(proxy, function(res) {
+var req = http.request(options, function(res) {
   console.log('STATUS: ' + res.statusCode);
   console.log('HEADERS: ' + JSON.stringify(res.headers));
   res.setEncoding('utf8');
