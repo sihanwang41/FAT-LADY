@@ -3,7 +3,19 @@ var express = require('express');
 // Body-parser
 var bodyParser = require('body-parser');
 // We need to catch JSON, need to change
-var urlencoded = bodyParser.urlencoded({ extended: false });
+var jsonParser = bodyParser.json();
+
+// HTTP proxy
+var http = require('http');
+
+var options = {
+  host: '127.0.0.1',
+  port: 9000,
+  path: '/customers',
+  method: '',
+  headers: {}
+};
+
 
 // Redis connection
 var redis = require('redis');
@@ -27,34 +39,62 @@ router.route('/')
 	})
 
 // POST on '/customers'
-	.post(urlencoded, function(request, response){
-		var newCustomer = request.body;
-		if (!newCustomer.name || !newCustomer.description){
-			response.sendStatus(400);
-			//return false;
-		}
-		client.hset('customers', newCustomer.name, newCustomer.description, function(error){
-			if (error) throw error;
+	.post(jsonParser, function(request, response){
+		// Setting up the proxy for post
+		var proxy = options;
+		var json = '';
+		// Construct the request to API
+		proxy.method = 'POST';
+		proxy.path = '/customers';
+		proxy.headers['Content-Type'] = request.get('Content-Type');
+
+		console.log(proxy);
+
+		http.get(proxy, function(hres){
+			hres.on('data', function (chunk) {
+        	    json += chunk;
+        	});
 	
-			response.status(201).json(newCustomer.name);
+        	hres.on('end', function () {
+        	    response.status(201).json(json);
+        	});
+
+			}).on('error', function(e){
+				response.json(e);
+			})
 		});
 	});
 
 
-router.route('/:name')
+router.route('/:id')
 // DELETE on '/customers'
 	.delete(function(request, response){
-		client.hdel('customers', request.params.name, function(error){
+		client.hdel('customers', request.params.id, function(error){
 			if (error) throw error;
 			response.sendStatus(204);
 		});
 	})
 
 	.get(function(request, response){
-		// client.hget('customers', request.params.name, function(error, description){
+		var proxy = options;
+		var json = '';
+		// Construct the request to API
+		proxy.method = 'GET';
+		proxy.path = '/customers/' + request.params.id;
+		console.log(proxy);
+
+		http.get(proxy, function(hres){
+			hres.on('data', function (chunk) {
+        	    json += chunk;
+        	 });
 	
-		// });
-		response.sendStatus(200);
+        	hres.on('end', function () {
+        	    response.status(200).json(json);
+        	});
+
+		}).on('error', function(e){
+			response.json(e);
+		})
 	});
 
 module.exports = router;
