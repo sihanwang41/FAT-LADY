@@ -47,22 +47,27 @@ router.route('/')
 		proxy.method = 'POST';
 		proxy.path = '/customers';
 		proxy.headers['Content-Type'] = request.get('Content-Type');
+		// proxy['body'] = request.body;
 
 		console.log(proxy);
 
-		http.get(proxy, function(hres){
-			hres.on('data', function (chunk) {
-        	    json += chunk;
-        	});
-	
-        	hres.on('end', function () {
-        	    response.status(201).json(json);
-        	});
-
-			}).on('error', function(e){
-				response.json(e);
-			})
+		req.write(request.body);
+		req.on('error', function(e) {
+  			console.log('problem with request: ' + e.message);
 		});
+
+		// http.request(proxy, function(hres){
+		// 	hres.on('data', function (chunk) {
+  //       	    json += chunk;
+  //       	});
+	
+  //       	hres.on('end', function () {
+  //       	    response.status(201).json(json);
+  //       	});
+
+		// }).on('error', function(e){
+		// 	response.json(e);
+		// })
 	});
 
 
@@ -89,6 +94,7 @@ router.route('/:id')
         	 });
 	
         	hres.on('end', function () {
+        		console.log("Got response: " + res.statusCode);
         	    response.status(200).json(json);
         	});
 
@@ -96,5 +102,15 @@ router.route('/:id')
 			response.json(e);
 		})
 	});
+
+// For sending HTTP request
+var req = http.request(proxy, function(res) {
+  console.log('STATUS: ' + res.statusCode);
+  console.log('HEADERS: ' + JSON.stringify(res.headers));
+  res.setEncoding('utf8');
+  res.on('data', function (chunk) {
+    console.log('BODY: ' + chunk);
+  });
+});
 
 module.exports = router;
