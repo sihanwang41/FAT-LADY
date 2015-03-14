@@ -8,14 +8,6 @@ var jsonParser = bodyParser.json();
 // HTTP proxy
 var http = require('http');
 
-var options = {
-  host: '127.0.0.1',
-  port: 9000,
-  path: '/customers',
-  method: '',
-  headers: {}
-};
-
 
 // Redis connection
 var redis = require('redis');
@@ -34,27 +26,72 @@ var router = express.Router();
 router.route('/')
 // GET on '/customers'
 	.get(function(request, response){
-		//if (error) throw error;
-		response.json("OK");
+		// Construct the request to API
+		var options = {
+		  	host: '127.0.0.1',
+		  	port: 9000,
+		  	path: '/customers',
+		  	method: request.method,
+		  	headers: {}
+		};
+		
+		var json = '';
+		 
+		request.params.id;
+		console.log(options);
+
+		http.get(options, function(hres){
+			console.log('STATUS: ' + hres.statusCode);
+  			console.log('HEADERS: ' + JSON.stringify(hres.headers));
+  			hres.setEncoding('utf8');
+			hres.on('data', function (chunk) {
+        	    json += chunk;
+        	 });
+	
+        	hres.on('end', function () {
+        		console.log("Got response: " + hres.statusCode);
+        		var jsonRes = '';
+        		// The reponse could be a string
+        		if (json.charAt(0) == '{'){
+					jsonRes = JSON.parse(json);
+        		}
+        		else{
+        			jsonRes = json
+        		}
+        	    response.status(hres.statusCode).json(jsonRes);
+        	});
+
+		}).on('error', function(e){
+			response.json(e);
+		})
 	})
 
 // POST on '/customers'
 	.post(jsonParser, function(request, response){
-		// Setting up the proxy for post
-		var proxy = options;
-		var json = '';
 		// Construct the request to API
-		proxy.method = 'POST';
-		proxy.path = '/customers';
-		proxy.headers['Content-Type'] = request.get('Content-Type');
+		var options = {
+		  	host: '127.0.0.1',
+		  	port: 9000,
+		  	path: '/customers',
+		  	method: request.method,
+		  	headers: {
+		  		'Content-Type' : request.get('Content-Type')
+		  	}
+		};
+		
+		var json = '';
+		 
 		var data = JSON.stringify(request.body);
 
 		// 400 Bad request if no JSON was received
 		if (!request.body) return response.sendStatus(400);
 
-		console.log(proxy);
+		console.log(options);
 
-		var req = http.request(proxy, function(hres) {
+		var req = http.request(options, function(hres) {
+			console.log('STATUS: ' + hres.statusCode);
+  			console.log('HEADERS: ' + JSON.stringify(hres.headers));
+  			hres.setEncoding('utf8');
 		    // hres.setEncoding('utf8');
 		    hres.on('data', function (chunk) {
 		    	json += chunk;
@@ -65,7 +102,7 @@ router.route('/')
         		console.log("Got response: " + hres.statusCode);
         		//console.log(jsonRes);
         		var jsonRes = JSON.parse(json);
-        	    response.status(200).json(jsonRes);
+        	    response.status(hres.statusCode).json(jsonRes);
         	});
 		});
 
@@ -80,30 +117,123 @@ router.route('/')
 router.route('/:id')
 // DELETE on '/customers'
 	.delete(function(request, response){
-		client.hdel('customers', request.params.id, function(error){
-			if (error) throw error;
-			response.sendStatus(204);
+		// Construct the request to API
+		var options = {
+		  	host: '127.0.0.1',
+		  	port: 9000,
+		  	path: '/customers/' + request.params.id,
+		  	method: request.method,
+		  	headers: {}
+		};
+		
+		var json = '';
+		
+
+		console.log(options);
+
+		var req = http.request(options, function(hres) {
+			console.log('STATUS: ' + hres.statusCode);
+  			console.log('HEADERS: ' + JSON.stringify(hres.headers));
+  			hres.setEncoding('utf8');
+	
+		    hres.on('data', function (chunk) {
+		    	json += chunk;
+		        console.log("body: " + chunk);
+		    });
+		    
+		    hres.on('end', function () {
+        		console.log("Got response: " + hres.statusCode);
+        		//console.log(jsonRes);
+        	    response.status(hres.statusCode).json(json);
+        	});
 		});
+
+		req.on('error', function(e) {
+  			console.log('problem with request: ' + e.message);
+		});
+		req.end();	
 	})
 
-	.get(function(request, response){
-		var proxy = options;
+	.put(jsonParser, function(request, response){
+		// Setting up the proxy for post
+		var options = {
+		  	host: '127.0.0.1',
+		  	port: 9000,
+		  	path: '/customers/' + request.params.id,
+		  	method: request.method,
+		  	headers: {
+		  		'Content-Type' : request.get('Content-Type')
+		  	}
+		};
+		
 		var json = '';
-		// Construct the request to API
-		proxy.method = 'GET';
-		proxy.path = '/customers/' + request.params.id;
-		console.log(proxy);
+		
+		var data = JSON.stringify(request.body);
 
-		http.get(proxy, function(hres){
+		// 400 Bad request if no JSON was received
+		if (!request.body) return response.sendStatus(400);
+
+		console.log(options);
+
+		var req = http.request(options, function(hres) {
+			console.log('STATUS: ' + hres.statusCode);
+  			console.log('HEADERS: ' + JSON.stringify(hres.headers));
+  			hres.setEncoding('utf8');
+		    hres.on('data', function (chunk) {
+		    	json += chunk;
+		        console.log("body: " + chunk);
+		    });
+		    
+		    hres.on('end', function () {
+        		console.log("Got response: " + hres.statusCode);
+        		
+        	    response.status(hres.statusCode).json(json);
+        	});
+		});
+
+		req.write(data);
+		req.on('error', function(e) {
+  			console.log('problem with request: ' + e.message);
+		});
+		req.end();
+	})
+
+
+	.get(function(request, response){
+		// Construct the request to API
+		var options = {
+		  	host: '127.0.0.1',
+		  	port: 9000,
+		  	path: '/customers/' + request.params.id,
+		  	method: request.method,
+		  	headers: {}
+		};
+		
+		var json = '';
+		
+		console.log(options);
+
+		http.get(options, function(hres){
+			console.log('STATUS: ' + hres.statusCode);
+  			console.log('HEADERS: ' + JSON.stringify(hres.headers));
+  			hres.setEncoding('utf8');
 			hres.on('data', function (chunk) {
         	    json += chunk;
         	 });
 	
         	hres.on('end', function () {
         		console.log("Got response: " + hres.statusCode);
-        		var jsonRes = JSON.parse(json);
-        		//console.log(jsonRes);
-        	    response.status(200).json(jsonRes);
+        		var jsonRes = '';
+        		// The reponse could be a string, hard codind, bad practice
+        		// console.log(typeof json);
+        		if (json.charAt(0) == '{'){
+        			console.log(json);
+					jsonRes = JSON.parse(json);
+        		}
+        		else{
+        			jsonRes = json
+        		}
+        	    response.status(hres.statusCode).json(jsonRes);
         	});
 
 		}).on('error', function(e){
