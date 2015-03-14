@@ -47,27 +47,33 @@ router.route('/')
 		proxy.method = 'POST';
 		proxy.path = '/customers';
 		proxy.headers['Content-Type'] = request.get('Content-Type');
-		// proxy['body'] = request.body;
+		var data = JSON.stringify(request.body);
+
+		// 400 Bad request if no JSON was received
+		if (!request.body) return response.sendStatus(400);
 
 		console.log(proxy);
 
-		req.write(request.body);
+		var req = http.request(proxy, function(hres) {
+		    // hres.setEncoding('utf8');
+		    hres.on('data', function (chunk) {
+		    	json += chunk;
+		        console.log("body: " + chunk);
+		    });
+		    
+		    hres.on('end', function () {
+        		console.log("Got response: " + hres.statusCode);
+        		//console.log(jsonRes);
+        		var jsonRes = JSON.parse(json);
+        	    response.status(200).json(jsonRes);
+        	});
+		});
+
+		req.write(data);
 		req.on('error', function(e) {
   			console.log('problem with request: ' + e.message);
 		});
-
-		// http.request(proxy, function(hres){
-		// 	hres.on('data', function (chunk) {
-  //       	    json += chunk;
-  //       	});
-	
-  //       	hres.on('end', function () {
-  //       	    response.status(201).json(json);
-  //       	});
-
-		// }).on('error', function(e){
-		// 	response.json(e);
-		// })
+		req.end();
 	});
 
 
@@ -104,15 +110,5 @@ router.route('/:id')
 			response.json(e);
 		})
 	});
-
-// For sending HTTP request
-var req = http.request(options, function(res) {
-  console.log('STATUS: ' + res.statusCode);
-  console.log('HEADERS: ' + JSON.stringify(res.headers));
-  res.setEncoding('utf8');
-  res.on('data', function (chunk) {
-    console.log('BODY: ' + chunk);
-  });
-});
 
 module.exports = router;
