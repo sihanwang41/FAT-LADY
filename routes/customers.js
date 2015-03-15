@@ -7,6 +7,7 @@ var jsonParser = bodyParser.json();
 
 // HTTP proxy
 var http = require('http');
+var makeRequest = require('./make_request');
 
 
 // Redis connection
@@ -24,6 +25,9 @@ var router = express.Router();
 
 // GET on '/'
 router.route('/')
+	.all(function(){
+
+	})
 // GET on '/customers'
 	.get(function(request, response){
 		// Construct the request to API
@@ -35,35 +39,11 @@ router.route('/')
 		  	headers: {}
 		};
 		
-		var json = '';
-		 
-		request.params.id;
+		//var json = '';
+		
 		console.log(options);
 
-		http.get(options, function(hres){
-			console.log('STATUS: ' + hres.statusCode);
-  			console.log('HEADERS: ' + JSON.stringify(hres.headers));
-  			hres.setEncoding('utf8');
-			hres.on('data', function (chunk) {
-        	    json += chunk;
-        	 });
-	
-        	hres.on('end', function () {
-        		console.log("Got response: " + hres.statusCode);
-        		var jsonRes = '';
-        		// The reponse could be a string
-        		if (json.charAt(0) == '{'){
-					jsonRes = JSON.parse(json);
-        		}
-        		else{
-        			jsonRes = json
-        		}
-        	    response.status(hres.statusCode).json(jsonRes);
-        	});
-
-		}).on('error', function(e){
-			response.json(e);
-		})
+		makeRequest(options, null, response);
 	})
 
 // POST on '/customers'
@@ -87,6 +67,8 @@ router.route('/')
 		if (!request.body) return response.sendStatus(400);
 
 		console.log(options);
+
+		// makeRequest(options, data, response);
 
 		var req = http.request(options, function(hres) {
 			console.log('STATUS: ' + hres.statusCode);
@@ -165,7 +147,7 @@ router.route('/:id')
 		  		'Content-Type' : request.get('Content-Type')
 		  	}
 		};
-		
+
 		var json = '';
 		
 		var data = JSON.stringify(request.body);
@@ -174,6 +156,8 @@ router.route('/:id')
 		if (!request.body) return response.sendStatus(400);
 
 		console.log(options);
+
+		// makeRequest(options, data, response);
 
 		var req = http.request(options, function(hres) {
 			console.log('STATUS: ' + hres.statusCode);
@@ -209,36 +193,11 @@ router.route('/:id')
 		  	headers: {}
 		};
 		
-		var json = '';
-		
 		console.log(options);
 
-		http.get(options, function(hres){
-			console.log('STATUS: ' + hres.statusCode);
-  			console.log('HEADERS: ' + JSON.stringify(hres.headers));
-  			hres.setEncoding('utf8');
-			hres.on('data', function (chunk) {
-        	    json += chunk;
-        	 });
-	
-        	hres.on('end', function () {
-        		console.log("Got response: " + hres.statusCode);
-        		var jsonRes = '';
-        		// The reponse could be a string, hard codind, bad practice
-        		// console.log(typeof json);
-        		if (json.charAt(0) == '{'){
-        			console.log(json);
-					jsonRes = JSON.parse(json);
-        		}
-        		else{
-        			jsonRes = json
-        		}
-        	    response.status(hres.statusCode).json(jsonRes);
-        	});
-
-		}).on('error', function(e){
-			response.json(e);
-		})
+		makeRequest(options, null, response);
 	});
+
+
 
 module.exports = router;
