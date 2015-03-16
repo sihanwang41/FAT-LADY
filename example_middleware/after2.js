@@ -3,4 +3,4 @@ var after2 = function(request, response, next){
 	next();
 }
 
-exports.after2 = after2;
+module.exports = after2;

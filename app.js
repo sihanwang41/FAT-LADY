@@ -52,16 +52,34 @@ var fakeRequest = function(request, response, next){
 	next();
 }
 
-sortedConfig = sortConfig(confirguration);
 
-for (var middlewareName in confirguration){
+app.use('/test', function(request, response){
+	sortedConfig = sortConfig(confirguration);
+	var middleware;
 
-}
+	// Assign the function of the actual middleware
+	for (var i in sortedConfig){
+		switch(sortedConfig[i][0]){
+			case 'before1':
+				middleware = before1;
+				break;
+			case 'before2':
+				middleware = before2;
+				break;
+			case 'service':
+				middleware = fakeRequest;
+				break;
+			case 'after1':
+				middleware = after1;
+				break;
+			case 'after2':
+				middleware = after2;
+				break;
+		}
 
-
-
-app.get('/',  function(request, response){
-	response.send(200);
+		// console.log(sortedConfig[i][0]);
+		app.use('/', middleware);
+	}
 });
 
 

@@ -3,4 +3,4 @@ var before2 = function(request, response, next){
 	next();
 }
 
-exports.before2 = before2;
+module.exports = before2;
