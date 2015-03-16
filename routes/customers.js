@@ -24,17 +24,13 @@ var router = express.Router();
 
 // GET on '/'
 router.route('/:table')
-	.all(function(request, response, next){
-		console.log(request.url);
-		next();
-	})
 // GET on '/customers'
 	.get(function(request, response){
 		// Construct the request to API
 		var options = {
 		  	host: '127.0.0.1',
 		  	port: 9000,
-		  	path: '/' + request.params.table,
+		  	path: request.url,
 		  	method: request.method,
 		  	headers: {}
 		};
@@ -50,7 +46,7 @@ router.route('/:table')
 		var options = {
 		  	host: '127.0.0.1',
 		  	port: 9000,
-		  	path: '/' + request.params.table,
+		  	path: request.url,
 		  	method: request.method,
 		  	headers: {
 		  		'Content-Type' : request.get('Content-Type')
@@ -72,17 +68,13 @@ router.route('/:table')
 
 
 router.route('/:table/:id')
-	.all(function(request, response, next){
-		
-		next();
-	})
 // DELETE on '/customers'
 	.delete(function(request, response){
 		// Construct the request to API
 		var options = {
 		  	host: '127.0.0.1',
 		  	port: 9000,
-		  	path: '/' + request.params.table + '/' + request.params.id,
+		  	path: request.url,
 		  	method: request.method,
 		  	headers: {}
 		};
@@ -97,7 +89,7 @@ router.route('/:table/:id')
 		var options = {
 		  	host: '127.0.0.1',
 		  	port: 9000,
-		  	path: '/' + request.params.table + '/' + request.params.id,
+		  	path: request.url,
 		  	method: request.method,
 		  	headers: {
 		  		'Content-Type' : request.get('Content-Type')
@@ -123,7 +115,7 @@ router.route('/:table/:id')
 		var options = {
 		  	host: '127.0.0.1',
 		  	port: 9000,
-		  	path: '/' + request.params.table + '/' + request.params.id,
+		  	path: request.url,
 		  	method: request.method,
 		  	headers: {}
 		};
