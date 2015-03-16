@@ -8,7 +8,7 @@ var makeRequest = function(options, data, response){
   		hres.setEncoding('utf8');
 	    hres.on('data', function (chunk) {
 	    	json += chunk;
-	        console.log("body: " + chunk);
+	        // console.log("body: " + chunk);
 	    });
 	    
 	    hres.on('end', function () {
@@ -27,9 +27,9 @@ var makeRequest = function(options, data, response){
 	});
 
 	// Only when POST and PUT has JSON data
-	console.log(data);
+	// console.log(data);
 	if (data != null){
-		console.log("writing data\n")
+		// console.log("writing data\n")
 		req.write(data);
 	} 
 	req.on('error', function(e) {
