@@ -36,7 +36,7 @@ router.route('/:table')
 		};
 				
 		console.log(options);
-
+		// Make HTTP request
 		makeRequest(options, null, response);
 	})
 
