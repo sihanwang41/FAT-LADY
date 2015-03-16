@@ -2,7 +2,6 @@ var express = require('express');
 
 // Body-parser
 var bodyParser = require('body-parser');
-// We need to catch JSON, need to change
 var jsonParser = bodyParser.json();
 
 // HTTP proxy
@@ -25,8 +24,8 @@ var router = express.Router();
 
 // GET on '/'
 router.route('/')
-	.all(function(){
-
+	.all(function(request, response, next){
+		next();
 	})
 // GET on '/customers'
 	.get(function(request, response){
@@ -38,9 +37,7 @@ router.route('/')
 		  	method: request.method,
 		  	headers: {}
 		};
-		
-		//var json = '';
-		
+				
 		console.log(options);
 
 		makeRequest(options, null, response);
@@ -59,40 +56,17 @@ router.route('/')
 		  	}
 		};
 		
-		var json = '';
-		 
 		var data = JSON.stringify(request.body);
+		console.log(data);
 
 		// 400 Bad request if no JSON was received
-		if (!request.body) return response.sendStatus(400);
+		if (data == '{}'){
+			return response.sendStatus(400);
+		}
 
 		console.log(options);
 
-		// makeRequest(options, data, response);
-
-		var req = http.request(options, function(hres) {
-			console.log('STATUS: ' + hres.statusCode);
-  			console.log('HEADERS: ' + JSON.stringify(hres.headers));
-  			hres.setEncoding('utf8');
-		    // hres.setEncoding('utf8');
-		    hres.on('data', function (chunk) {
-		    	json += chunk;
-		        console.log("body: " + chunk);
-		    });
-		    
-		    hres.on('end', function () {
-        		console.log("Got response: " + hres.statusCode);
-        		//console.log(jsonRes);
-        		var jsonRes = JSON.parse(json);
-        	    response.status(hres.statusCode).json(jsonRes);
-        	});
-		});
-
-		req.write(data);
-		req.on('error', function(e) {
-  			console.log('problem with request: ' + e.message);
-		});
-		req.end();
+		makeRequest(options, data, response);
 	});
 
 
@@ -107,33 +81,10 @@ router.route('/:id')
 		  	method: request.method,
 		  	headers: {}
 		};
-		
-		var json = '';
-		
 
 		console.log(options);
 
-		var req = http.request(options, function(hres) {
-			console.log('STATUS: ' + hres.statusCode);
-  			console.log('HEADERS: ' + JSON.stringify(hres.headers));
-  			hres.setEncoding('utf8');
-	
-		    hres.on('data', function (chunk) {
-		    	json += chunk;
-		        console.log("body: " + chunk);
-		    });
-		    
-		    hres.on('end', function () {
-        		console.log("Got response: " + hres.statusCode);
-        		//console.log(jsonRes);
-        	    response.status(hres.statusCode).json(json);
-        	});
-		});
-
-		req.on('error', function(e) {
-  			console.log('problem with request: ' + e.message);
-		});
-		req.end();	
+		makeRequest(options, null, response);
 	})
 
 	.put(jsonParser, function(request, response){
@@ -147,39 +98,18 @@ router.route('/:id')
 		  		'Content-Type' : request.get('Content-Type')
 		  	}
 		};
-
-		var json = '';
 		
 		var data = JSON.stringify(request.body);
+		// console.log(data);
 
 		// 400 Bad request if no JSON was received
-		if (!request.body) return response.sendStatus(400);
+		if (data == '{}'){
+			return response.sendStatus(400);
+		}
 
 		console.log(options);
 
-		// makeRequest(options, data, response);
-
-		var req = http.request(options, function(hres) {
-			console.log('STATUS: ' + hres.statusCode);
-  			console.log('HEADERS: ' + JSON.stringify(hres.headers));
-  			hres.setEncoding('utf8');
-		    hres.on('data', function (chunk) {
-		    	json += chunk;
-		        console.log("body: " + chunk);
-		    });
-		    
-		    hres.on('end', function () {
-        		console.log("Got response: " + hres.statusCode);
-        		
-        	    response.status(hres.statusCode).json(json);
-        	});
-		});
-
-		req.write(data);
-		req.on('error', function(e) {
-  			console.log('problem with request: ' + e.message);
-		});
-		req.end();
+		makeRequest(options, data, response);
 	})
 
 
@@ -197,7 +127,5 @@ router.route('/:id')
 
 		makeRequest(options, null, response);
 	});
-
-
 
 module.exports = router;

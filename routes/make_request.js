@@ -15,11 +15,11 @@ var makeRequest = function(options, data, response){
        		console.log("Got response: " + hres.statusCode);
        		var jsonRes = '';
         	// The reponse could be a string
-        	if (json.charAt(0) == '{'){
-				jsonRes = JSON.parse(json);
+        	if (json == ''){
+				jsonRes = json
         	}
         	else{
-        		jsonRes = json
+        		jsonRes = JSON.parse(json);
         	}
 
         	response.status(hres.statusCode).json(jsonRes);
