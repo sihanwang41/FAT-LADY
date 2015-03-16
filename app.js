@@ -6,7 +6,7 @@ app.get('/', function(request, response){
 	response.send(200);
 });
 
-var customers = require('./routes/customers');
+var customers = require('./routes/index');
 app.use('/service', customers);
 
 
