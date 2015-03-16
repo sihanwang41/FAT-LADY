@@ -659,6 +659,86 @@ describe('Testing on /country', function(){
 				.expect('"Country not found"', done); // json is the regex
 		});
 	});
+
+
+	// Testing for template based query, projection and limit&offset
+	describe('Testing queries on GET', function(){
+	
+		it('Returns 200 status code', function(done){
+			request(app)
+				.get('/service/country?q=\'country=China\'')
+				.expect(200, done);
+		});
+	
+		it('Returns JSON format', function(done){
+			request(app)
+				.get('/service/country?q=\'country=China\'')
+				.expect('Content-Type', /json/, done); // json is the regex
+		});
+	
+		/*
+		 * Returns a empty array of customer
+		*/
+		// it('Returns Customer not found', function(done){
+		// 	request(app)
+		// 		.get('/service/customers/600000')
+		// 		.expect('"Customer not found"', done); // json is the regex
+		// });
+	});
+
+	describe('Testing projection on GET', function(){
+	
+		it('ALL: Returns 200 status code', function(done){
+			request(app)
+				.get('/service/country?field=\'country, country_id\'')
+				.expect(200, done);
+		});
+
+		it('Single: Returns 200 status code', function(done){
+			request(app)
+				.get('/service/country/2?field=\'country, country_id\'')
+				.expect(200, done);
+		});
+	
+		it('Returns JSON format', function(done){
+			request(app)
+				.get('/service/country?field=\'country, country_id\'')
+				.expect('Content-Type', /json/, done); // json is the regex
+		});
+
+		it('Returns JSON format', function(done){
+			request(app)
+				.get('/service/country/2?field=\'country, country_id\'')
+				.expect('Content-Type', /json/, done); // json is the regex
+		});
+	
+		// it('Returns Customer not found', function(done){
+		// 	request(app)
+		// 		.get('/service/customers/600000')
+		// 		.expect('"Customer not found"', done); // json is the regex
+		// });
+	});
+
+	describe('Testing limit and offset on GET', function(){
+	
+		it('Returns 200 status code', function(done){
+			request(app)
+				.get('/service/country?&limit=20&offset=30')
+				.expect(200, done);
+		});
+	
+		it('Returns JSON format', function(done){
+			request(app)
+				.get('/service/country?&limit=20&offset=30')
+				.expect('Content-Type', /json/, done); // json is the regex
+		});
+	
+		// it('Returns Customer not found', function(done){
+		// 	request(app)
+		// 		.get('/service/customers/600000')
+		// 		.expect('"Customer not found"', done); // json is the regex
+		// });
+	});
 });
 
 
