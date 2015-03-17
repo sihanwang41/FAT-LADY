@@ -1,3 +1,4 @@
+'use strict';
 // Loading the express library
 var express = require('express');
 var app = express();
@@ -50,40 +51,56 @@ var sortConfig = function(confirguration){
 }
 
 
-var sortedConfig = [];
+// var sortedConfig = [];
+var middlewareSet = [];
 app.use('/test', function(request, response, next){
-	sortedConfig = sortConfig(confirguration);
+	var middleware;
+	var sortedConfig = sortConfig(confirguration);
+
+	for (var i in sortedConfig){
+		switch(sortedConfig[i][0]){
+			case 'before1':
+				middleware = before1;
+				break;
+			case 'before2':
+				middleware = before2;
+				break;
+			case 'service':
+				middleware = fakeRequest;
+				break;
+			case 'after1':
+				middleware = after1;
+				break;
+			case 'after2':
+				middleware = after2;
+				break;
+		}
+	
+	
+		// console.log(sortedConfig[i][0]);
+		// Execute the middleware in expected order
+		middlewareSet.push(middleware);
+	}
 	// request.sortedConfig = sortedConfig;
+	console.log(middlewareSet);
 	console.log('middleware list sorted');
 	next();
 });
 
+app.use('/test', middlewareSet);
+
+// console.log([before1, before2]);
+
+// Testing if example middlewares are working
+// app.use('/test', before1);
+// app.use('/test', before2);
+// app.use('/test', fakeRequest);
+// app.use('/test', after1);
+// app.use('/test', after2);
+
 
 // Assign the function of the actual middleware
-for (var i in sortedConfig){
-	switch(sortedConfig[i][0]){
-		case 'before1':
-			middleware = before1;
-			break;
-		case 'before2':
-			middleware = before2;
-			break;
-		case 'service':
-			middleware = fakeRequest;
-			break;
-		case 'after1':
-			middleware = after1;
-			break;
-		case 'after2':
-			middleware = after2;
-			break;
-	}
 
-
-	console.log(sortedConfig[i][0]);
-	// Execute the middleware in expected order
-	app.use('/test', middleware);
-}
 
 
 app.use('/service', service);
