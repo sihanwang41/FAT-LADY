@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 
 // HTTP proxy
-var http = require('http');
 var makeRequest = require('./make_request');
 
 

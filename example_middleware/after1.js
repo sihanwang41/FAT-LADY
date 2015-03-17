@@ -1,6 +1,11 @@
-var after1 = function(request, response, next){
-	console.log('This is middleware AFTER1');
-	next();
-}
+var express = require('express');
+var router = express.Router();
 
-module.exports = after1;
+router.route('/')
+	.all(function(request, response, next){
+		console.log('This is middleware AFTER1');
+		next();
+	});
+
+
+module.exports = router;

@@ -1,6 +1,11 @@
-var before1 = function(request, response, next){
-	console.log('This is middleware BEFORE1');
-	next();
-}
+var express = require('express');
+var router = express.Router();
 
-module.exports = before1;
+router.route('/')
+	.all(function(request, response, next){
+		console.log('Fake request processed');
+		next();
+	});
+
+
+module.exports = router;
