@@ -3,6 +3,8 @@
 var express = require('express');
 var app = express();
 
+var async = require('async');
+
 var service = require('./routes/index');
 
 
@@ -81,12 +83,59 @@ app.use('/test', function(request, response, next){
 		middlewareSet.push(middleware);
 	}
 	// request.sortedConfig = sortedConfig;
-	console.log(middlewareSet);
-	console.log('middleware list sorted');
+	// console.log(middlewareSet);
+	// console.log('middleware list sorted');
 	next();
 });
 
-app.use('/test', [before1, before2, fakeRequest, after1, after2]);
+app.use('/test', configurableMiddleWare);
+
+function configurableMiddleWare(req, res, next) {
+   
+   	var operations = [];
+
+   	var middleware;
+
+   	var sortedConfig = sortConfig(confirguration);
+
+   // push each middleware you want to run
+   	sortedConfig.forEach(function(fn) {
+
+   		switch(fn){
+			case 'before1':
+				middleware = before1;
+				break;
+			case 'before2':
+				middleware = before2;
+				break;
+			case 'service':
+				middleware = fakeRequest;
+				break;
+			case 'after1':
+				middleware = after1;
+				break;
+			case 'after2':
+				middleware = after2;
+				break;
+		}
+	
+   		operations.push(middleware); // could use fn.bind(null, req, res) to pass in vars  
+   	});
+
+   	console.log('middleware list sorted');
+   // now actually invoke the middleware in series
+   	async.series(operations, function(err) {
+   		if(err) {
+   	    // one of the functions passed back an error so handle it here
+   			return next(err);
+   	  	}
+   	  // no errors so pass control back to express
+   	  	next();
+   	});
+
+}
+
+// app.use('/test', [before1, before2, fakeRequest, after1, after2]);
 
 // app.use('/test', function(request, response, next){
 // 	walkSubstack(middleware, req, res, next)

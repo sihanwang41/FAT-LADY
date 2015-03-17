@@ -4,9 +4,8 @@ var express = require('express');
 var router = express.Router();
 
 router.route('/')
-	.all(function(request, response, next){
+	.all(function(request, response){
 		console.log('This is middleware BEFORE1');
-		next();
 	});
 
 
