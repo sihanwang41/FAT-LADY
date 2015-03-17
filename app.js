@@ -84,6 +84,7 @@ function configurableMiddleWare(req, res, next) {
 		console.log(fn[0]);
 		console.log(middleware);
 	
+		// Push the middleware into the array and pass the variable to it
    		operations.push(middleware.bind(null, req, res)); // could use fn.bind(null, req, res) to pass in vars  
    	});
 
