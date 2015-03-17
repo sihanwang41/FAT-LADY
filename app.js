@@ -88,6 +88,11 @@ app.use('/test', function(request, response, next){
 	next();
 });
 
+// for (var i in middlewareSet){
+// 	console.log('This is middleware' + i);
+// 	app.use('/test', middlewareSet[i]);
+// }
+
 app.use('/test', configurableMiddleWare);
 
 function configurableMiddleWare(req, res, next) {
@@ -129,7 +134,8 @@ function configurableMiddleWare(req, res, next) {
    	    // one of the functions passed back an error so handle it here
    			return next(err);
    	  	}
-   	  // no errors so pass control back to express
+   	  	console.log('middleware get executed');
+   	  	// no errors so pass control back to express
    	  	next();
    	});
 
