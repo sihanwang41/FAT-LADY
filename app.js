@@ -50,9 +50,8 @@ var sortConfig = function(confirguration){
 	return sortable;
 }
 
-
 // var sortedConfig = [];
-var middlewareSet = [];
+var middlewareSet = new Array();
 app.use('/test', function(request, response, next){
 	var middleware;
 	var sortedConfig = sortConfig(confirguration);
@@ -87,7 +86,11 @@ app.use('/test', function(request, response, next){
 	next();
 });
 
-app.use('/test', middlewareSet);
+app.use('/test', [before1, before2, fakeRequest, after1, after2]);
+
+// app.use('/test', function(request, response, next){
+// 	walkSubstack(middleware, req, res, next)
+// });
 
 // console.log([before1, before2]);
 
@@ -104,6 +107,31 @@ app.use('/test', middlewareSet);
 
 
 app.use('/service', service);
+
+var walkSubstack = function (stack, req, res, next) {
+
+  if (typeof stack === 'function') {
+    stack = [stack];
+  }
+
+  var walkStack = function (i, err) {
+
+    if (err) {
+      return next(err);
+    }
+
+    if (i >= stack.length) {
+      return next();
+    }
+
+    stack[i](req, res, walkStack.bind(null, i + 1));
+
+  };
+
+  walkStack(0);
+
+};
+
 
 
 
