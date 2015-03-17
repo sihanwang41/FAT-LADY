@@ -93,55 +93,59 @@ app.use('/test', function(request, response, next){
 // 	app.use('/test', middlewareSet[i]);
 // }
 
-app.use('/test', configurableMiddleWare);
 
-function configurableMiddleWare(req, res, next) {
+
+// function configurableMiddleWare(req, res, next) {
    
-   	var operations = [];
+//    	var operations = [];
 
-   	var middleware;
+//    	var middleware;
 
-   	var sortedConfig = sortConfig(confirguration);
+//    	var sortedConfig = sortConfig(confirguration);
 
-   // push each middleware you want to run
-   	sortedConfig.forEach(function(fn) {
+//    // push each middleware you want to run
+//    	sortedConfig.forEach(function(fn) {
 
-   		switch(fn){
-			case 'before1':
-				middleware = before1;
-				break;
-			case 'before2':
-				middleware = before2;
-				break;
-			case 'service':
-				middleware = fakeRequest;
-				break;
-			case 'after1':
-				middleware = after1;
-				break;
-			case 'after2':
-				middleware = after2;
-				break;
-		}
+//    		switch(fn){
+// 			case 'before1':
+// 				middleware = before1;
+// 				break;
+// 			case 'before2':
+// 				middleware = before2;
+// 				break;
+// 			case 'service':
+// 				middleware = fakeRequest;
+// 				break;
+// 			case 'after1':
+// 				middleware = after1;
+// 				break;
+// 			case 'after2':
+// 				middleware = after2;
+// 				break;
+// 		}
 	
-   		operations.push(middleware); // could use fn.bind(null, req, res) to pass in vars  
-   	});
+//    		operations.push(middleware); // could use fn.bind(null, req, res) to pass in vars  
+//    	});
 
-   	console.log('middleware list sorted');
-   // now actually invoke the middleware in series
-   	async.series(operations, function(err) {
-   		if(err) {
-   	    // one of the functions passed back an error so handle it here
-   			return next(err);
-   	  	}
-   	  	console.log('middleware get executed');
-   	  	// no errors so pass control back to express
-   	  	next();
-   	});
+//    	console.log('middleware list sorted');
+//    // now actually invoke the middleware in series
+//    	async.series(operations, function(err) {
+//    		if(err) {
+//    	    // one of the functions passed back an error so handle it here
+//    			return next(err);
+//    	  	}
+//    	  	console.log('middleware get executed');
+//    	  	// no errors so pass control back to express
+//    	  	next();
+//    	});
 
-}
+// }
 
-// app.use('/test', [before1, before2, fakeRequest, after1, after2]);
+// app.use('/test', configurableMiddleWare);
+
+
+
+app.use('/test', [before1, before2, fakeRequest, after1, after2]);
 
 // app.use('/test', function(request, response, next){
 // 	walkSubstack(middleware, req, res, next)
@@ -162,32 +166,6 @@ function configurableMiddleWare(req, res, next) {
 
 
 app.use('/service', service);
-
-var walkSubstack = function (stack, req, res, next) {
-
-  if (typeof stack === 'function') {
-    stack = [stack];
-  }
-
-  var walkStack = function (i, err) {
-
-    if (err) {
-      return next(err);
-    }
-
-    if (i >= stack.length) {
-      return next();
-    }
-
-    stack[i](req, res, walkStack.bind(null, i + 1));
-
-  };
-
-  walkStack(0);
-
-};
-
-
 
 
 // export the module so that it could be called elsewhere
