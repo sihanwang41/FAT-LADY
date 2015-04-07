@@ -2,7 +2,7 @@
 
 var http = require('http');
 
-var makeRequest = function(options, data, response){
+var makeRequest = function(options, data, response, next){
 	var req = http.request(options, function(hres) {
 		var json = '';
 		console.log('STATUS: ' + hres.statusCode);
@@ -25,7 +25,9 @@ var makeRequest = function(options, data, response){
         	}
 
         	response.status(hres.statusCode).json(jsonRes);
+        	next('route');
        	});
+
 	});
 
 	// Only when POST and PUT has JSON data
