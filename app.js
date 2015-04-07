@@ -71,7 +71,7 @@ function configurableMiddleWare(req, res, next) {
 				middleware = before2;
 				break;
 			case 'service':
-				middleware = fakeRequest;
+				middleware = service;
 				break;
 			case 'after1':
 				middleware = after1;
@@ -82,7 +82,7 @@ function configurableMiddleWare(req, res, next) {
 		}
 
 		console.log(fn[0]);
-		console.log(middleware);
+		// console.log(middleware);
 	
 		// Push the middleware into the array and pass the variable to it
    		operations.push(middleware.bind(null, req, res)); // could use fn.bind(null, req, res) to pass in vars  
@@ -102,9 +102,9 @@ function configurableMiddleWare(req, res, next) {
 
 }
 
-app.use('/test', configurableMiddleWare);
+app.use('/service', configurableMiddleWare);
 
-app.use('/service', service);
+// app.use('/service', service);
 
 
 // export the module so that it could be called elsewhere
