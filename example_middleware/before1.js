@@ -21,6 +21,7 @@ router.use(function(request, response, next){
     				if (reply == request.headers['if-none-match'])
 					{
 						// response.status(304);
+						console.log("304 not modified");
 						var err = new Error('304 not modified');
   						err.status = 304;
 						return next(err);
@@ -52,8 +53,10 @@ router.use(function(request, response, next){
     				// console.log(reply);
     				if (reply != request.headers['if-match'])
     				{
-						console.log("412 Precondition failed");
-    					return next(new Error('Something blew up!!!'));
+    					console.log("412 Precondition failed");
+    					var err = new Error('412 Precondition failed');
+  						err.status = 412;
+						return next(err);
     				}
 					else
 					{
@@ -66,7 +69,9 @@ router.use(function(request, response, next){
 			else
 			{
 				console.log("412 Precondition failed");
-				return next(new Error('Something blew up!!!'));
+				var err = new Error('412 Precondition failed');
+  				err.status = 412;
+				return next(err);
 			}
 		}
 		
