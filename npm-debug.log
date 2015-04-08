@@ -1,99 +1,1277 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'install', 'bodyparser', '--save' ]
-2 info using npm@2.0.2
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'sudo',
+1 verbose cli   'npm',
+1 verbose cli   'install',
+1 verbose cli   'nodemon',
+1 verbose cli   '-g' ]
+2 info using npm@1.4.28
 3 info using node@v0.10.32
-4 verbose node symlink /usr/local/bin/node
-5 warn package.json FAT-LADY@1.0.0 No description
-6 warn package.json FAT-LADY@1.0.0 No README data
-7 info shrinkwrap file "/Users/jialunliu/Documents/SOA_project/FAT-LADY/npm-shrinkwrap.json"
-8 verbose readDependencies returned deps { express: 'https://registry.npmjs.org/express/-/express-4.12.2.tgz' }
-9 verbose cache add [ 'bodyparser', null ]
-10 verbose cache add spec="bodyparser" args=["bodyparser",null]
-11 verbose parsed spec { raw: 'bodyparser',
-11 verbose parsed spec   scope: null,
-11 verbose parsed spec   name: 'bodyparser',
-11 verbose parsed spec   rawSpec: '',
-11 verbose parsed spec   spec: '*',
-11 verbose parsed spec   type: 'range' }
-12 verbose parsed spec { raw: 'bodyparser',
-12 verbose parsed spec   scope: null,
-12 verbose parsed spec   name: 'bodyparser',
-12 verbose parsed spec   rawSpec: '',
-12 verbose parsed spec   spec: '*',
-12 verbose parsed spec   type: 'range' }
-13 verbose addNamed [ 'bodyparser', '*' ]
-14 verbose addNamed [ null, '*' ]
-15 silly lockFile 40aee6fe-bodyparser bodyparser@*
-16 verbose lock bodyparser@* /Users/jialunliu/.npm/40aee6fe-bodyparser.lock
-17 silly addNameRange { name: 'bodyparser', range: '*', hasData: false }
-18 verbose mapToRegistry name bodyparser
-19 verbose mapToRegistry uri https://registry.npmjs.org/bodyparser
-20 verbose request on initialization, where is /bodyparser
-21 verbose request after pass 1, where is /bodyparser
-22 verbose request url raw /bodyparser
-23 verbose request resolving registry [ 'https://registry.npmjs.org/', './bodyparser' ]
-24 verbose request after pass 2, where is https://registry.npmjs.org/bodyparser
-25 verbose request no auth needed
-26 info attempt registry request try #1 at 23:24:49
-27 verbose request id 8d2716dbb4ff9183
-28 http request GET https://registry.npmjs.org/bodyparser
-29 http 404 https://registry.npmjs.org/bodyparser
-30 verbose headers { date: 'Tue, 10 Mar 2015 03:24:49 GMT',
-30 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-30 verbose headers   'content-type': 'application/json',
-30 verbose headers   'cache-control': 'max-age=0',
-30 verbose headers   'content-length': '52',
-30 verbose headers   'accept-ranges': 'bytes',
-30 verbose headers   via: '1.1 varnish',
-30 verbose headers   age: '0',
-30 verbose headers   'x-served-by': 'cache-jfk1020-JFK',
-30 verbose headers   'x-cache': 'MISS',
-30 verbose headers   'x-cache-hits': '0',
-30 verbose headers   'x-timer': 'S1425957889.298380,VS0,VE77',
-30 verbose headers   'keep-alive': 'timeout=10, max=50',
-30 verbose headers   connection: 'Keep-Alive' }
-31 silly registry.get cb [ 404,
-31 silly registry.get   { date: 'Tue, 10 Mar 2015 03:24:49 GMT',
-31 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
-31 silly registry.get     'content-type': 'application/json',
-31 silly registry.get     'cache-control': 'max-age=0',
-31 silly registry.get     'content-length': '52',
-31 silly registry.get     'accept-ranges': 'bytes',
-31 silly registry.get     via: '1.1 varnish',
-31 silly registry.get     age: '0',
-31 silly registry.get     'x-served-by': 'cache-jfk1020-JFK',
-31 silly registry.get     'x-cache': 'MISS',
-31 silly registry.get     'x-cache-hits': '0',
-31 silly registry.get     'x-timer': 'S1425957889.298380,VS0,VE77',
-31 silly registry.get     'keep-alive': 'timeout=10, max=50',
-31 silly registry.get     connection: 'Keep-Alive' } ]
-32 silly lockFile 40aee6fe-bodyparser bodyparser@*
-33 silly lockFile 40aee6fe-bodyparser bodyparser@*
-34 verbose stack Error: 404 Not Found: bodyparser
-34 verbose stack     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:258:14)
-34 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:197:65)
-34 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:237:22)
-34 verbose stack     at Request.emit (events.js:98:17)
-34 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1146:14)
-34 verbose stack     at Request.emit (events.js:117:20)
-34 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1097:12)
-34 verbose stack     at IncomingMessage.emit (events.js:117:20)
-34 verbose stack     at _stream_readable.js:943:16
-34 verbose stack     at process._tickCallback (node.js:419:13)
-35 verbose statusCode 404
-36 verbose pkgid bodyparser
-37 verbose cwd /Users/jialunliu/Documents/SOA_project/FAT-LADY
-38 error Darwin 14.1.0
-39 error argv "node" "/usr/local/bin/npm" "install" "bodyparser" "--save"
-40 error node v0.10.32
-41 error npm  v2.0.2
-42 error code E404
-43 error 404 Not Found: bodyparser
-43 error 404
-43 error 404 'bodyparser' is not in the npm registry.
-43 error 404 You should bug the author to publish it (or use the name yourself!)
-43 error 404 It was specified as a dependency of 'FAT-LADY'
-43 error 404
-43 error 404 Note that you can also install from a
-43 error 404 tarball, folder, http url, or git url.
-44 verbose exit [ 1, true ]
+4 verbose cache add [ 'sudo', null ]
+5 verbose cache add name=undefined spec="sudo" args=["sudo",null]
+6 verbose parsed url { protocol: null,
+6 verbose parsed url   slashes: null,
+6 verbose parsed url   auth: null,
+6 verbose parsed url   host: null,
+6 verbose parsed url   port: null,
+6 verbose parsed url   hostname: null,
+6 verbose parsed url   hash: null,
+6 verbose parsed url   search: null,
+6 verbose parsed url   query: null,
+6 verbose parsed url   pathname: 'sudo',
+6 verbose parsed url   path: 'sudo',
+6 verbose parsed url   href: 'sudo' }
+7 verbose cache add [ 'npm', null ]
+8 verbose cache add name=undefined spec="npm" args=["npm",null]
+9 verbose parsed url { protocol: null,
+9 verbose parsed url   slashes: null,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: null,
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: null,
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: 'npm',
+9 verbose parsed url   path: 'npm',
+9 verbose parsed url   href: 'npm' }
+10 verbose cache add [ 'install', null ]
+11 verbose cache add name=undefined spec="install" args=["install",null]
+12 verbose parsed url { protocol: null,
+12 verbose parsed url   slashes: null,
+12 verbose parsed url   auth: null,
+12 verbose parsed url   host: null,
+12 verbose parsed url   port: null,
+12 verbose parsed url   hostname: null,
+12 verbose parsed url   hash: null,
+12 verbose parsed url   search: null,
+12 verbose parsed url   query: null,
+12 verbose parsed url   pathname: 'install',
+12 verbose parsed url   path: 'install',
+12 verbose parsed url   href: 'install' }
+13 verbose cache add [ 'nodemon', null ]
+14 verbose cache add name=undefined spec="nodemon" args=["nodemon",null]
+15 verbose parsed url { protocol: null,
+15 verbose parsed url   slashes: null,
+15 verbose parsed url   auth: null,
+15 verbose parsed url   host: null,
+15 verbose parsed url   port: null,
+15 verbose parsed url   hostname: null,
+15 verbose parsed url   hash: null,
+15 verbose parsed url   search: null,
+15 verbose parsed url   query: null,
+15 verbose parsed url   pathname: 'nodemon',
+15 verbose parsed url   path: 'nodemon',
+15 verbose parsed url   href: 'nodemon' }
+16 silly lockFile 836c626d-sudo sudo
+17 verbose lock sudo /Users/eddie/.npm/836c626d-sudo.lock
+18 silly lockFile 660051d1-npm npm
+19 verbose lock npm /Users/eddie/.npm/660051d1-npm.lock
+20 silly lockFile 89fb511f-install install
+21 verbose lock install /Users/eddie/.npm/89fb511f-install.lock
+22 silly lockFile 1625b929-nodemon nodemon
+23 verbose lock nodemon /Users/eddie/.npm/1625b929-nodemon.lock
+24 silly lockFile 836c626d-sudo sudo
+25 silly lockFile 836c626d-sudo sudo
+26 silly lockFile 660051d1-npm npm
+27 silly lockFile 660051d1-npm npm
+28 silly lockFile 89fb511f-install install
+29 silly lockFile 89fb511f-install install
+30 verbose addNamed [ 'sudo', '' ]
+31 verbose addNamed [ null, '*' ]
+32 silly lockFile f2741ec4-sudo sudo@
+33 verbose lock sudo@ /Users/eddie/.npm/f2741ec4-sudo.lock
+34 silly lockFile 1625b929-nodemon nodemon
+35 silly lockFile 1625b929-nodemon nodemon
+36 verbose addNamed [ 'npm', '' ]
+37 verbose addNamed [ null, '*' ]
+38 silly lockFile 2f990b75-npm npm@
+39 verbose lock npm@ /Users/eddie/.npm/2f990b75-npm.lock
+40 verbose addNamed [ 'install', '' ]
+41 verbose addNamed [ null, '*' ]
+42 silly lockFile cadb329f-install install@
+43 verbose lock install@ /Users/eddie/.npm/cadb329f-install.lock
+44 verbose addNamed [ 'nodemon', '' ]
+45 verbose addNamed [ null, '*' ]
+46 silly lockFile 4f5e51c6-nodemon nodemon@
+47 verbose lock nodemon@ /Users/eddie/.npm/4f5e51c6-nodemon.lock
+48 silly addNameRange { name: 'npm', range: '*', hasData: false }
+49 silly addNameRange { name: 'sudo', range: '*', hasData: false }
+50 silly addNameRange { name: 'install', range: '*', hasData: false }
+51 verbose request where is /npm
+52 verbose request registry https://registry.npmjs.org/
+53 verbose request id f53a5dc421633a32
+54 verbose url raw /npm
+55 verbose url resolving [ 'https://registry.npmjs.org/', './npm' ]
+56 verbose url resolved https://registry.npmjs.org/npm
+57 verbose request where is https://registry.npmjs.org/npm
+58 info trying registry request attempt 1 at 19:28:18
+59 http GET https://registry.npmjs.org/npm
+60 silly addNameRange { name: 'nodemon', range: '*', hasData: false }
+61 verbose request where is /sudo
+62 verbose request registry https://registry.npmjs.org/
+63 verbose url raw /sudo
+64 verbose url resolving [ 'https://registry.npmjs.org/', './sudo' ]
+65 verbose url resolved https://registry.npmjs.org/sudo
+66 verbose request where is https://registry.npmjs.org/sudo
+67 info trying registry request attempt 1 at 19:28:18
+68 http GET https://registry.npmjs.org/sudo
+69 verbose request where is /install
+70 verbose request registry https://registry.npmjs.org/
+71 verbose url raw /install
+72 verbose url resolving [ 'https://registry.npmjs.org/', './install' ]
+73 verbose url resolved https://registry.npmjs.org/install
+74 verbose request where is https://registry.npmjs.org/install
+75 info trying registry request attempt 1 at 19:28:18
+76 http GET https://registry.npmjs.org/install
+77 verbose request where is /nodemon
+78 verbose request registry https://registry.npmjs.org/
+79 verbose url raw /nodemon
+80 verbose url resolving [ 'https://registry.npmjs.org/', './nodemon' ]
+81 verbose url resolved https://registry.npmjs.org/nodemon
+82 verbose request where is https://registry.npmjs.org/nodemon
+83 info trying registry request attempt 1 at 19:28:18
+84 verbose etag "5NWXJRENZO0789E5DAP2VBA75"
+85 http GET https://registry.npmjs.org/nodemon
+86 http 200 https://registry.npmjs.org/nodemon
+87 silly registry.get cb [ 200,
+87 silly registry.get   { date: 'Tue, 07 Apr 2015 23:28:18 GMT',
+87 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+87 silly registry.get     etag: '"DNOT0RWD6LLR1P4SPHQIUGEJL"',
+87 silly registry.get     'content-type': 'application/json',
+87 silly registry.get     'cache-control': 'max-age=60',
+87 silly registry.get     'content-length': '146419',
+87 silly registry.get     'accept-ranges': 'bytes',
+87 silly registry.get     via: '1.1 varnish',
+87 silly registry.get     age: '19',
+87 silly registry.get     'x-served-by': 'cache-jfk1022-JFK',
+87 silly registry.get     'x-cache': 'HIT',
+87 silly registry.get     'x-cache-hits': '1',
+87 silly registry.get     'x-timer': 'S1428449298.992636,VS0,VE0',
+87 silly registry.get     vary: 'Accept',
+87 silly registry.get     'keep-alive': 'timeout=10, max=50',
+87 silly registry.get     connection: 'Keep-Alive' } ]
+88 silly addNameRange number 2 { name: 'nodemon', range: '*', hasData: true }
+89 silly addNameRange versions [ 'nodemon',
+89 silly addNameRange   [ '0.1.4',
+89 silly addNameRange     '0.1.5',
+89 silly addNameRange     '0.1.6',
+89 silly addNameRange     '0.1.7',
+89 silly addNameRange     '0.1.8',
+89 silly addNameRange     '0.2.0',
+89 silly addNameRange     '0.2.1',
+89 silly addNameRange     '0.2.2',
+89 silly addNameRange     '0.3.0',
+89 silly addNameRange     '0.3.1',
+89 silly addNameRange     '0.3.2',
+89 silly addNameRange     '0.4.0',
+89 silly addNameRange     '0.4.1',
+89 silly addNameRange     '0.5.0',
+89 silly addNameRange     '0.5.1',
+89 silly addNameRange     '0.5.2',
+89 silly addNameRange     '0.5.3',
+89 silly addNameRange     '0.5.4',
+89 silly addNameRange     '0.5.5',
+89 silly addNameRange     '0.5.6',
+89 silly addNameRange     '0.5.7',
+89 silly addNameRange     '0.6.0',
+89 silly addNameRange     '0.6.1',
+89 silly addNameRange     '0.6.2',
+89 silly addNameRange     '0.6.3',
+89 silly addNameRange     '0.6.4',
+89 silly addNameRange     '0.6.5',
+89 silly addNameRange     '0.6.6',
+89 silly addNameRange     '0.6.7',
+89 silly addNameRange     '0.6.8',
+89 silly addNameRange     '0.6.9',
+89 silly addNameRange     '0.6.10',
+89 silly addNameRange     '0.6.11',
+89 silly addNameRange     '0.6.12',
+89 silly addNameRange     '0.6.13',
+89 silly addNameRange     '0.6.14',
+89 silly addNameRange     '0.6.15',
+89 silly addNameRange     '0.6.16',
+89 silly addNameRange     '0.6.17',
+89 silly addNameRange     '0.6.18',
+89 silly addNameRange     '0.6.19',
+89 silly addNameRange     '0.6.20',
+89 silly addNameRange     '0.6.21',
+89 silly addNameRange     '0.6.22',
+89 silly addNameRange     '0.6.23',
+89 silly addNameRange     '0.7.0',
+89 silly addNameRange     '0.7.1',
+89 silly addNameRange     '0.7.2',
+89 silly addNameRange     '0.7.3',
+89 silly addNameRange     '0.7.4',
+89 silly addNameRange     '0.7.5',
+89 silly addNameRange     '0.7.6',
+89 silly addNameRange     '0.7.7',
+89 silly addNameRange     '0.7.8',
+89 silly addNameRange     '0.7.10',
+89 silly addNameRange     '0.9.0',
+89 silly addNameRange     '0.9.1',
+89 silly addNameRange     '0.9.2',
+89 silly addNameRange     '0.9.3',
+89 silly addNameRange     '0.9.5',
+89 silly addNameRange     '0.9.6',
+89 silly addNameRange     '0.9.7',
+89 silly addNameRange     '0.9.10',
+89 silly addNameRange     '0.9.11',
+89 silly addNameRange     '0.9.12',
+89 silly addNameRange     '0.9.14',
+89 silly addNameRange     '0.9.16',
+89 silly addNameRange     '0.9.17',
+89 silly addNameRange     '1.0.0',
+89 silly addNameRange     '1.0.1',
+89 silly addNameRange     '1.0.2',
+89 silly addNameRange     '1.0.2-rc',
+89 silly addNameRange     '0.6.10-a',
+89 silly addNameRange     '1.0.2-rc3',
+89 silly addNameRange     '1.0.2-rc4',
+89 silly addNameRange     '1.0.3',
+89 silly addNameRange     '1.0.4',
+89 silly addNameRange     '1.0.5',
+89 silly addNameRange     '1.0.6',
+89 silly addNameRange     '1.0.7',
+89 silly addNameRange     '1.0.8',
+89 silly addNameRange     '1.0.9',
+89 silly addNameRange     '1.0.10',
+89 silly addNameRange     '1.0.11',
+89 silly addNameRange     '1.0.12',
+89 silly addNameRange     '1.0.13',
+89 silly addNameRange     '1.0.14',
+89 silly addNameRange     '1.0.15',
+89 silly addNameRange     '1.0.16',
+89 silly addNameRange     '1.0.17-rc1',
+89 silly addNameRange     '1.0.17-rc2',
+89 silly addNameRange     '1.0.17',
+89 silly addNameRange     '1.0.18',
+89 silly addNameRange     '1.0.19',
+89 silly addNameRange     '1.0.20',
+89 silly addNameRange     '1.1.0-alpha',
+89 silly addNameRange     '1.1.0',
+89 silly addNameRange     '1.1.1',
+89 silly addNameRange     '1.2.0',
+89 silly addNameRange     '1.2.1',
+89 silly addNameRange     '1.3.0-0',
+89 silly addNameRange     '1.3.0-1',
+89 silly addNameRange     '1.3.0-2',
+89 silly addNameRange     '1.3.0-3',
+89 silly addNameRange     '1.3.0-4',
+89 silly addNameRange     '1.3.0-5',
+89 silly addNameRange     '1.3.0-6',
+89 silly addNameRange     '1.3.0-7',
+89 silly addNameRange     '1.3.0',
+89 silly addNameRange     '1.3.1',
+89 silly addNameRange     '1.3.2',
+89 silly addNameRange     '1.3.3',
+89 silly addNameRange     '1.3.5',
+89 silly addNameRange     '1.3.6',
+89 silly addNameRange     '1.3.7' ] ]
+90 verbose addNamed [ 'nodemon', '1.3.7' ]
+91 verbose addNamed [ '1.3.7', '1.3.7' ]
+92 silly lockFile fec6bbf0-nodemon-1-3-7 nodemon@1.3.7
+93 verbose lock nodemon@1.3.7 /Users/eddie/.npm/fec6bbf0-nodemon-1-3-7.lock
+94 silly lockFile fec6bbf0-nodemon-1-3-7 nodemon@1.3.7
+95 silly lockFile fec6bbf0-nodemon-1-3-7 nodemon@1.3.7
+96 silly lockFile 4f5e51c6-nodemon nodemon@
+97 silly lockFile 4f5e51c6-nodemon nodemon@
+98 http 200 https://registry.npmjs.org/install
+99 silly registry.get cb [ 200,
+99 silly registry.get   { date: 'Tue, 07 Apr 2015 23:28:19 GMT',
+99 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+99 silly registry.get     etag: '"113P54VHX3FJP3LDSDBKOLHUM"',
+99 silly registry.get     'content-type': 'application/json',
+99 silly registry.get     'cache-control': 'max-age=60',
+99 silly registry.get     'content-length': '10412',
+99 silly registry.get     'accept-ranges': 'bytes',
+99 silly registry.get     via: '1.1 varnish',
+99 silly registry.get     age: '0',
+99 silly registry.get     'x-served-by': 'cache-jfk1035-JFK',
+99 silly registry.get     'x-cache': 'HIT',
+99 silly registry.get     'x-cache-hits': '1',
+99 silly registry.get     'x-timer': 'S1428449298.992894,VS0,VE74',
+99 silly registry.get     vary: 'Accept',
+99 silly registry.get     'keep-alive': 'timeout=10, max=50',
+99 silly registry.get     connection: 'Keep-Alive' } ]
+100 http 200 https://registry.npmjs.org/sudo
+101 silly registry.get cb [ 200,
+101 silly registry.get   { date: 'Tue, 07 Apr 2015 23:28:19 GMT',
+101 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+101 silly registry.get     etag: '"9TCKHA1AEJSOW9K592ZB58K1M"',
+101 silly registry.get     'content-type': 'application/json',
+101 silly registry.get     'cache-control': 'max-age=60',
+101 silly registry.get     'content-length': '9393',
+101 silly registry.get     'accept-ranges': 'bytes',
+101 silly registry.get     via: '1.1 varnish',
+101 silly registry.get     age: '0',
+101 silly registry.get     'x-served-by': 'cache-jfk1027-JFK',
+101 silly registry.get     'x-cache': 'HIT',
+101 silly registry.get     'x-cache-hits': '1',
+101 silly registry.get     'x-timer': 'S1428449298.995704,VS0,VE77',
+101 silly registry.get     vary: 'Accept',
+101 silly registry.get     'keep-alive': 'timeout=10, max=50',
+101 silly registry.get     connection: 'Keep-Alive' } ]
+102 silly addNameRange number 2 { name: 'install', range: '*', hasData: true }
+103 silly addNameRange versions [ 'install',
+103 silly addNameRange   [ '0.1.1',
+103 silly addNameRange     '0.1.2',
+103 silly addNameRange     '0.1.3',
+103 silly addNameRange     '0.1.4',
+103 silly addNameRange     '0.1.5',
+103 silly addNameRange     '0.1.6',
+103 silly addNameRange     '0.1.7',
+103 silly addNameRange     '0.1.8' ] ]
+104 verbose addNamed [ 'install', '0.1.8' ]
+105 verbose addNamed [ '0.1.8', '0.1.8' ]
+106 silly lockFile 584c81dc-install-0-1-8 install@0.1.8
+107 verbose lock install@0.1.8 /Users/eddie/.npm/584c81dc-install-0-1-8.lock
+108 silly lockFile cb455ad4-js-org-install-install-0-1-8-tgz https://registry.npmjs.org/install/-/install-0.1.8.tgz
+109 verbose lock https://registry.npmjs.org/install/-/install-0.1.8.tgz /Users/eddie/.npm/cb455ad4-js-org-install-install-0-1-8-tgz.lock
+110 verbose addRemoteTarball [ 'https://registry.npmjs.org/install/-/install-0.1.8.tgz',
+110 verbose addRemoteTarball   '9980ef93e30dfb534778d163bc86ddd472ad5fe8' ]
+111 silly addNameRange number 2 { name: 'sudo', range: '*', hasData: true }
+112 silly addNameRange versions [ 'sudo', [ '1.0.0', '1.0.1', '1.0.2', '1.0.3' ] ]
+113 verbose addNamed [ 'sudo', '1.0.3' ]
+114 verbose addNamed [ '1.0.3', '1.0.3' ]
+115 silly lockFile 2f2ed0f4-sudo-1-0-3 sudo@1.0.3
+116 verbose lock sudo@1.0.3 /Users/eddie/.npm/2f2ed0f4-sudo-1-0-3.lock
+117 silly lockFile 2e6f571a-ry-npmjs-org-sudo-sudo-1-0-3-tgz https://registry.npmjs.org/sudo/-/sudo-1.0.3.tgz
+118 verbose lock https://registry.npmjs.org/sudo/-/sudo-1.0.3.tgz /Users/eddie/.npm/2e6f571a-ry-npmjs-org-sudo-sudo-1-0-3-tgz.lock
+119 verbose addRemoteTarball [ 'https://registry.npmjs.org/sudo/-/sudo-1.0.3.tgz',
+119 verbose addRemoteTarball   'ccf28669120f8b74f82b846dff7f1c95120eff20' ]
+120 info retry fetch attempt 1 at 19:28:19
+121 verbose fetch to= /var/folders/bc/yvfqk8y511x326g3_x6d0p9m0000gn/T/npm-550-aJRZK-jq/registry.npmjs.org/install/-/install-0.1.8.tgz
+122 info retry fetch attempt 1 at 19:28:19
+123 verbose fetch to= /var/folders/bc/yvfqk8y511x326g3_x6d0p9m0000gn/T/npm-550-aJRZK-jq/registry.npmjs.org/sudo/-/sudo-1.0.3.tgz
+124 http GET https://registry.npmjs.org/install/-/install-0.1.8.tgz
+125 http GET https://registry.npmjs.org/sudo/-/sudo-1.0.3.tgz
+126 http 200 https://registry.npmjs.org/install/-/install-0.1.8.tgz
+127 silly lockFile cb455ad4-js-org-install-install-0-1-8-tgz https://registry.npmjs.org/install/-/install-0.1.8.tgz
+128 silly lockFile cb455ad4-js-org-install-install-0-1-8-tgz https://registry.npmjs.org/install/-/install-0.1.8.tgz
+129 silly lockFile 584c81dc-install-0-1-8 install@0.1.8
+130 silly lockFile 584c81dc-install-0-1-8 install@0.1.8
+131 silly lockFile cadb329f-install install@
+132 silly lockFile cadb329f-install install@
+133 http 200 https://registry.npmjs.org/npm
+134 silly registry.get cb [ 200,
+134 silly registry.get   { date: 'Tue, 07 Apr 2015 23:28:18 GMT',
+134 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+134 silly registry.get     etag: '"DFS2H8I3DP3WCI0Q1ZK6DY7B4"',
+134 silly registry.get     'content-type': 'application/json',
+134 silly registry.get     'cache-control': 'max-age=60',
+134 silly registry.get     'content-length': '2184682',
+134 silly registry.get     'accept-ranges': 'bytes',
+134 silly registry.get     via: '1.1 varnish',
+134 silly registry.get     age: '20',
+134 silly registry.get     'x-served-by': 'cache-jfk1020-JFK',
+134 silly registry.get     'x-cache': 'HIT',
+134 silly registry.get     'x-cache-hits': '2',
+134 silly registry.get     'x-timer': 'S1428449298.991761,VS0,VE0',
+134 silly registry.get     vary: 'Accept',
+134 silly registry.get     'keep-alive': 'timeout=10, max=50',
+134 silly registry.get     connection: 'Keep-Alive' } ]
+135 silly addNameRange number 2 { name: 'npm', range: '*', hasData: true }
+136 silly addNameRange versions [ 'npm',
+136 silly addNameRange   [ '1.1.25',
+136 silly addNameRange     '1.2.32',
+136 silly addNameRange     '1.3.2',
+136 silly addNameRange     '1.3.4',
+136 silly addNameRange     '1.2.20',
+136 silly addNameRange     '1.2.21',
+136 silly addNameRange     '1.2.22',
+136 silly addNameRange     '1.2.23',
+136 silly addNameRange     '1.2.24',
+136 silly addNameRange     '1.2.25',
+136 silly addNameRange     '1.2.27',
+136 silly addNameRange     '1.2.28',
+136 silly addNameRange     '1.2.30',
+136 silly addNameRange     '1.2.31',
+136 silly addNameRange     '1.3.0',
+136 silly addNameRange     '1.3.1',
+136 silly addNameRange     '1.2.19',
+136 silly addNameRange     '1.1.70',
+136 silly addNameRange     '1.1.71',
+136 silly addNameRange     '1.3.5',
+136 silly addNameRange     '1.3.6',
+136 silly addNameRange     '1.3.7',
+136 silly addNameRange     '1.3.8',
+136 silly addNameRange     '1.3.9',
+136 silly addNameRange     '1.3.10',
+136 silly addNameRange     '1.3.11',
+136 silly addNameRange     '1.3.12',
+136 silly addNameRange     '1.3.13',
+136 silly addNameRange     '1.3.14',
+136 silly addNameRange     '1.3.15',
+136 silly addNameRange     '1.3.16',
+136 silly addNameRange     '1.3.17',
+136 silly addNameRange     '1.3.18',
+136 silly addNameRange     '1.3.20',
+136 silly addNameRange     '1.3.21',
+136 silly addNameRange     '1.3.22',
+136 silly addNameRange     '1.3.23',
+136 silly addNameRange     '1.3.24',
+136 silly addNameRange     '1.3.25',
+136 silly addNameRange     '1.3.26',
+136 silly addNameRange     '1.4.0',
+136 silly addNameRange     '1.4.1',
+136 silly addNameRange     '1.4.2',
+136 silly addNameRange     '1.4.3',
+136 silly addNameRange     '1.4.4',
+136 silly addNameRange     '1.4.5',
+136 silly addNameRange     '1.4.6',
+136 silly addNameRange     '1.4.7',
+136 silly addNameRange     '1.4.8',
+136 silly addNameRange     '1.4.9',
+136 silly addNameRange     '1.4.10',
+136 silly addNameRange     '1.4.11',
+136 silly addNameRange     '1.4.12',
+136 silly addNameRange     '1.4.13',
+136 silly addNameRange     '1.4.14',
+136 silly addNameRange     '1.4.15',
+136 silly addNameRange     '1.4.16',
+136 silly addNameRange     '1.2.8000',
+136 silly addNameRange     '1.4.17',
+136 silly addNameRange     '1.4.18',
+136 silly addNameRange     '1.4.19',
+136 silly addNameRange     '1.5.0-alpha-0',
+136 silly addNameRange     '1.5.0-alpha-1',
+136 silly addNameRange     '1.4.20',
+136 silly addNameRange     '1.5.0-alpha-2',
+136 silly addNameRange     '1.4.21',
+136 silly addNameRange     '1.5.0-alpha-3',
+136 silly addNameRange     '1.5.0-alpha-4',
+136 silly addNameRange     '2.0.0-alpha-5',
+136 silly addNameRange     '1.4.22',
+136 silly addNameRange     '1.4.23',
+136 silly addNameRange     '2.0.0-alpha.6.0',
+136 silly addNameRange     '1.4.24',
+136 silly addNameRange     '2.0.0-alpha.6',
+136 silly addNameRange     '2.0.0-alpha.7',
+136 silly addNameRange     '2.0.0-beta.0',
+136 silly addNameRange     '1.4.25',
+136 silly addNameRange     '2.0.0-beta.1',
+136 silly addNameRange     '1.4.26',
+136 silly addNameRange     '2.0.0-beta.2',
+136 silly addNameRange     '1.4.27',
+136 silly addNameRange     '2.0.0-beta.3',
+136 silly addNameRange     '1.4.28',
+136 silly addNameRange     '2.0.0',
+136 silly addNameRange     '2.0.1',
+136 silly addNameRange     '2.0.2',
+136 silly addNameRange     '2.1.0',
+136 silly addNameRange     '2.1.1',
+136 silly addNameRange     '2.1.2',
+136 silly addNameRange     '2.1.3',
+136 silly addNameRange     '2.1.4',
+136 silly addNameRange     '2.1.5',
+136 silly addNameRange     '2.1.6',
+136 silly addNameRange     '2.1.7',
+136 silly addNameRange     '2.1.8',
+136 silly addNameRange     '2.1.9',
+136 silly addNameRange     '2.1.10',
+136 silly addNameRange     '2.1.11',
+136 silly addNameRange     '2.1.12',
+136 silly addNameRange     '2.1.13',
+136 silly addNameRange     '2.1.14',
+136 silly addNameRange     '2.1.15',
+136 silly addNameRange     '2.1.16',
+136 silly addNameRange     '2.1.17',
+136 silly addNameRange     '2.1.18',
+136 silly addNameRange     '2.2.0',
+136 silly addNameRange     '2.3.0',
+136 silly addNameRange     '2.4.0',
+136 silly addNameRange     '2.4.1',
+136 silly addNameRange     '2.5.0',
+136 silly addNameRange     '2.5.1',
+136 silly addNameRange     '2.6.0',
+136 silly addNameRange     '2.6.1',
+136 silly addNameRange     '2.7.0',
+136 silly addNameRange     '2.7.1',
+136 silly addNameRange     '2.7.2',
+136 silly addNameRange     '2.7.3',
+136 silly addNameRange     '2.7.4',
+136 silly addNameRange     '2.7.5',
+136 silly addNameRange     '2.7.6' ] ]
+137 verbose addNamed [ 'npm', '2.7.5' ]
+138 verbose addNamed [ '2.7.5', '2.7.5' ]
+139 silly lockFile 3856ee06-npm-2-7-5 npm@2.7.5
+140 verbose lock npm@2.7.5 /Users/eddie/.npm/3856ee06-npm-2-7-5.lock
+141 silly lockFile 39b7f087-stry-npmjs-org-npm-npm-2-7-5-tgz https://registry.npmjs.org/npm/-/npm-2.7.5.tgz
+142 verbose lock https://registry.npmjs.org/npm/-/npm-2.7.5.tgz /Users/eddie/.npm/39b7f087-stry-npmjs-org-npm-npm-2-7-5-tgz.lock
+143 verbose addRemoteTarball [ 'https://registry.npmjs.org/npm/-/npm-2.7.5.tgz',
+143 verbose addRemoteTarball   '12d3899f234a2b21a0c5f7b2458a6788da856f8d' ]
+144 info retry fetch attempt 1 at 19:28:19
+145 verbose fetch to= /var/folders/bc/yvfqk8y511x326g3_x6d0p9m0000gn/T/npm-550-aJRZK-jq/registry.npmjs.org/npm/-/npm-2.7.5.tgz
+146 http GET https://registry.npmjs.org/npm/-/npm-2.7.5.tgz
+147 http 200 https://registry.npmjs.org/npm/-/npm-2.7.5.tgz
+148 http 200 https://registry.npmjs.org/sudo/-/sudo-1.0.3.tgz
+149 silly lockFile 2e6f571a-ry-npmjs-org-sudo-sudo-1-0-3-tgz https://registry.npmjs.org/sudo/-/sudo-1.0.3.tgz
+150 silly lockFile 2e6f571a-ry-npmjs-org-sudo-sudo-1-0-3-tgz https://registry.npmjs.org/sudo/-/sudo-1.0.3.tgz
+151 silly lockFile 2f2ed0f4-sudo-1-0-3 sudo@1.0.3
+152 silly lockFile 2f2ed0f4-sudo-1-0-3 sudo@1.0.3
+153 silly lockFile f2741ec4-sudo sudo@
+154 silly lockFile f2741ec4-sudo sudo@
+155 silly lockFile 39b7f087-stry-npmjs-org-npm-npm-2-7-5-tgz https://registry.npmjs.org/npm/-/npm-2.7.5.tgz
+156 silly lockFile 39b7f087-stry-npmjs-org-npm-npm-2-7-5-tgz https://registry.npmjs.org/npm/-/npm-2.7.5.tgz
+157 silly lockFile 3856ee06-npm-2-7-5 npm@2.7.5
+158 silly lockFile 3856ee06-npm-2-7-5 npm@2.7.5
+159 silly lockFile 2f990b75-npm npm@
+160 silly lockFile 2f990b75-npm npm@
+161 silly resolved [ { name: 'nodemon',
+161 silly resolved     homepage: 'http://nodemon.io',
+161 silly resolved     author: { name: 'Remy Sharp', url: 'http://github.com/remy' },
+161 silly resolved     bin: { nodemon: './bin/nodemon.js' },
+161 silly resolved     engines: { node: '>=0.8' },
+161 silly resolved     repository: { type: 'git', url: 'http://github.com/remy/nodemon.git' },
+161 silly resolved     description: 'Simple monitor script for use during development of a node.js app.',
+161 silly resolved     keywords:
+161 silly resolved      [ 'monitor',
+161 silly resolved        'development',
+161 silly resolved        'restart',
+161 silly resolved        'autoload',
+161 silly resolved        'reload',
+161 silly resolved        'terminal' ],
+161 silly resolved     version: '1.3.7',
+161 silly resolved     preferGlobal: 'true',
+161 silly resolved     licenses: [ [Object] ],
+161 silly resolved     main: './lib/nodemon',
+161 silly resolved     scripts:
+161 silly resolved      { coverage: 'istanbul cover _mocha -- --timeout 30000 --ui bdd --reporter list test/**/*.test.js',
+161 silly resolved        ':test': 'mocha --timeout 30000 --ui bdd test/**/*.test.js',
+161 silly resolved        test: 'for FILE in test/**/*.test.js; do echo $FILE; ./node_modules/.bin/mocha --timeout 30000 $FILE; if [ $? -ne 0 ]; then exit 1; fi; sleep 1; done',
+161 silly resolved        web: 'node web' },
+161 silly resolved     devDependencies:
+161 silly resolved      { 'coffee-script': '~1.7.1',
+161 silly resolved        connect: '~2.19.1',
+161 silly resolved        istanbul: '~0.2.10',
+161 silly resolved        mocha: '^2.0.1',
+161 silly resolved        should: '~4.0.0' },
+161 silly resolved     dependencies:
+161 silly resolved      { minimatch: '~0.3.0',
+161 silly resolved        'ps-tree': '~0.0.3',
+161 silly resolved        touch: '~0.0.3',
+161 silly resolved        'update-notifier': '^0.3.0' },
+161 silly resolved     gitHead: 'ceb53ce403f7b5a39ba4c133f73fe780e472209e',
+161 silly resolved     bugs: { url: 'https://github.com/remy/nodemon/issues' },
+161 silly resolved     _id: 'nodemon@1.3.7',
+161 silly resolved     _shasum: '447bc2e01bf499cbf5853f9937496e0a04835449',
+161 silly resolved     _from: 'nodemon@',
+161 silly resolved     _npmVersion: '1.4.28',
+161 silly resolved     _npmUser: { name: 'remy', email: 'remy@remysharp.com' },
+161 silly resolved     maintainers: [ [Object] ],
+161 silly resolved     dist:
+161 silly resolved      { shasum: '447bc2e01bf499cbf5853f9937496e0a04835449',
+161 silly resolved        tarball: 'http://registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz' },
+161 silly resolved     directories: {},
+161 silly resolved     _resolved: 'https://registry.npmjs.org/nodemon/-/nodemon-1.3.7.tgz',
+161 silly resolved     readme: 'ERROR: No README data found!' },
+161 silly resolved   { author: { name: 'Ben Newman', email: 'bn@cs.stanford.edu' },
+161 silly resolved     name: 'install',
+161 silly resolved     description: 'Minimal JavaScript module loader',
+161 silly resolved     keywords:
+161 silly resolved      [ 'modules',
+161 silly resolved        'require',
+161 silly resolved        'commonjs',
+161 silly resolved        'exports',
+161 silly resolved        'browser',
+161 silly resolved        'packaging',
+161 silly resolved        'packager',
+161 silly resolved        'install' ],
+161 silly resolved     version: '0.1.8',
+161 silly resolved     homepage: 'http://github.com/benjamn/install',
+161 silly resolved     repository: { type: 'git', url: 'git://github.com/benjamn/install.git' },
+161 silly resolved     main: 'main.js',
+161 silly resolved     scripts: { test: 'mocha test/run.js' },
+161 silly resolved     devDependencies: { mocha: '~2.0.1' },
+161 silly resolved     engines: { node: '>= 0.6' },
+161 silly resolved     gitHead: '7dc68c0d65461c197a018c2a7a9d3ec6ac771ff7',
+161 silly resolved     bugs: { url: 'https://github.com/benjamn/install/issues' },
+161 silly resolved     _id: 'install@0.1.8',
+161 silly resolved     _shasum: '9980ef93e30dfb534778d163bc86ddd472ad5fe8',
+161 silly resolved     _from: 'install@',
+161 silly resolved     _npmVersion: '1.4.28',
+161 silly resolved     _npmUser: { name: 'benjamn', email: 'bn@cs.stanford.edu' },
+161 silly resolved     maintainers: [ [Object] ],
+161 silly resolved     dist:
+161 silly resolved      { shasum: '9980ef93e30dfb534778d163bc86ddd472ad5fe8',
+161 silly resolved        tarball: 'http://registry.npmjs.org/install/-/install-0.1.8.tgz' },
+161 silly resolved     directories: {},
+161 silly resolved     _resolved: 'https://registry.npmjs.org/install/-/install-0.1.8.tgz' },
+161 silly resolved   { author:
+161 silly resolved      { name: 'Jakob Borg',
+161 silly resolved        email: 'jakob@nym.se',
+161 silly resolved        url: 'http://nym.se/' },
+161 silly resolved     name: 'sudo',
+161 silly resolved     description: 'Wrap sudo with optional password cache',
+161 silly resolved     version: '1.0.3',
+161 silly resolved     homepage: 'https://github.com/calmh/node-sudo',
+161 silly resolved     repository: { type: 'git', url: 'git://github.com/calmh/node-sudo.git' },
+161 silly resolved     main: 'lib/sudo.js',
+161 silly resolved     dependencies: { inpath: '~1.0.2', read: '~1.0.3', pidof: '~1.0.2' },
+161 silly resolved     devDependencies: {},
+161 silly resolved     optionalDependencies: {},
+161 silly resolved     engines: { node: '>=0.8' },
+161 silly resolved     readme: 'node-sudo\n=========\n\nA `child_process.spawn` but with `sudo` in between. The `sudo` password dialog\nis abstracted away so that the calling Node script can interact with the\nprogram that is run under `sudo` without worrying about it.\n\nSynopsis\n--------\n\n```javascript\nsudo(args, options)\n```\n\n - `args`: An array of arguments to `sudo`. Can be both options (such as `-v`\n   or `-E`) and the program to run. Example: `[\'ls\']`.\n\n - `options`: An optional object containing options. Recognized options are:\n\n    - `cachePassword`: Boolean; whether to remember the password between\n      invocations or not.\n\n    - `prompt`: String; what to display to the user when the password is\n      needed.\n\n    - `spawnOptions`: Object; passed on directly to `spawn`. `stdio` or\n      `customFds` will be overwritten.\n\nExample\n-------\n\n```javascript\nvar sudo = require(\'sudo\');\nvar options = {\n    cachePassword: true,\n    prompt: \'Password, yo? \',\n    spawnOptions: { /* other options for spawn */ }\n};\nvar child = sudo([ \'ls\', \'-l\', \'/tmp\' ], options);\nchild.stdout.on(\'data\', function (data) {\n    console.log(data.toString());\n});\n```\n\nLicense\n-------\n\nMIT\n',
+161 silly resolved     _id: 'sudo@1.0.3',
+161 silly resolved     dist:
+161 silly resolved      { shasum: 'ccf28669120f8b74f82b846dff7f1c95120eff20',
+161 silly resolved        tarball: 'http://registry.npmjs.org/sudo/-/sudo-1.0.3.tgz' },
+161 silly resolved     _npmVersion: '1.1.62',
+161 silly resolved     _npmUser: { name: 'calmh', email: 'jakob@nym.se' },
+161 silly resolved     maintainers: [ [Object] ],
+161 silly resolved     directories: {},
+161 silly resolved     _shasum: 'ccf28669120f8b74f82b846dff7f1c95120eff20',
+161 silly resolved     _from: 'sudo@',
+161 silly resolved     _resolved: 'https://registry.npmjs.org/sudo/-/sudo-1.0.3.tgz' },
+161 silly resolved   { version: '2.7.5',
+161 silly resolved     name: 'npm',
+161 silly resolved     description: 'a package manager for JavaScript',
+161 silly resolved     keywords: [ 'package manager', 'modules', 'install', 'package.json' ],
+161 silly resolved     preferGlobal: true,
+161 silly resolved     config: { publishtest: false },
+161 silly resolved     homepage: 'https://docs.npmjs.com/',
+161 silly resolved     author:
+161 silly resolved      { name: 'Isaac Z. Schlueter',
+161 silly resolved        email: 'i@izs.me',
+161 silly resolved        url: 'http://blog.izs.me' },
+161 silly resolved     repository: { type: 'git', url: 'https://github.com/npm/npm' },
+161 silly resolved     bugs:
+161 silly resolved      { url: 'http://github.com/npm/npm/issues',
+161 silly resolved        email: 'npm-@googlegroups.com' },
+161 silly resolved     directories: { doc: './doc', man: './man', lib: './lib', bin: './bin' },
+161 silly resolved     main: './lib/npm.js',
+161 silly resolved     bin: { npm: './bin/npm-cli.js' },
+161 silly resolved     dependencies:
+161 silly resolved      { abbrev: '~1.0.5',
+161 silly resolved        ansi: '~0.3.0',
+161 silly resolved        ansicolors: '~0.3.2',
+161 silly resolved        ansistyles: '~0.1.3',
+161 silly resolved        archy: '~1.0.0',
+161 silly resolved        'async-some': '~1.0.1',
+161 silly resolved        'block-stream': '0.0.7',
+161 silly resolved        'char-spinner': '~1.0.1',
+161 silly resolved        'child-process-close': '~0.1.1',
+161 silly resolved        chmodr: '~0.1.0',
+161 silly resolved        chownr: '0',
+161 silly resolved        'cmd-shim': '~2.0.1',
+161 silly resolved        columnify: '~1.4.1',
+161 silly resolved        'config-chain': '~1.1.8',
+161 silly resolved        dezalgo: '~1.0.1',
+161 silly resolved        editor: '~0.1.0',
+161 silly resolved        'fs-vacuum': '~1.2.5',
+161 silly resolved        'fs-write-stream-atomic': '~1.0.2',
+161 silly resolved        fstream: '~1.0.4',
+161 silly resolved        'fstream-npm': '~1.0.2',
+161 silly resolved        'github-url-from-git': '~1.4.0',
+161 silly resolved        'github-url-from-username-repo': '~1.0.2',
+161 silly resolved        glob: '~5.0.3',
+161 silly resolved        'graceful-fs': '~3.0.6',
+161 silly resolved        'hosted-git-info': '~1.5.3',
+161 silly resolved        inflight: '~1.0.4',
+161 silly resolved        inherits: '~2.0.1',
+161 silly resolved        ini: '~1.3.3',
+161 silly resolved        'init-package-json': '~1.3.0',
+161 silly resolved        lockfile: '~1.0.0',
+161 silly resolved        'lru-cache': '~2.5.0',
+161 silly resolved        minimatch: '~2.0.4',
+161 silly resolved        mkdirp: '~0.5.0',
+161 silly resolved        'node-gyp': '~1.0.3',
+161 silly resolved        nopt: '~3.0.1',
+161 silly resolved        'normalize-git-url': '~1.0.0',
+161 silly resolved        'normalize-package-data': '~1.0.3',
+161 silly resolved        'npm-cache-filename': '~1.0.1',
+161 silly resolved        'npm-install-checks': '~1.0.5',
+161 silly resolved        'npm-package-arg': '~3.1.1',
+161 silly resolved        'npm-registry-client': '~6.1.2',
+161 silly resolved        'npm-user-validate': '~0.1.1',
+161 silly resolved        npmlog: '~1.2.0',
+161 silly resolved        once: '~1.3.1',
+161 silly resolved        opener: '~1.4.1',
+161 silly resolved        osenv: '~0.1.0',
+161 silly resolved        'path-is-inside': '~1.0.0',
+161 silly resolved        read: '~1.0.4',
+161 silly resolved        'read-installed': '~3.1.5',
+161 silly resolved        'read-package-json': '~1.3.2',
+161 silly resolved        'readable-stream': '~1.0.33',
+161 silly resolved        'realize-package-specifier': '~2.2.0',
+161 silly resolved        request: '~2.54.0',
+161 silly resolved        retry: '~0.6.1',
+161 silly resolved        rimraf: '~2.3.2',
+161 silly resolved        semver: '~4.3.2',
+161 silly resolved        sha: '~1.3.0',
+161 silly resolved        slide: '~1.1.6',
+161 silly resolved        'sorted-object': '~1.0.0',
+161 silly resolved        tar: '~2.0.0',
+161 silly resolved        'text-table': '~0.2.0',
+161 silly resolved        'uid-number': '0.0.6',
+161 silly resolved        umask: '~1.1.0',
+161 silly resolved        which: '~1.0.9',
+161 silly resolved        wrappy: '~1.0.1',
+161 silly resolved        'write-file-atomic': '~1.1.0' },
+161 silly resolved     bundleDependencies:
+161 silly resolved      [ 'abbrev',
+161 silly resolved        'ansi',
+161 silly resolved        'ansicolors',
+161 silly resolved        'ansistyles',
+161 silly resolved        'archy',
+161 silly resolved        'async-some',
+161 silly resolved        'block-stream',
+161 silly resolved        'char-spinner',
+161 silly resolved        'child-process-close',
+161 silly resolved        'chmodr',
+161 silly resolved        'chownr',
+161 silly resolved        'cmd-shim',
+161 silly resolved        'columnify',
+161 silly resolved        'config-chain',
+161 silly resolved        'dezalgo',
+161 silly resolved        'editor',
+161 silly resolved        'fs-vacuum',
+161 silly resolved        'fs-write-stream-atomic',
+161 silly resolved        'fstream',
+161 silly resolved        'fstream-npm',
+161 silly resolved        'github-url-from-git',
+161 silly resolved        'github-url-from-username-repo',
+161 silly resolved        'glob',
+161 silly resolved        'graceful-fs',
+161 silly resolved        'hosted-git-info',
+161 silly resolved        'inflight',
+161 silly resolved        'inherits',
+161 silly resolved        'ini',
+161 silly resolved        'init-package-json',
+161 silly resolved        'lockfile',
+161 silly resolved        'lru-cache',
+161 silly resolved        'minimatch',
+161 silly resolved        'mkdirp',
+161 silly resolved        'node-gyp',
+161 silly resolved        'nopt',
+161 silly resolved        'normalize-git-url',
+161 silly resolved        'normalize-package-data',
+161 silly resolved        'npm-cache-filename',
+161 silly resolved        'npm-install-checks',
+161 silly resolved        'npm-package-arg',
+161 silly resolved        'npm-registry-client',
+161 silly resolved        'npm-user-validate',
+161 silly resolved        'npmlog',
+161 silly resolved        'once',
+161 silly resolved        'opener',
+161 silly resolved        'osenv',
+161 silly resolved        'path-is-inside',
+161 silly resolved        'read',
+161 silly resolved        'read-installed',
+161 silly resolved        'read-package-json',
+161 silly resolved        'readable-stream',
+161 silly resolved        'realize-package-specifier',
+161 silly resolved        'request',
+161 silly resolved        'retry',
+161 silly resolved        'rimraf',
+161 silly resolved        'semver',
+161 silly resolved        'sha',
+161 silly resolved        'slide',
+161 silly resolved        'sorted-object',
+161 silly resolved        'tar',
+161 silly resolved        'text-table',
+161 silly resolved        'uid-number',
+161 silly resolved        'umask',
+161 silly resolved        'which',
+161 silly resolved        'wrappy',
+161 silly resolved        'write-file-atomic' ],
+161 silly resolved     devDependencies:
+161 silly resolved      { marked: '~0.3.3',
+161 silly resolved        'marked-man': '~0.1.4',
+161 silly resolved        nock: '~1.2.0',
+161 silly resolved        'npm-registry-couchapp': '~2.6.7',
+161 silly resolved        'npm-registry-mock': '~1.0.0',
+161 silly resolved        'require-inject': '~1.2.0',
+161 silly resolved        'sprintf-js': '~1.0.2',
+161 silly resolved        tap: '~0.7.1' },
+161 silly resolved     scripts:
+161 silly resolved      { 'test-legacy': 'node ./test/run.js',
+161 silly resolved        test: 'tap --timeout 120 test/tap/*.js',
+161 silly resolved        tap: 'tap --timeout 120 test/tap/*.js',
+161 silly resolved        'test-all': 'node ./test/run.js && tap test/tap/*.js',
+161 silly resolved        prepublish: 'node bin/npm-cli.js prune --prefix=. --no-global && rimraf test/*/*/node_modules && make -j8 doc',
+161 silly resolved        dumpconf: 'env | grep npm | sort | uniq' },
+161 silly resolved     license: 'Artistic-2.0',
+161 silly resolved     contributors:
+161 silly resolved      [ [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object],
+161 silly resolved        [Object] ],
+161 silly resolved     man:
+161 silly resolved      [ '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-README.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-access.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-adduser.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-bin.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-bugs.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-build.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-bundle.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-cache.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-completion.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-config.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-dedupe.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-deprecate.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-dist-tag.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-docs.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-edit.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-explore.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-help-search.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-help.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-init.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-install.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-link.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-logout.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-ls.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-outdated.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-owner.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-pack.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-prefix.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-prune.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-publish.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-rebuild.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-repo.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-restart.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-rm.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-root.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-run-script.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-search.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-shrinkwrap.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-star.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-stars.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-start.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-stop.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-submodule.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-tag.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-test.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-uninstall.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-unpublish.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-update.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-version.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-view.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm-whoami.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man1/npm.1',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-bin.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-bugs.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-cache.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-commands.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-config.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-deprecate.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-docs.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-edit.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-explore.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-help-search.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-init.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-install.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-link.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-load.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-ls.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-outdated.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-owner.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-pack.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-prefix.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-prune.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-publish.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-rebuild.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-repo.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-restart.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-root.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-run-script.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-search.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-shrinkwrap.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-start.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-stop.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-submodule.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-tag.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-test.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-uninstall.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-unpublish.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-update.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-version.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-view.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm-whoami.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man3/npm.3',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man5/npm-folders.5',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man5/npm-global.5',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man5/npm-json.5',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man5/npmrc.5',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man5/package.json.5',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man7/npm-coding-style.7',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man7/npm-config.7',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man7/npm-developers.7',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man7/npm-disputes.7',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man7/npm-faq.7',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man7/npm-index.7',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man7/npm-registry.7',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man7/npm-scope.7',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man7/npm-scripts.7',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man7/removing-npm.7',
+161 silly resolved        '/Users/ogd/Documents/projects/npm/npm/man/man7/semver.7' ],
+161 silly resolved     gitHead: '1517960b6ec2b794ae07ebe7fcb99f90742907f2',
+161 silly resolved     _id: 'npm@2.7.5',
+161 silly resolved     _shasum: '12d3899f234a2b21a0c5f7b2458a6788da856f8d',
+161 silly resolved     _from: 'npm@',
+161 silly resolved     _npmVersion: '2.7.5',
+161 silly resolved     _nodeVersion: '1.6.2',
+161 silly resolved     _npmUser: { name: 'othiym23', email: 'ogd@aoaioxxysz.net' },
+161 silly resolved     maintainers: [ [Object], [Object] ],
+161 silly resolved     dist:
+161 silly resolved      { shasum: '12d3899f234a2b21a0c5f7b2458a6788da856f8d',
+161 silly resolved        tarball: 'http://registry.npmjs.org/npm/-/npm-2.7.5.tgz' },
+161 silly resolved     _resolved: 'https://registry.npmjs.org/npm/-/npm-2.7.5.tgz' } ]
+162 info install nodemon@1.3.7 into /usr/local/lib
+163 info install install@0.1.8 into /usr/local/lib
+164 info install sudo@1.0.3 into /usr/local/lib
+165 info install npm@2.7.5 into /usr/local/lib
+166 info installOne nodemon@1.3.7
+167 info installOne install@0.1.8
+168 info installOne sudo@1.0.3
+169 info installOne npm@2.7.5
+170 verbose lib/node_modules/nodemon unbuild
+171 verbose lib/node_modules/install unbuild
+172 verbose lib/node_modules/sudo unbuild
+173 verbose lib/node_modules/npm unbuild
+174 info preuninstall nodemon@1.3.7
+175 verbose tar unpack /Users/eddie/.npm/install/0.1.8/package.tgz
+176 silly lockFile 6cd0b854-r-local-lib-node-modules-install tar:///usr/local/lib/node_modules/install
+177 verbose lock tar:///usr/local/lib/node_modules/install /Users/eddie/.npm/6cd0b854-r-local-lib-node-modules-install.lock
+178 silly lockFile 5594c43c-ie-npm-install-0-1-8-package-tgz tar:///Users/eddie/.npm/install/0.1.8/package.tgz
+179 verbose lock tar:///Users/eddie/.npm/install/0.1.8/package.tgz /Users/eddie/.npm/5594c43c-ie-npm-install-0-1-8-package-tgz.lock
+180 verbose tar unpack /Users/eddie/.npm/sudo/1.0.3/package.tgz
+181 silly lockFile 6deccac6--usr-local-lib-node-modules-sudo tar:///usr/local/lib/node_modules/sudo
+182 verbose lock tar:///usr/local/lib/node_modules/sudo /Users/eddie/.npm/6deccac6--usr-local-lib-node-modules-sudo.lock
+183 silly lockFile 2a0132cd-eddie-npm-sudo-1-0-3-package-tgz tar:///Users/eddie/.npm/sudo/1.0.3/package.tgz
+184 verbose lock tar:///Users/eddie/.npm/sudo/1.0.3/package.tgz /Users/eddie/.npm/2a0132cd-eddie-npm-sudo-1-0-3-package-tgz.lock
+185 info uninstall nodemon@1.3.7
+186 verbose true,/usr/local/lib/node_modules,/usr/local/lib/node_modules unbuild nodemon@1.3.7
+187 verbose /usr/local/bin,[object Object] binRoot
+188 silly gunzTarPerm modes [ '755', '644' ]
+189 silly gunzTarPerm modes [ '755', '644' ]
+190 info preuninstall npm@1.4.28
+191 error Error: EACCES, mkdir '/usr/local/lib/node_modules/install'
+191 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/install']
+191 error   errno: 3,
+191 error   code: 'EACCES',
+191 error   path: '/usr/local/lib/node_modules/install',
+191 error   fstream_type: 'Directory',
+191 error   fstream_path: '/usr/local/lib/node_modules/install',
+191 error   fstream_class: 'DirWriter',
+191 error   fstream_stack:
+191 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+191 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+191 error      'Object.oncomplete (fs.js:107:15)' ] }
+192 error Please try running this command again as root/Administrator.
+193 error System Darwin 14.1.0
+194 error command "node" "/usr/local/bin/npm" "install" "sudo" "npm" "install" "nodemon" "-g"
+195 error cwd /Users/eddie/Desktop/SOA/FAT-LADY
+196 error node -v v0.10.32
+197 error npm -v 1.4.28
+198 error path /usr/local/lib/node_modules/install
+199 error fstream_path /usr/local/lib/node_modules/install
+200 error fstream_type Directory
+201 error fstream_class DirWriter
+202 error code EACCES
+203 error errno 3
+204 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/install'
+205 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+205 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+205 error fstream_stack Object.oncomplete (fs.js:107:15)
+206 verbose exit [ 3, true ]
+207 verbose lib/node_modules/nodemon unbuild
+208 info uninstall npm@1.4.28
+209 error Error: EACCES, mkdir '/usr/local/lib/node_modules/sudo'
+209 error  { [Error: EACCES, mkdir '/usr/local/lib/node_modules/sudo']
+209 error   errno: 3,
+209 error   code: 'EACCES',
+209 error   path: '/usr/local/lib/node_modules/sudo',
+209 error   fstream_type: 'Directory',
+209 error   fstream_path: '/usr/local/lib/node_modules/sudo',
+209 error   fstream_class: 'DirWriter',
+209 error   fstream_stack:
+209 error    [ '/usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+209 error      '/usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+209 error      'Object.oncomplete (fs.js:107:15)' ] }
+210 error Please try running this command again as root/Administrator.
+211 error System Darwin 14.1.0
+212 error command "node" "/usr/local/bin/npm" "install" "sudo" "npm" "install" "nodemon" "-g"
+213 error cwd /Users/eddie/Desktop/SOA/FAT-LADY
+214 error node -v v0.10.32
+215 error npm -v 1.4.28
+216 error path /usr/local/lib/node_modules/sudo
+217 error fstream_path /usr/local/lib/node_modules/sudo
+218 error fstream_type Directory
+219 error fstream_class DirWriter
+220 error code EACCES
+221 error errno 3
+222 error stack Error: EACCES, mkdir '/usr/local/lib/node_modules/sudo'
+223 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+223 error fstream_stack /usr/local/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+223 error fstream_stack Object.oncomplete (fs.js:107:15)
+224 verbose exit [ 3, true ]

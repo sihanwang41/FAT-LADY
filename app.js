@@ -102,6 +102,8 @@ function configurableMiddleWare(req, res, next) {
 
 }
 
+app.disable('etag');
+
 app.use('/service', configurableMiddleWare);
 
 // app.use('/service', service);
