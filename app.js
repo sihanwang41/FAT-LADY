@@ -6,6 +6,8 @@ var app = express();
 var async = require('async');
 
 var service = require('./routes/index');
+var logError = require('./routes/logerror');
+var errorHandler = require('./routes/errorhandler');
 
 
 // Testing configurable middleware
@@ -81,18 +83,18 @@ function configurableMiddleWare(req, res, next) {
 				break;
 		}
 
-		console.log(fn[0]);
+		// console.log(fn[0]);
 		// console.log(middleware);
 	
 		// Push the middleware into the array and pass the variable to it
-   		operations.push(middleware.bind(null, req, res)); // could use fn.bind(null, req, res) to pass in vars  
+   		operations.push(middleware.bind(middleware, req, res)); // could use fn.bind(null, req, res) to pass in vars  
    	});
 
    	console.log('middleware list sorted');
    // now actually invoke the middleware in series
    	async.series(operations, function(err) {
    		if(err) {
-   	    // one of the functions passed back an error so handle it here
+   	    	console.log('Something blew up!!!!!!');
    			return next(err);
    	  	}
    	  	console.log('middleware get executed');
@@ -104,7 +106,8 @@ function configurableMiddleWare(req, res, next) {
 
 app.use('/service', configurableMiddleWare);
 
-// app.use('/service', service);
+app.use(logError);
+app.use(errorHandler);
 
 
 // export the module so that it could be called elsewhere

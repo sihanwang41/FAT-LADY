@@ -9,6 +9,9 @@ var makeRequest = function(options, data, response, next){
   		console.log('HEADERS: ' + JSON.stringify(hres.headers));
   		hres.setEncoding('utf8');
 	    hres.on('data', function (chunk) {
+	    	// if (err){
+	    	// 	return next(err);
+	    	// }
 	    	json += chunk;
 	        // console.log("body: " + chunk);
 	    });
@@ -25,7 +28,7 @@ var makeRequest = function(options, data, response, next){
         	}
 
         	response.status(hres.statusCode).json(jsonRes);
-        	next('route');
+        	next();
        	});
 
 	});
@@ -36,8 +39,9 @@ var makeRequest = function(options, data, response, next){
 		// console.log("writing data\n")
 		req.write(data);
 	} 
-	req.on('error', function(e) {
-  		console.log('problem with request: ' + e.message);
+	req.on('error', function(err) {
+  		console.log('problem with request: ' + err.message);
+  		return next(err);
 	});
 	req.end();
 }
