@@ -9,7 +9,6 @@ var jsonParser = bodyParser.json();
 // HTTP proxy
 var makeRequest = require('./make_request');
 
-
 // Redis connection
 var redis = require('redis');
 var client = redis.createClient();
@@ -25,8 +24,15 @@ var router = express.Router();
 
 // GET on '/'
 router.route('/:table')
+
+	.all(function(request, response, next){
+		if (response.statuscode == 304 || response.statuscode == 412)
+			next('route');
+	})
+
 // GET on '/customers'
 	.get(function(request, response, next){
+
 		// Construct the request to API
 		var options = {
 		  	host: '127.0.0.1',
@@ -44,6 +50,7 @@ router.route('/:table')
 
 // POST on '/customers'
 	.post(jsonParser, function(request, response, next){
+
 		// Construct the request to API
 		var options = {
 		  	host: '127.0.0.1',
@@ -72,6 +79,12 @@ router.route('/:table')
 
 
 router.route('/:table/:id')
+
+	.all(function(request, response, next){
+		if (response.statuscode == 304 || response.statuscode == 412)
+			next('route');
+	})
+
 // DELETE on '/customers'
 	.delete(function(request, response, next){
 		// Construct the request to API

@@ -2,39 +2,57 @@
 
 var express = require('express');
 var router = express.Router();
+
+// MD5 hash
 var crypto = require('crypto');
+
+// Redis connection
 var redis = require("redis");
 var client = redis.createClient();
 
 router.use(function(request, response, next){
-		console.log('This is middleware AFTER1');
 
-  		console.log(response.content);
+		console.log(response.statuscode);
 
-  		var str = JSON.stringify(response.content);
+		if (response.statuscode == 304 || response.statuscode == 412)
+		{
+			response.status(response.statuscode).send();
 
-		var md5 = crypto.createHash('md5');
-		var tag = md5.update(str).digest('base64');
-		console.log(tag);
+			next();
+		}
+		else
+		{
 
-		response.setHeader('ETag', tag);
+			console.log('This is middleware AFTER1');
 
-		console.log(request.url);
+	  		console.log(response.content);
 
-		client.on("error", function (err) {
-        	console.log("Error " + err);
-    	});
+	  		var str = JSON.stringify(response.content);
 
-		client.set(request.url, tag, redis.print);
+			var md5 = crypto.createHash('md5');
+			var tag = md5.update(str).digest('base64');
+			console.log(tag);
 
-		// client.get(request.url, function(err, reply) {
-  //   	// reply is null when the key is missing
-  //   		console.log(reply);
-		// });
+			response.setHeader('ETag', tag);
 
-		response.status(response.statuscode).json(response.content)
+			console.log(request.url);
 
-		next();
+			client.on("error", function (err) {
+	        	console.log("Error " + err);
+	    	});
+
+			client.set(request.url, tag, redis.print);
+
+			// client.get(request.url, function(err, reply) {
+	  //   	// reply is null when the key is missing
+	  //   		console.log(reply);
+			// });
+
+			response.status(response.statuscode).json(response.content)
+
+			next();
+
+		}
 	});
 
 

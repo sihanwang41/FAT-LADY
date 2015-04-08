@@ -2,6 +2,8 @@
 
 var express = require('express');
 var router = express.Router();
+
+// Redis connection
 var redis = require("redis");
 var client = redis.createClient();
 
@@ -20,11 +22,13 @@ router.use(function(request, response, next){
     				// console.log(reply);
     				if (reply == request.headers['if-none-match'])
 					{
-						// response.status(304);
 						console.log("304 not modified");
-						var err = new Error('304 not modified');
-  						err.status = 304;
-						return next(err);
+						// var err = new Error('304 not modified');
+						// err.status = 304;
+						// return next(err);
+						response.status(304);
+						response.statuscode = 304;
+						next();
 					}
 					else
 					{
@@ -54,9 +58,9 @@ router.use(function(request, response, next){
     				if (reply != request.headers['if-match'])
     				{
     					console.log("412 Precondition failed");
-    					var err = new Error('412 Precondition failed');
-  						err.status = 412;
-						return next(err);
+    					response.status(412);
+						response.statuscode = 412;
+						next();
     				}
 					else
 					{
@@ -69,9 +73,9 @@ router.use(function(request, response, next){
 			else
 			{
 				console.log("412 Precondition failed");
-				var err = new Error('412 Precondition failed');
-  				err.status = 412;
-				return next(err);
+				response.status(412);
+				response.statuscode = 412;
+				next();
 			}
 		}
 		

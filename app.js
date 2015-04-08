@@ -95,7 +95,9 @@ function configurableMiddleWare(req, res, next) {
    	async.series(operations, function(err) {
    		if(err) {
    	    // one of the functions passed back an error so handle it here
-   	    	console.log('Something blew up!!!!!!');
+   	    	// console.log('Something blew up!!!!!!');
+
+   	    	// console.log(err.status);
    			return next(err);
    	  	}
    	  	console.log('middleware get executed');
