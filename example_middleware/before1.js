@@ -5,7 +5,7 @@ var router = express.Router();
 
 router.use(function(request, response, next){
 		console.log('This is middleware BEFORE1');
-		var success = false;
+		var success = true;
 		if (!success){
 			// err.sourceofError = 'BEFORE1';
 			return next(new Error('Something blew up!!!'));

@@ -12,8 +12,12 @@ var errorHandler = require('./routes/errorhandler');
 
 // Testing configurable middleware
 var confirguration = {
-	before1: {
+	auth: {
 		priority: 100,
+		enable: true
+	},
+	before1: {
+		priority: 99,
 		enable: true
 	},
 	before2: {
@@ -34,6 +38,7 @@ var confirguration = {
 	}
 }
 
+var auth = require('./example_middleware/auth');
 var before1 = require('./example_middleware/before1');
 var before2 = require('./example_middleware/before2');
 var after1 = require('./example_middleware/after1');
@@ -66,6 +71,9 @@ function configurableMiddleWare(req, res, next) {
    	sortedConfig.forEach(function(fn) {
 
    		switch(fn[0]){
+			case 'auth':
+				middleware = auth;
+				break;
 			case 'before1':
 				middleware = before1;
 				break;
