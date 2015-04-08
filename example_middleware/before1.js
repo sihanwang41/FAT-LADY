@@ -20,8 +20,10 @@ router.use(function(request, response, next){
     				// console.log(reply);
     				if (reply == request.headers['if-none-match'])
 					{
-						console.log("304 not modified");
-						response.status(304).send();
+						// response.status(304);
+						var err = new Error('304 not modified');
+  						err.status = 304;
+						return next(err);
 					}
 					else
 					{
@@ -49,8 +51,10 @@ router.use(function(request, response, next){
     				// reply is null when the key is missing
     				// console.log(reply);
     				if (reply != request.headers['if-match'])
+    				{
 						console.log("412 Precondition failed");
-
+    					return next(new Error('Something blew up!!!'));
+    				}
 					else
 					{
 						console.log("Etag matches, no changes");
@@ -62,6 +66,7 @@ router.use(function(request, response, next){
 			else
 			{
 				console.log("412 Precondition failed");
+				return next(new Error('Something blew up!!!'));
 			}
 		}
 		

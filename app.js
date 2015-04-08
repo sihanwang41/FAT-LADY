@@ -6,6 +6,8 @@ var app = express();
 var async = require('async');
 
 var service = require('./routes/index');
+var logError = require('./routes/log_error');
+var errorHandler = require('./routes/error_handler');
 
 
 // Testing configurable middleware
@@ -93,6 +95,7 @@ function configurableMiddleWare(req, res, next) {
    	async.series(operations, function(err) {
    		if(err) {
    	    // one of the functions passed back an error so handle it here
+   	    	console.log('Something blew up!!!!!!');
    			return next(err);
    	  	}
    	  	console.log('middleware get executed');
@@ -106,6 +109,8 @@ app.disable('etag');
 
 app.use('/service', configurableMiddleWare);
 
+app.use(logError);
+app.use(errorHandler);
 // app.use('/service', service);
 
 
