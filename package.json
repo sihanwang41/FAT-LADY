@@ -18,6 +18,7 @@
   "homepage": "https://github.com/ushergod/FAT-LADY",
   "dependencies": {
     "async": "^0.9.0",
+    "aws-sdk": "^2.1.22",
     "body-parser": "^1.12.0",
     "express": "^4.12.2",
     "hiredis": "^0.2.0",
