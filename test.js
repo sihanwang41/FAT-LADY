@@ -51,10 +51,14 @@ describe('Testing on /customers', function(){
 				.expect(204, done);
 		});
 	
+		/*
+		 * Return format is different, need to find a way other than hardcode
+		 */
+		 
 		// it('Check if customer info is updated', function(done){
 		// 	request(app)
-		// 		.get('/customers/600')
-		// 		.expect('store_id', 10, done);
+		// 		.get('/service/customers/600')
+		// 		.expect(JSON.stringify(data), done);
 		// });
 	
 	});
