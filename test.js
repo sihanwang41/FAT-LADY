@@ -16,12 +16,14 @@ describe('Testing on /customers', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/customers')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/customers')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	});
@@ -40,6 +42,7 @@ describe('Testing on /customers', function(){
 		it('Returns a 400 status code', function(done){
 			request(app)
 				.put('/service/customers/600')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
 				.expect(400, done);
 		});
@@ -47,6 +50,7 @@ describe('Testing on /customers', function(){
 		it('Returns a 204 status code', function(done){
 			request(app)
 				.put('/service/customers/600')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send(data)
 				.expect(204, done);
 		});
@@ -68,6 +72,7 @@ describe('Testing on /customers', function(){
 		it('Returns a 400 status code', function(done){
 			request(app)
 				.post('/service/customers')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
 				.expect(400, done);
 		});
@@ -93,6 +98,7 @@ describe('Testing on /customers', function(){
 		it('Returns a 404 Status code', function(done){
 			request(app)
 				.delete('/service/customers/60000')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(404, done);
 		});
 	});
@@ -102,18 +108,21 @@ describe('Testing on /customers', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/customers/2')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/customers/2')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
 		it('Returns Customer not found', function(done){
 			request(app)
 				.get('/service/customers/600000')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('"Customer not found"', done); // json is the regex
 		});
 	});
@@ -125,12 +134,14 @@ describe('Testing on /customers', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/customers?q=\'first_name=MARY\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/customers?q=\'first_name=MARY\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -149,24 +160,28 @@ describe('Testing on /customers', function(){
 		it('ALL: Returns 200 status code', function(done){
 			request(app)
 				.get('/service/customers?field=\'first_name, last_name\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 
 		it('Single: Returns 200 status code', function(done){
 			request(app)
 				.get('/service/customers/2?field=\'first_name, last_name\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/customers?field=\'first_name, last_name\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/customers/2?field=\'first_name, last_name\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -182,12 +197,14 @@ describe('Testing on /customers', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/customers?&limit=20&offset=30')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/customers?&limit=20&offset=30')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -205,12 +222,14 @@ describe('Testing on /address', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/address')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/address')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	});
@@ -229,6 +248,7 @@ describe('Testing on /address', function(){
 		it('Returns a 400 status code', function(done){
 			request(app)
 				.put('/service/address/600')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
 				.expect(400, done);
 		});
@@ -236,6 +256,7 @@ describe('Testing on /address', function(){
 		it('Returns a 204 status code', function(done){
 			request(app)
 				.put('/service/address/600')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send(data)
 				.expect(204, done);
 		});
@@ -253,6 +274,7 @@ describe('Testing on /address', function(){
 		it('Returns a 400 status code', function(done){
 			request(app)
 				.post('/service/address')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
 				.expect(400, done);
 		});
@@ -278,6 +300,7 @@ describe('Testing on /address', function(){
 		it('Returns a 404 Status code', function(done){
 			request(app)
 				.delete('/service/address/60000')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(404, done);
 		});
 	});
@@ -287,18 +310,21 @@ describe('Testing on /address', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/address/2')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/address/2')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
 		it('Returns Address not found', function(done){
 			request(app)
 				.get('/service/address/600000')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('"Address not found"', done); // json is the regex
 		});
 	});
@@ -310,12 +336,14 @@ describe('Testing on /address', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/address?q=\'address=Columbia\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/address?q=\'address=Columbia\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -334,24 +362,28 @@ describe('Testing on /address', function(){
 		it('ALL: Returns 200 status code', function(done){
 			request(app)
 				.get('/service/address?field=\'address, address2\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 
 		it('Single: Returns 200 status code', function(done){
 			request(app)
 				.get('/service/address/2?field=\'address, address2\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/address?field=\'address, address2\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/address/2?field=\'address, address2\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -367,12 +399,14 @@ describe('Testing on /address', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/address?&limit=20&offset=30')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/address?&limit=20&offset=30')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -390,12 +424,14 @@ describe('Testing on /city', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/city')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/city')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	});
@@ -410,6 +446,7 @@ describe('Testing on /city', function(){
 		it('Returns a 400 status code', function(done){
 			request(app)
 				.put('/service/city/600')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
 				.expect(400, done);
 		});
@@ -417,6 +454,7 @@ describe('Testing on /city', function(){
 		it('Returns a 204 status code', function(done){
 			request(app)
 				.put('/service/city/600')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send(data)
 				.expect(204, done);
 		});
@@ -434,6 +472,7 @@ describe('Testing on /city', function(){
 		it('Returns a 400 status code', function(done){
 			request(app)
 				.post('/service/city')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
 				.expect(400, done);
 		});
@@ -459,6 +498,7 @@ describe('Testing on /city', function(){
 		it('Returns a 404 Status code', function(done){
 			request(app)
 				.delete('/service/city/60000')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(404, done);
 		});
 	});
@@ -468,18 +508,21 @@ describe('Testing on /city', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/city/2')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/city/2')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
 		it('Returns city not found', function(done){
 			request(app)
 				.get('/service/city/600000')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('"City not found"', done); // json is the regex
 		});
 	});
@@ -491,12 +534,14 @@ describe('Testing on /city', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/city?q=\'city=Changzhou\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/city?q=\'city=Changzhou\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -515,24 +560,28 @@ describe('Testing on /city', function(){
 		it('ALL: Returns 200 status code', function(done){
 			request(app)
 				.get('/service/city?field=\'city, city_id\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 
 		it('Single: Returns 200 status code', function(done){
 			request(app)
 				.get('/service/city?field=\'city, city_id\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/city?field=\'city, city_id\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/city?field=\'city, city_id\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -548,12 +597,14 @@ describe('Testing on /city', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/city?&limit=20&offset=30')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/city?&limit=20&offset=30')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -571,12 +622,14 @@ describe('Testing on /country', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/country')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/country')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	});
@@ -590,6 +643,7 @@ describe('Testing on /country', function(){
 		it('Returns a 400 status code', function(done){
 			request(app)
 				.put('/service/country/600')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
 				.expect(400, done);
 		});
@@ -597,6 +651,7 @@ describe('Testing on /country', function(){
 		it('Returns a 204 status code', function(done){
 			request(app)
 				.put('/service/country/100')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send(data)
 				.expect(204, done);
 		});
@@ -614,6 +669,7 @@ describe('Testing on /country', function(){
 		it('Returns a 400 status code', function(done){
 			request(app)
 				.post('/service/country')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
 				.expect(400, done);
 		});
@@ -639,6 +695,7 @@ describe('Testing on /country', function(){
 		it('Returns a 404 Status code', function(done){
 			request(app)
 				.delete('/service/country/60000')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(404, done);
 		});
 	});
@@ -648,18 +705,21 @@ describe('Testing on /country', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/country/2')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/country/2')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
 		it('Returns country not found', function(done){
 			request(app)
 				.get('/service/country/600000')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('"Country not found"', done); // json is the regex
 		});
 	});
@@ -671,12 +731,14 @@ describe('Testing on /country', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/country?q=\'country=China\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/country?q=\'country=China\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -695,24 +757,28 @@ describe('Testing on /country', function(){
 		it('ALL: Returns 200 status code', function(done){
 			request(app)
 				.get('/service/country?field=\'country, country_id\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 
 		it('Single: Returns 200 status code', function(done){
 			request(app)
 				.get('/service/country/2?field=\'country, country_id\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/country?field=\'country, country_id\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/country/2?field=\'country, country_id\'')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -728,12 +794,14 @@ describe('Testing on /country', function(){
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/country?&limit=20&offset=30')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect(200, done);
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/country?&limit=20&offset=30')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
