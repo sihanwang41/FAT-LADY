@@ -57,6 +57,7 @@ var sortConfig = function(confirguration){
 function configurableMiddleWare(req, res, next) {
    
    	var operations = [];
+   	var operationsLog = [];
 
    	var middleware;
 
@@ -94,7 +95,17 @@ function configurableMiddleWare(req, res, next) {
    // now actually invoke the middleware in series
    	async.series(operations, function(err) {
    		if(err) {
-   	    	console.log('Something blew up!!!!!!');
+   	    	// operationsLog.push(logError.bind(null, err, req, res));
+   	    	// operationsLog.push(errorHandler.bind(null, err, req, res));
+
+   	    	// console.log("Something blew up!!!!!!!")
+   	    	// async.series(operationsLog, function(err){
+   	    	// 	if (err){
+   	    	// 		return next(err);
+   	    	// 	}
+
+   	    	// 	next();
+   	    	// });
    			return next(err);
    	  	}
    	  	console.log('middleware get executed');
