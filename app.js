@@ -10,6 +10,10 @@ var service = require('./routes/index');
 
 // Testing configurable middleware
 var confirguration = {
+	Nonce: {
+		priority: 110,
+		enable: true
+	},
 	before1: {
 		priority: 100,
 		enable: true
@@ -32,6 +36,7 @@ var confirguration = {
 	}
 }
 
+var Nonce = require('./example_middleware/Nonce');
 var before1 = require('./example_middleware/before1');
 var before2 = require('./example_middleware/before2');
 var after1 = require('./example_middleware/after1');
@@ -64,6 +69,9 @@ function configurableMiddleWare(req, res, next) {
    	sortedConfig.forEach(function(fn) {
 
    		switch(fn[0]){
+			case 'Nonce':
+				middleware = Nonce.checkNonce;
+				break;
 			case 'before1':
 				middleware = before1;
 				break;
