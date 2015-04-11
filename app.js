@@ -11,14 +11,34 @@ var errorHandler = require('./routes/errorhandler');
 
 
 // Testing configurable middleware
-var confirguration = require('./example_middleware/configuration');
-
-
+var confirguration = {
+	before1: {
+		priority: 100,
+		enable: true
+	},
+	before2: {
+		priority: 80,
+		enable: true
+	},
+	service: {
+		priority: 50,
+		enable: true
+	},
+	after1: {
+		priority: 30,
+		enable: true
+	},
+	after2: {
+		priority: 10,
+		enable: true
+	}
+}
 
 var before1 = require('./example_middleware/before1');
 var before2 = require('./example_middleware/before2');
 var after1 = require('./example_middleware/after1');
 var after2 = require('./example_middleware/after2');
+var configuration = require('./example_middleware/configuration');
 // Fake request to simulate the /service
 var fakeRequest = require('./example_middleware/fake_request');
 
@@ -36,11 +56,12 @@ var sortConfig = function(confirguration){
 }
 
 function configurableMiddleWare(req, res, next) {
-   
+   console.log('here');
    	var operations = [];
 
    	var middleware;
-
+   	var config = req.configuration;
+   	console.log(req.configuration);
    	var sortedConfig = sortConfig(confirguration);
 
    // push each middleware you want to run
@@ -79,11 +100,12 @@ function configurableMiddleWare(req, res, next) {
    			return next(err);
    	  	}
    	  	console.log('middleware get executed');
-   	  	// no errors so pass control back to express
+   	  	// no errors so pass control back to expresss
    	  	next();
    	});
 
 }
+app.use('/service',configuration);
 
 app.use('/service', configurableMiddleWare);
 
