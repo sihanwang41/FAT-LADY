@@ -9,31 +9,6 @@ var service = require('./routes/index');
 var logError = require('./routes/logerror');
 var errorHandler = require('./routes/errorhandler');
 
-
-// Testing configurable middleware
-var confirguration = {
-	before1: {
-		priority: 100,
-		enable: true
-	},
-	before2: {
-		priority: 80,
-		enable: true
-	},
-	service: {
-		priority: 50,
-		enable: true
-	},
-	after1: {
-		priority: 30,
-		enable: true
-	},
-	after2: {
-		priority: 10,
-		enable: true
-	}
-}
-
 var before1 = require('./example_middleware/before1');
 var before2 = require('./example_middleware/before2');
 var after1 = require('./example_middleware/after1');
@@ -56,14 +31,11 @@ var sortConfig = function(confirguration){
 }
 
 function configurableMiddleWare(req, res, next) {
-   console.log('here');
    	var operations = [];
-
    	var middleware;
    	var config = req.configuration;
-   	console.log(req.configuration);
-   	var sortedConfig = sortConfig(confirguration);
 
+   	var sortedConfig = sortConfig(config);
    // push each middleware you want to run
    	sortedConfig.forEach(function(fn) {
 
