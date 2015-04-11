@@ -105,7 +105,6 @@ function configurableMiddleWare(req, res, next) {
    	});
 
 }
-app.use('/service',configuration);
 
 app.use('/service', configurableMiddleWare);
 
