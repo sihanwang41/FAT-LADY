@@ -70,6 +70,7 @@ function configurableMiddleWare(req, res, next) {
 
    		switch(fn[0]){
 			case 'Nonce':
+				console.log("in switch case")
 				middleware = Nonce.checkNonce;
 				break;
 			case 'before1':
@@ -79,7 +80,7 @@ function configurableMiddleWare(req, res, next) {
 				middleware = before2;
 				break;
 			case 'service':
-				middleware = fakeRequest;
+				middleware = service;
 				break;
 			case 'after1':
 				middleware = after1;
@@ -110,9 +111,9 @@ function configurableMiddleWare(req, res, next) {
 
 }
 
-app.use('/test', configurableMiddleWare);
-
-app.use('/service', service);
+app.use('/service', configurableMiddleWare);
+//app.use('/service', configurableMiddleWare);
+//app.use('/service', service);
 
 
 // export the module so that it could be called elsewhere

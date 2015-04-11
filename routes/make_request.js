@@ -2,13 +2,16 @@
 
 var http = require('http');
 
-var makeRequest = function(options, data, response){
+var makeRequest = function(options, data, response, next){
 	var req = http.request(options, function(hres) {
 		var json = '';
 		console.log('STATUS: ' + hres.statusCode);
   		console.log('HEADERS: ' + JSON.stringify(hres.headers));
   		hres.setEncoding('utf8');
 	    hres.on('data', function (chunk) {
+	    	// if (err){
+	    	// 	return next(err);
+	    	// }
 	    	json += chunk;
 	        // console.log("body: " + chunk);
 	    });
@@ -25,7 +28,9 @@ var makeRequest = function(options, data, response){
         	}
 
         	response.status(hres.statusCode).json(jsonRes);
+        	next();
        	});
+
 	});
 
 	// Only when POST and PUT has JSON data
@@ -34,8 +39,9 @@ var makeRequest = function(options, data, response){
 		// console.log("writing data\n")
 		req.write(data);
 	} 
-	req.on('error', function(e) {
-  		console.log('problem with request: ' + e.message);
+	req.on('error', function(err) {
+  		console.log('problem with request: ' + err.message);
+  		return next(err);
 	});
 	req.end();
 }
