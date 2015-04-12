@@ -8,7 +8,7 @@ var async = require('async');
 var service = require('./routes/index');
 
 
-// Testing configurable middleware
+// Testing the configurable middleware
 var confirguration = {
 	before1: {
 		priority: 100,
