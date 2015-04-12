@@ -26,7 +26,7 @@ var router = express.Router();
 // GET on '/'
 router.route('/:table')
 // GET on '/customers'
-	.get(function(request, response){
+	.get(function(request, response, next){
 		// Construct the request to API
 		var options = {
 		  	host: '127.0.0.1',
@@ -38,11 +38,12 @@ router.route('/:table')
 				
 		console.log(options);
 		// Make HTTP request
-		makeRequest(options, null, response);
+		makeRequest(options, null, response, next);
+		// next('route');
 	})
 
 // POST on '/customers'
-	.post(jsonParser, function(request, response){
+	.post(jsonParser, function(request, response, next){
 		// Construct the request to API
 		var options = {
 		  	host: '127.0.0.1',
@@ -64,13 +65,15 @@ router.route('/:table')
 
 		console.log(options);
 
-		makeRequest(options, data, response);
+		makeRequest(options, data, response, next);
+
+		// next('route');
 	});
 
 
 router.route('/:table/:id')
 // DELETE on '/customers'
-	.delete(function(request, response){
+	.delete(function(request, response, next){
 		// Construct the request to API
 		var options = {
 		  	host: '127.0.0.1',
@@ -82,10 +85,12 @@ router.route('/:table/:id')
 
 		console.log(options);
 
-		makeRequest(options, null, response);
+		makeRequest(options, null, response, next);
+
+		// next('route');
 	})
 
-	.put(jsonParser, function(request, response){
+	.put(jsonParser, function(request, response, next){
 		// Setting up the proxy for post
 		var options = {
 		  	host: '127.0.0.1',
@@ -107,11 +112,13 @@ router.route('/:table/:id')
 
 		console.log(options);
 
-		makeRequest(options, data, response);
+		makeRequest(options, data, response, next);
+
+		// next('route');
 	})
 
 
-	.get(function(request, response){
+	.get(function(request, response, next){
 		// Construct the request to API
 		var options = {
 		  	host: '127.0.0.1',
@@ -123,7 +130,9 @@ router.route('/:table/:id')
 		
 		console.log(options);
 
-		makeRequest(options, null, response);
+		makeRequest(options, null, response, next);
+
+		// next('route');
 	});
 
 module.exports = router;
