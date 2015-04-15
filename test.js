@@ -9,9 +9,10 @@ var jsonParser = bodyParser.json();
 var redis = require('redis');
 var client = redis.createClient();
 client.select('test'.length);
-client.flushdb();
+client.flushall();
 
 describe('Testing on /customers', function(){
+
 	describe('Listing customers on /customers', function() {
 		it('Returns 200 status code', function(done){
 			request(app)
