@@ -21,7 +21,7 @@ var confirguration = {
 		priority: 110,
 		enable: true
 	},
-	before1: {
+	loggingBefore: {
 		priority: 99,
 		enable: true
 	},
@@ -33,7 +33,7 @@ var confirguration = {
 		priority: 50,
 		enable: true
 	},
-	after1: {
+	loggingAfter: {
 		priority: 30,
 		enable: true
 	},
@@ -45,9 +45,9 @@ var confirguration = {
 
 var auth = require('./example_middleware/auth');
 var Nonce = require('./example_middleware/Nonce');
-var before1 = require('./example_middleware/before1');
+var loggingBefore = require('./example_middleware/logging_before');
 var before2 = require('./example_middleware/before2');
-var after1 = require('./example_middleware/after1');
+var loggingAfter = require('./example_middleware/logging_after');
 var after2 = require('./example_middleware/after2');
 // Fake request to simulate the /service
 var fakeRequest = require('./example_middleware/fake_request');
@@ -81,11 +81,10 @@ function configurableMiddleWare(req, res, next) {
 				middleware = auth;
 				break;
 			case 'Nonce':
-				console.log("in switch case")
 				middleware = Nonce.checkNonce;
 				break;
-			case 'before1':
-				middleware = before1;
+			case 'loggingBefore':
+				middleware = loggingBefore;
 				break;
 			case 'before2':
 				middleware = before2;
@@ -93,8 +92,8 @@ function configurableMiddleWare(req, res, next) {
 			case 'service':
 				middleware = service;
 				break;
-			case 'after1':
-				middleware = after1;
+			case 'loggingAfter':
+				middleware = loggingAfter;
 				break;
 			case 'after2':
 				middleware = after2;
