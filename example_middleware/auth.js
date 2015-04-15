@@ -10,18 +10,18 @@ AWS.config.logger = console;
 var db = new AWS.DynamoDB();
 
 router.use(function(req, res, next) {
-      var auth;
-      var username;
-      var password;
-      // check whether an autorization header was send    
-      if (req.headers.authorization) {
-        // only accepting basic auth, so:
-        // * cut the starting "Basic " from the header
-        // * decode the base64 encoded username:password
-        // * split the string at the colon
-        // -> should result in an array
-        auth = new Buffer(req.headers.authorization.substring(6), 'base64').toString().split(':');
-      }
+    var auth;
+    var username;
+    var password;
+    // check whether an autorization header was send    
+    if (req.headers.authorization) {
+      // only accepting basic auth, so:
+      // * cut the starting "Basic " from the header
+      // * decode the base64 encoded username:password
+      // * split the string at the colon
+      // -> should result in an array
+      auth = new Buffer(req.headers.authorization.substring(6), 'base64').toString().split(':');
+    }
 
 
   if (auth ) {
