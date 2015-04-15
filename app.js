@@ -78,6 +78,7 @@ function configurableMiddleWare(req, res, next) {
    		switch(fn[0]){
 			case 'auth':
 				middleware = auth;
+				break;
 			case 'Nonce':
 				console.log("in switch case")
 				middleware = Nonce.checkNonce;
