@@ -12,8 +12,8 @@ router.use(function(request, response, next){
 	console.log('This is middleware AFTER1 - Agustin 4-10...................');
 
 	if (request.headers.authorization) {
-        auth = new Buffer(request.headers.authorization.substring(6), 'base64').toString().split(':');
-    }
+		auth = new Buffer(request.headers.authorization.substring(6), 'base64').toString().split(':');
+	}
 	if (auth ) {
 		username = auth[0];
 		password = auth[1];
@@ -51,40 +51,40 @@ module.exports = router;
 
 function SQSmsg(request)
 {
-var AWS = require('aws-sdk');
-AWS.config.loadFromPath('./configLogging.json');
+	var AWS = require('aws-sdk');
+	AWS.config.loadFromPath('./configLogging.json');
 
-var sns = new AWS.SNS();
+	var sns = new AWS.SNS();
 
-var publishParams = {
-  TopicArn : "arn:aws:sns:us-east-1:065434505659:VATopic",
-  Message: "Hello World" + JSON.stringify(request.headers)
-};
+	var publishParams = {
+		TopicArn : "arn:aws:sns:us-east-1:065434505659:VATopic",
+		Message: "Hello World" + JSON.stringify(request.headers)
+	};
 
-sns.publish(publishParams, publishCallback);
+	sns.publish(publishParams, publishCallback);
 
-function publishCallback(err, data) {
-  console.log("published message");
-  console.log(data);
-}
+	function publishCallback(err, data) {
+		console.log("published message");
+		console.log(data);
+	}
 }
 
 function SNSmsg(request)
 {
-var AWS = require('aws-sdk');
-AWS.config.loadFromPath('./configLogging.json');
+	var AWS = require('aws-sdk');
+	AWS.config.loadFromPath('./configLogging.json');
 
-var sns = new AWS.SNS();
+	var sns = new AWS.SNS();
 
-var publishParams = { 
-  TopicArn : "arn:aws:sns:us-east-1:065434505659:EmailTopic",
-  Message: "Hello World" + JSON.stringify(request.headers)
-};
+	var publishParams = { 
+		TopicArn : "arn:aws:sns:us-east-1:065434505659:EmailTopic",
+		Message: "Hello World" + JSON.stringify(request.headers)
+	};
 
-sns.publish(publishParams, publishCallback);
+	sns.publish(publishParams, publishCallback);
 
-function publishCallback(err, data) {
-  console.log("published message");
-  console.log(data);
-}
+	function publishCallback(err, data) {
+		console.log("published message");
+		console.log(data);
+	}
 }
