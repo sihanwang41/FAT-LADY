@@ -17,6 +17,7 @@ describe('Testing on /customers', function(){
 			request(app)
 				.get('/service/customers')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', "111")
 				.expect(200, done);
 		});
 	
@@ -24,6 +25,7 @@ describe('Testing on /customers', function(){
 			request(app)
 				.get('/service/customers')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', "112")
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	});
@@ -44,20 +46,22 @@ describe('Testing on /customers', function(){
 				.put('/service/customers/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
+				.set('nonce', "113")
 				.expect(400, done);
 		});
-	
 		it('Returns a 204 status code', function(done){
 			request(app)
 				.put('/service/customers/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send(data)
+				.set('nonce', "114")
 				.expect(204, done);
 		});
+
 	
-		/*
-		 * Return format is different, need to find a way other than hardcode
-		 */
+		//
+		// Return format is different, need to find a way other than hardcode
+		//
 		 
 		// it('Check if customer info is updated', function(done){
 		// 	request(app)
@@ -74,6 +78,7 @@ describe('Testing on /customers', function(){
 				.post('/service/customers')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
+				.set('nonce', "116")
 				.expect(400, done);
 		});
 	
@@ -99,7 +104,9 @@ describe('Testing on /customers', function(){
 			request(app)
 				.delete('/service/customers/60000')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', "117")
 				.expect(404, done);
+				
 		});
 	});
 	
@@ -109,21 +116,27 @@ describe('Testing on /customers', function(){
 			request(app)
 				.get('/service/customers/2')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', "118")
 				.expect(200, done);
+				
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/customers/2')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', "119")
 				.expect('Content-Type', /json/, done); // json is the regex
+				
 		});
 	
 		it('Returns Customer not found', function(done){
 			request(app)
 				.get('/service/customers/600000')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', "120")
 				.expect('"Customer not found"', done); // json is the regex
+				
 		});
 	});
 
@@ -135,19 +148,23 @@ describe('Testing on /customers', function(){
 			request(app)
 				.get('/service/customers?q=\'first_name=MARY\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', "121")
 				.expect(200, done);
+				
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/customers?q=\'first_name=MARY\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', "122")
 				.expect('Content-Type', /json/, done); // json is the regex
+				
 		});
 	
-		/*
-		 * Returns a empty array of customer
-		*/
+		//
+		// Returns a empty array of customer
+		//
 		// it('Returns Customer not found', function(done){
 		// 	request(app)
 		// 		.get('/service/customers/600000')
@@ -161,28 +178,36 @@ describe('Testing on /customers', function(){
 			request(app)
 				.get('/service/customers?field=\'first_name, last_name\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', "199")
 				.expect(200, done);
+				
 		});
 
 		it('Single: Returns 200 status code', function(done){
 			request(app)
 				.get('/service/customers/2?field=\'first_name, last_name\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '124')
 				.expect(200, done);
+				
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/customers?field=\'first_name, last_name\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '125')
 				.expect('Content-Type', /json/, done); // json is the regex
+				
 		});
 
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/customers/2?field=\'first_name, last_name\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '126')
 				.expect('Content-Type', /json/, done); // json is the regex
+				
 		});
 	
 		// it('Returns Customer not found', function(done){
@@ -191,21 +216,25 @@ describe('Testing on /customers', function(){
 		// 		.expect('"Customer not found"', done); // json is the regex
 		// });
 	});
-
+/*
 	describe('Testing limit and offset on GET', function(){
 	
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/customers?&limit=20&offset=30')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '127')
 				.expect(200, done);
+				
 		});
 	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/customers?&limit=20&offset=30')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '128')
 				.expect('Content-Type', /json/, done); // json is the regex
+				
 		});
 	
 		// it('Returns Customer not found', function(done){
@@ -213,9 +242,8 @@ describe('Testing on /customers', function(){
 		// 		.get('/service/customers/600000')
 		// 		.expect('"Customer not found"', done); // json is the regex
 		// });
-	});
+	});*/
 });
-
 
 describe('Testing on /address', function(){
 	describe('Listing customers on /address', function() {
@@ -223,6 +251,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '222')
 				.expect(200, done);
 		});
 	
@@ -230,6 +259,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '223')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	});
@@ -250,6 +280,7 @@ describe('Testing on /address', function(){
 				.put('/service/address/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
+				.set('nonce', '224')
 				.expect(400, done);
 		});
 	
@@ -257,6 +288,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.put('/service/address/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '225')
 				.send(data)
 				.expect(204, done);
 		});
@@ -275,6 +307,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.post('/service/address')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '226')
 				.send('{}')
 				.expect(400, done);
 		});
@@ -301,6 +334,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.delete('/service/address/60000')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '227')
 				.expect(404, done);
 		});
 	});
@@ -311,6 +345,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address/2')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '228')
 				.expect(200, done);
 		});
 	
@@ -318,6 +353,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address/2')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '229')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -325,6 +361,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address/600000')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '230')
 				.expect('"Address not found"', done); // json is the regex
 		});
 	});
@@ -337,6 +374,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address?q=\'address=Columbia\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '231')
 				.expect(200, done);
 		});
 	
@@ -344,6 +382,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address?q=\'address=Columbia\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '232')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -363,6 +402,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address?field=\'address, address2\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '233')
 				.expect(200, done);
 		});
 
@@ -370,6 +410,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address/2?field=\'address, address2\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '234')
 				.expect(200, done);
 		});
 	
@@ -377,6 +418,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address?field=\'address, address2\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '235')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 
@@ -384,6 +426,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address/2?field=\'address, address2\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '236')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -400,6 +443,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address?&limit=20&offset=30')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '237')
 				.expect(200, done);
 		});
 	
@@ -407,6 +451,7 @@ describe('Testing on /address', function(){
 			request(app)
 				.get('/service/address?&limit=20&offset=30')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '238')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -418,13 +463,13 @@ describe('Testing on /address', function(){
 	});
 });
 
-
 describe('Testing on /city', function(){
 	describe('Listing cities on /city', function() {
 		it('Returns 200 status code', function(done){
 			request(app)
 				.get('/service/city')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '333')
 				.expect(200, done);
 		});
 	
@@ -432,6 +477,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '334')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	});
@@ -447,6 +493,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.put('/service/city/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '335')
 				.send('{}')
 				.expect(400, done);
 		});
@@ -455,6 +502,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.put('/service/city/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '336')
 				.send(data)
 				.expect(204, done);
 		});
@@ -473,6 +521,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.post('/service/city')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '337')
 				.send('{}')
 				.expect(400, done);
 		});
@@ -499,6 +548,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.delete('/service/city/60000')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '338')
 				.expect(404, done);
 		});
 	});
@@ -509,6 +559,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city/2')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '339')
 				.expect(200, done);
 		});
 	
@@ -516,6 +567,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city/2')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '340')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -523,6 +575,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city/600000')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '341')
 				.expect('"City not found"', done); // json is the regex
 		});
 	});
@@ -535,6 +588,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city?q=\'city=Changzhou\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '342')
 				.expect(200, done);
 		});
 	
@@ -542,6 +596,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city?q=\'city=Changzhou\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '343')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -561,6 +616,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city?field=\'city, city_id\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '344')
 				.expect(200, done);
 		});
 
@@ -568,6 +624,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city?field=\'city, city_id\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '345')
 				.expect(200, done);
 		});
 	
@@ -575,6 +632,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city?field=\'city, city_id\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '346')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 
@@ -582,6 +640,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city?field=\'city, city_id\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '347')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -598,6 +657,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city?&limit=20&offset=30')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '348')
 				.expect(200, done);
 		});
 	
@@ -605,6 +665,7 @@ describe('Testing on /city', function(){
 			request(app)
 				.get('/service/city?&limit=20&offset=30')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '349')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -623,6 +684,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '444')
 				.expect(200, done);
 		});
 	
@@ -630,6 +692,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '445')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	});
@@ -644,6 +707,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.put('/service/country/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '446')
 				.send('{}')
 				.expect(400, done);
 		});
@@ -652,6 +716,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.put('/service/country/100')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '447')
 				.send(data)
 				.expect(204, done);
 		});
@@ -670,6 +735,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.post('/service/country')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '448')
 				.send('{}')
 				.expect(400, done);
 		});
@@ -696,6 +762,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.delete('/service/country/60000')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '449')
 				.expect(404, done);
 		});
 	});
@@ -706,6 +773,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country/2')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '450')
 				.expect(200, done);
 		});
 	
@@ -713,6 +781,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country/2')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '451')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -720,6 +789,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country/600000')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '452')
 				.expect('"Country not found"', done); // json is the regex
 		});
 	});
@@ -732,6 +802,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country?q=\'country=China\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '453')
 				.expect(200, done);
 		});
 	
@@ -739,6 +810,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country?q=\'country=China\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '454')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -758,6 +830,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country?field=\'country, country_id\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '455')
 				.expect(200, done);
 		});
 
@@ -765,6 +838,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country/2?field=\'country, country_id\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '456')
 				.expect(200, done);
 		});
 	
@@ -772,6 +846,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country?field=\'country, country_id\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '457')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 
@@ -779,6 +854,7 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country/2?field=\'country, country_id\'')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '458')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -795,13 +871,14 @@ describe('Testing on /country', function(){
 			request(app)
 				.get('/service/country?&limit=20&offset=30')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '459')
 				.expect(200, done);
 		});
-	
 		it('Returns JSON format', function(done){
 			request(app)
 				.get('/service/country?&limit=20&offset=30')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', '460')
 				.expect('Content-Type', /json/, done); // json is the regex
 		});
 	
@@ -812,11 +889,6 @@ describe('Testing on /country', function(){
 		// });
 	});
 });
-
-
-
-
-
 
 
 

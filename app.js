@@ -16,6 +16,10 @@ var confirguration = {
 		priority: 100,
 		enable: true
 	},
+	Nonce: {
+		priority: 110,
+		enable: true
+	},
 	before1: {
 		priority: 99,
 		enable: true
@@ -39,6 +43,7 @@ var confirguration = {
 }
 
 var auth = require('./example_middleware/auth');
+var Nonce = require('./example_middleware/Nonce');
 var before1 = require('./example_middleware/before1');
 var before2 = require('./example_middleware/before2');
 var after1 = require('./example_middleware/after1');
@@ -73,6 +78,9 @@ function configurableMiddleWare(req, res, next) {
    		switch(fn[0]){
 			case 'auth':
 				middleware = auth;
+			case 'Nonce':
+				console.log("in switch case")
+				middleware = Nonce.checkNonce;
 				break;
 			case 'before1':
 				middleware = before1;
@@ -113,9 +121,9 @@ function configurableMiddleWare(req, res, next) {
 }
 
 app.use('/service', configurableMiddleWare);
-
 app.use(logError);
 app.use(errorHandler);
+
 
 
 // export the module so that it could be called elsewhere
