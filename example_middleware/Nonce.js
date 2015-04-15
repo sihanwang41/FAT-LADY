@@ -23,6 +23,6 @@ module.exports = {
 				res.sendStatus(404);
 				console.log("drop");
 			}
-		})
+		});
 	}
 }
