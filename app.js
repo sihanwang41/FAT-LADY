@@ -10,6 +10,7 @@ var service = require('./routes/index');
 var logError = require('./routes/logerror');
 var errorHandler = require('./routes/errorhandler');
 
+
 // Testing configurable middleware
 var confirguration = {
 	auth: {
@@ -111,7 +112,7 @@ function configurableMiddleWare(req, res, next) {
    // now actually invoke the middleware in series
    	async.series(operations, function(err) {
    		if(err) {
-   	    	console.log('Something blew up!!!!!!');
+   	    	console.log('Something blew up at app!!!!!!');
    			return next(err);
    	  	}
    	  	console.log('middleware get executed');
@@ -122,9 +123,9 @@ function configurableMiddleWare(req, res, next) {
 }
 
 app.use('/service', configurableMiddleWare);
+
 app.use(logError);
 app.use(errorHandler);
-
 
 
 // export the module so that it could be called elsewhere

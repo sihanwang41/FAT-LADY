@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha -w app.js test.js"
+	"test": "set NODE_ENV=test && mocha -w app.js test.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,8 @@
     "body-parser": "^1.12.0",
     "express": "^4.12.2",
     "hiredis": "^0.2.0",
-    "redis": "^0.12.1"
+    "redis": "^0.12.1",
+	"aws-sdk" : "^1.12.0"
   },
   "devDependencies": {
     "mocha": "^2.2.1",
