@@ -26,8 +26,16 @@ var router = express.Router();
 router.route('/:table')
 
 	.all(function(request, response, next){
-		if (response.statuscode == 304 || response.statuscode == 412)
+
+		response.table = request.params.table;
+		if (response.table == 'address'){
+			response.table = 'street_addresses';
+		}
+
+		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403)
 			next('route');
+		else
+			next();
 	})
 
 // GET on '/customers'
@@ -44,6 +52,7 @@ router.route('/:table')
 				
 		console.log(options);
 		// Make HTTP request
+
 		makeRequest(options, null, response, next);
 		// next('route');
 	})
@@ -81,8 +90,16 @@ router.route('/:table')
 router.route('/:table/:id')
 
 	.all(function(request, response, next){
-		if (response.statuscode == 304 || response.statuscode == 412)
+
+		response.table = request.params.table;
+		if (response.table == 'address'){
+			response.table = 'street_addresses';
+		}
+
+		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403)
 			next('route');
+		else
+			next();
 	})
 
 // DELETE on '/customers'

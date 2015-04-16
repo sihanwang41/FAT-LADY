@@ -13,14 +13,22 @@ router.use(function(request, response, next){
 		console.log("The method is " + request.method)
 		if (request.method == "GET")
 		{
-			if (request.headers['if-none-match'] != null)
+			if (request.headers['if-none-match'] != null && request.headers['if-modified-since'] != null)
 			{
 				console.log("if-none-match header is: " + request.headers['if-none-match']);
+				console.log("if-modified-since header is: " + request.headers['if-modified-since']);
 
 				client.get(request.url, function(err, reply) {
     				// reply is null when the key is missing
     				// console.log(reply);
-    				if (reply == request.headers['if-none-match'])
+    				var json_obj = JSON.parse(reply);
+    				var x = new Date(json_obj.LastModified);
+    				var y = new Date(request.headers['if-modified-since']);
+    				console.log('x: ' + x + ', y: ' + y);
+
+    				// console.log("Etag in json: " + json_obj.Etag);
+    				// console.log("Last-Modified in json: " + json_obj.LastModified);
+    				if (json_obj.Etag == request.headers['if-none-match'] && x >= y)
 					{
 						console.log("304 not modified");
 						// var err = new Error('304 not modified');
@@ -32,7 +40,7 @@ router.use(function(request, response, next){
 					}
 					else
 					{
-						console.log("if-none-match header doesn't match");
+						console.log("Headers do not match");
 						next();
 					}
 				});
@@ -55,12 +63,14 @@ router.use(function(request, response, next){
 				client.get(request.url, function(err, reply) {
     				// reply is null when the key is missing
     				// console.log(reply);
-    				if (reply != request.headers['if-match'])
+    				var json_obj = JSON.parse(reply);
+
+    				if (json_obj.Etag != request.headers['if-match'])
     				{
     					console.log("412 Precondition failed");
-    					response.status(412);
-						response.statuscode = 412;
-						next();
+    					var err = new Error('412 Precondition failed');
+  						err.status = 412;
+						return next(err);
     				}
 					else
 					{
@@ -72,13 +82,13 @@ router.use(function(request, response, next){
 			}
 			else
 			{
-				console.log("412 Precondition failed");
-				response.status(412);
-				response.statuscode = 412;
-				next();
+				console.log("403 Forbidden");
+				var err = new Error('403 Forbidden');
+  				err.status = 403;
+				return next(err);
 			}
 		}
-		
+
 	});
 
 

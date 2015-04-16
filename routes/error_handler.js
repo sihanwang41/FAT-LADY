@@ -4,7 +4,7 @@ var express = require('express');
 var router = express.Router();
 
 router.use(function (err, request, response, next) {
-  		if(err) console.log('Error:', new Date());
+  		if(err) console.log('Err:', new Date());
 
   		res.status(err.statusCode || err.status || 500);
   		res.send({
