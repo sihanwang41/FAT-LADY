@@ -11,40 +11,52 @@ router.use(function(request, response, next){
 	var date = new Date();
 	console.log('This is middleware AFTER1 - Agustin 4-10...................');
 
-	if (request.headers.authorization) {
-		auth = new Buffer(request.headers.authorization.substring(6), 'base64').toString().split(':');
-	}
-	if (auth ) {
-		username = auth[0];
-		password = auth[1];
-	}
-	
-	//Reformatting the header
-	delete request.headers.authorization;
-	request.headers.date = date;
-	request.headers.username = username;
-	request.headers.method = request.method;
-	request.headers.url = request.url;
-	request.headers.status_code = response.statusCode;
-	request.headers.status_message = response.statusMessage;
-	var firstChar = response.statusCode + '';
-	firstChar = firstChar.substring(0,1);
-	
-	var success = true;
-	if (!success) {
-		SQSmsg(request);
-		SNSmsg(request);
-		return next(new Error('Something blew up in Logging after!!!'));
-	}
-	else if (firstChar == '5'){
-		SQSmsg(request);
-		SNSmsg(request);
-		return next(new Error('Something blew up in the server!!!'));
-	}
-	else {
-		SQSmsg(request);
+	if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403)
+	{
+		response.status(response.statuscode).send();
+
 		next();
 	}
+	else{
+
+		if (request.headers.authorization) {
+			auth = new Buffer(request.headers.authorization.substring(6), 'base64').toString().split(':');
+		}
+		if (auth ) {
+			username = auth[0];
+			password = auth[1];
+		}
+		
+		//Reformatting the header
+		delete request.headers.authorization;
+		request.headers.date = date;
+		request.headers.username = username;
+		request.headers.method = request.method;
+		request.headers.url = request.url;
+		request.headers.status_code = response.statusCode;
+		request.headers.status_message = response.statusMessage;
+		var firstChar = response.statusCode + '';
+		firstChar = firstChar.substring(0,1);
+		
+		var success = true;
+		if (!success) {
+			SQSmsg(request);
+			SNSmsg(request);
+			return next(new Error('Something blew up in Logging after!!!'));
+		}
+		else if (firstChar == '5'){
+			SQSmsg(request);
+			SNSmsg(request);
+			return next(new Error('Something blew up in the server!!!'));
+		}
+		else {
+			SQSmsg(request);
+			next();
+		}
+
+	}
+
+	
 });
 
 module.exports = router;

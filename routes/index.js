@@ -25,6 +25,20 @@ var router = express.Router();
 
 // GET on '/'
 router.route('/:table')
+
+	.all(function(request, response, next){
+
+		response.table = request.params.table;
+		if (response.table == 'address'){
+			response.table = 'street_addresses';
+		}
+
+		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403)
+			next('route');
+		else
+			next();
+	})
+
 // GET on '/customers'
 	.get(function(request, response, next){
 		// Construct the request to API
@@ -60,7 +74,8 @@ router.route('/:table')
 
 		// 400 Bad request if no JSON was received
 		if (data == '{}'){
-			return response.sendStatus(400);
+			response.statuscode = 400;
+			// return response.sendStatus(400);
 		}
 
 		console.log(options);
@@ -72,6 +87,20 @@ router.route('/:table')
 
 
 router.route('/:table/:id')
+
+	.all(function(request, response, next){
+
+		response.table = request.params.table;
+		if (response.table == 'address'){
+			response.table = 'street_addresses';
+		}
+
+		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403)
+			next('route');
+		else
+			next();
+	})
+
 // DELETE on '/customers'
 	.delete(function(request, response, next){
 		// Construct the request to API
@@ -107,7 +136,8 @@ router.route('/:table/:id')
 
 		// 400 Bad request if no JSON was received
 		if (data == '{}'){
-			return response.sendStatus(400);
+			response.statuscode = 400;
+			// return response.sendStatus(400);
 		}
 
 		console.log(options);

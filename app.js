@@ -25,7 +25,7 @@ var confirguration = {
 		priority: 99,
 		enable: true
 	},
-	before2: {
+	etagBefore: {
 		priority: 80,
 		enable: true
 	},
@@ -33,11 +33,11 @@ var confirguration = {
 		priority: 50,
 		enable: true
 	},
-	loggingAfter: {
+	etagAfter: {
 		priority: 30,
 		enable: true
 	},
-	after2: {
+	loggingAfter: {
 		priority: 10,
 		enable: true
 	}
@@ -46,9 +46,9 @@ var confirguration = {
 var auth = require('./example_middleware/auth');
 var Nonce = require('./example_middleware/Nonce');
 var loggingBefore = require('./example_middleware/logging_before');
-var before2 = require('./example_middleware/before2');
+var etagBefore = require('./example_middleware/etag_before');
 var loggingAfter = require('./example_middleware/logging_after');
-var after2 = require('./example_middleware/after2');
+var etagAfter = require('./example_middleware/etag_after');
 // Fake request to simulate the /service
 var fakeRequest = require('./example_middleware/fake_request');
 
@@ -86,8 +86,8 @@ function configurableMiddleWare(req, res, next) {
 			case 'loggingBefore':
 				middleware = loggingBefore;
 				break;
-			case 'before2':
-				middleware = before2;
+			case 'etagBefore':
+				middleware = etagBefore;
 				break;
 			case 'service':
 				middleware = service;
@@ -95,8 +95,8 @@ function configurableMiddleWare(req, res, next) {
 			case 'loggingAfter':
 				middleware = loggingAfter;
 				break;
-			case 'after2':
-				middleware = after2;
+			case 'etagAfter':
+				middleware = etagAfter;
 				break;
 		}
 

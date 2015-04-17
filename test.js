@@ -46,6 +46,7 @@ describe('Testing on /customers', function(){
 			request(app)
 				.put('/service/customers/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('If-Match', 'CwvEACWfVPQQ/8VWH2Ytnw==')
 				.send('{}')
 				.set('nonce', "113")
 				.expect(400, done);

@@ -27,8 +27,12 @@ var makeRequest = function(options, data, response, next){
         		jsonRes = JSON.parse(json);
         	}
 
-        	response.status(hres.statusCode).json(jsonRes);
-        	next();
+        	// response.status(hres.statusCode).json(jsonRes);
+        	
+        	response.content = jsonRes;
+        	response.statuscode = hres.statusCode;
+
+        	next('route');
        	});
 
 	});
