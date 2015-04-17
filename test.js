@@ -50,14 +50,15 @@ describe('Testing on /customers', function(){
 				.expect(200, done);
 		});
 	
-		it('Returns a 400 status code', function(done){
+		// Hard to this, have to get the Etag header from the GET above
+		it('Returns a 403 status code', function(done){
 			request(app)
 				.put('/service/customers/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.set('If-Match', 'dyW5YOnsjdLQvNsra9yGIw==')
 				.send('{}')
 				.set('nonce', "113")
-				.expect(400, done);
+				.expect(403, done);
 		});
 
 		it('Returns a 204 status code', function(done){
@@ -85,13 +86,13 @@ describe('Testing on /customers', function(){
 	
 	describe('Creating new customers', function(){
 	
-		it('Returns a 400 status code', function(done){
+		it('Returns a 403 status code', function(done){
 			request(app)
 				.post('/service/customers')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
 				.set('nonce', "116")
-				.expect(400, done);
+				.expect(403, done);
 		});
 	
 		// it('Returns the customer name', function(done){
@@ -287,13 +288,13 @@ describe('Testing on /address', function(){
 		  	"phone": "12345678"
 		}
 	
-		it('Returns a 400 status code', function(done){
+		it('Returns a 403 status code', function(done){
 			request(app)
 				.put('/service/address/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.send('{}')
 				.set('nonce', '224')
-				.expect(400, done);
+				.expect(403, done);
 		});
 	
 		it('Returns a 204 status code', function(done){
@@ -315,13 +316,13 @@ describe('Testing on /address', function(){
 	
 	describe('Creating new address', function(){
 	
-		it('Returns a 400 status code', function(done){
+		it('Returns a 403 status code', function(done){
 			request(app)
 				.post('/service/address')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.set('nonce', '226')
 				.send('{}')
-				.expect(400, done);
+				.expect(403, done);
 		});
 	
 		// it('Returns the customer name', function(done){
@@ -501,13 +502,13 @@ describe('Testing on /city', function(){
 		  	"country_id" : 607
 		}
 	
-		it('Returns a 400 status code', function(done){
+		it('Returns a 403 status code', function(done){
 			request(app)
 				.put('/service/city/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.set('nonce', '335')
 				.send('{}')
-				.expect(400, done);
+				.expect(403, done);
 		});
 	
 		it('Returns a 204 status code', function(done){
@@ -529,13 +530,13 @@ describe('Testing on /city', function(){
 	
 	describe('Creating new city', function(){
 	
-		it('Returns a 400 status code', function(done){
+		it('Returns a 403 status code', function(done){
 			request(app)
 				.post('/service/city')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.set('nonce', '337')
 				.send('{}')
-				.expect(400, done);
+				.expect(403, done);
 		});
 	
 		// it('Returns the customer name', function(done){
@@ -715,13 +716,13 @@ describe('Testing on /country', function(){
 		  	"country" : "China"
 		}
 	
-		it('Returns a 400 status code', function(done){
+		it('Returns a 403 status code', function(done){
 			request(app)
 				.put('/service/country/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.set('nonce', '446')
 				.send('{}')
-				.expect(400, done);
+				.expect(403, done);
 		});
 	
 		it('Returns a 204 status code', function(done){
@@ -743,13 +744,13 @@ describe('Testing on /country', function(){
 	
 	describe('Creating new country', function(){
 	
-		it('Returns a 400 status code', function(done){
+		it('Returns a 403 status code', function(done){
 			request(app)
 				.post('/service/country')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
 				.set('nonce', '448')
 				.send('{}')
-				.expect(400, done);
+				.expect(403, done);
 		});
 	
 		// it('Returns the customer name', function(done){
