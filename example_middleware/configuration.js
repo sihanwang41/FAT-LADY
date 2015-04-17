@@ -5,6 +5,7 @@ console.log("Getting middlewareConfig")
 
 router.use(function (req,res,next){
 var AWS = require('aws-sdk');
+AWS.config.loadFromPath('./configAuthConfig.json');
 AWS.config.update({region: 'us-west-2'});
 AWS.config.logger = console;
 
