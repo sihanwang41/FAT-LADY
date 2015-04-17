@@ -9,7 +9,7 @@
     },
     "aws-sdk": {
       "version": "2.1.22",
-      "from": "aws-sdk@*",
+      "from": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.1.22.tgz",
       "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.1.22.tgz",
       "dependencies": {
         "sax": {

@@ -42,12 +42,17 @@ describe('Testing on /customers', function(){
 		  	"active" : "0"
 		}
 
+		var etag;
+
 		it('Returns 200 status code', function(done){
 			request(app)
-				.get('/service/customers/600')
+				.get('/service/customers/600', function(response){
+					assert.equal(response.statusCode, 200);
+					etag = response.headers['Etag'];
+					done();
+				})
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
-				.set('nonce', "250")
-				.expect(200, done);
+				.set('nonce', "1000");
 		});
 	
 		// Hard to this, have to get the Etag header from the GET above
@@ -55,7 +60,7 @@ describe('Testing on /customers', function(){
 			request(app)
 				.put('/service/customers/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
-				.set('If-Match', 'dyW5YOnsjdLQvNsra9yGIw==')
+				.set('If-Match', etag)
 				.send('{}')
 				.set('nonce', "113")
 				.expect(403, done);
@@ -65,7 +70,6 @@ describe('Testing on /customers', function(){
 			request(app)
 				.put('/service/customers/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
-				.set('If-Match', 'dyW5YOnsjdLQvNsra9yGIw==')
 				.send(data)
 				.set('nonce', "114")
 				.expect(204, done);
@@ -90,8 +94,8 @@ describe('Testing on /customers', function(){
 			request(app)
 				.post('/service/customers')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
-				.send('{}')
 				.set('nonce', "116")
+				.send('{}')
 				.expect(403, done);
 		});
 	
