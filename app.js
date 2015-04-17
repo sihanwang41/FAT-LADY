@@ -9,6 +9,7 @@ var service = require('./routes/index');
 var logError = require('./routes/logerror');
 var errorHandler = require('./routes/errorhandler');
 
+var configuration = require('./example_middleware/configuration');
 var auth = require('./example_middleware/auth');
 var Nonce = require('./example_middleware/Nonce');
 var loggingBefore = require('./example_middleware/logging_before');
@@ -32,11 +33,12 @@ var sortConfig = function(confirguration){
 }
 function configurableMiddleWare(req, res, next) {
    
+   	var config = req.configuration;
    	var operations = [];
 
    	var middleware;
 
-   	var sortedConfig = sortConfig(confirguration);
+   	var sortedConfig = sortConfig(config);
 
    // push each middleware you want to run
    	sortedConfig.forEach(function(fn) {

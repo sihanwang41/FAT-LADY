@@ -36,25 +36,35 @@ db.query(params, function (err, data) {
      if(data.Count) // returned array > 0
       {
            var config = {
-            before1:{priority:0,enable:false},
-            before2:{priority:0,enable:false},
+            auth:{priority:0,enable:false},
+            Nonce:{priority:0,enable:false},
+            loggingBefore:{priority:0,enable:false},
+            etagBefore:{priority:0,enable:false},
             service:{priority:0,enable:false},
-            after1:{priority:0,enable:false},
-            after2:{priority:0,enable:false}
+            loggingAfter:{priority:0,enable:false},
+            etagAfter:{priority:0,enable:false}
+
+
          };
 
-         config.before1.priority = data.Items[0].before1.L[0].N;
-         config.before1.enable = data.Items[0].before1.L[1].BOOL;
-         config.before2.priority = data.Items[0].before2.L[0].N;
-         config.before2.enable = data.Items[0].before2.L[1].BOOL;
+         config.auth.priority = data.Items[0].auth.L[0].N;
+         config.auth.enable = data.Items[0].auth.L[1].BOOL;
+         config.Nonce.priority = data.Items[0].Nonce.L[0].N;
+         config.Nonce.enable = data.Items[0].Nonce.L[1].BOOL;
+         config.loggingBefore.priority = data.Items[0].loggingBefore.L[0].N;
+         config.loggingBefore.enable = data.Items[0].loggingBefore.L[1].BOOL;
+         config.etagBefore.priority = data.Items[0].etagBefore.L[0].N;
+         config.etagBefore.enable = data.Items[0].etagBefore.L[1].BOOL;
          config.service.priority = data.Items[0].service.L[0].N;
          config.service.enable = data.Items[0].service.L[1].BOOL;
-         config.after1.priority = data.Items[0].after1.L[0].N;
-         config.after1.enable = data.Items[0].after1.L[1].BOOL;
-         config.after2.priority = data.Items[0].after2.L[0].N;
-         config.after2.enable = data.Items[0].after2.L[1].BOOL;
+         config.loggingAfter.priority = data.Items[0].loggingAfter.L[0].N;
+         config.loggingAfter.enable = data.Items[0].loggingAfter.L[1].BOOL;
+         config.etagAfter.priority = data.Items[0].etagAfter.L[0].N;
+         config.etagAfter.enable = data.Items[0].etagAfter.L[1].BOOL;
+
 
            req.configuration = config;
+           console.log(config);
            next();
 
       }
