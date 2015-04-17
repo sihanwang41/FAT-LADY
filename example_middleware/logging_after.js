@@ -8,11 +8,6 @@ var username;
 var password;
 
 router.use(function(request, response, next){
-	if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403 || response.statuscode == 404 || response.statuscode == 401)
-	{
-		next();
-	}
-	
 	// Get the current time stamp
 	var date = new Date();
 
