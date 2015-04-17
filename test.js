@@ -41,20 +41,30 @@ describe('Testing on /customers', function(){
 		  	"address_id" : 100,
 		  	"active" : "0"
 		}
+
+		it('Returns 200 status code', function(done){
+			request(app)
+				.get('/service/customers/600')
+				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('nonce', "250")
+				.expect(200, done);
+		});
 	
 		it('Returns a 400 status code', function(done){
 			request(app)
 				.put('/service/customers/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
-				.set('If-Match', 'CwvEACWfVPQQ/8VWH2Ytnw==')
+				.set('If-Match', 'dyW5YOnsjdLQvNsra9yGIw==')
 				.send('{}')
 				.set('nonce', "113")
 				.expect(400, done);
 		});
+
 		it('Returns a 204 status code', function(done){
 			request(app)
 				.put('/service/customers/600')
 				.set('Authorization', 'Basic ZnJlZHJhYmVsbzoxMjM=')//set header for this test
+				.set('If-Match', 'dyW5YOnsjdLQvNsra9yGIw==')
 				.send(data)
 				.set('nonce', "114")
 				.expect(204, done);
