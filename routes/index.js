@@ -74,7 +74,7 @@ router.route('/:table')
 
 		// 400 Bad request if no JSON was received
 		if (data == '{}'){
-			response.statuscode = 400;
+			response.statuscode = 403;
 			// return response.sendStatus(400);
 		}
 
@@ -136,7 +136,7 @@ router.route('/:table/:id')
 
 		// 400 Bad request if no JSON was received
 		if (data == '{}'){
-			response.statuscode = 400;
+			response.statuscode = 403;
 			// return response.sendStatus(400);
 		}
 
