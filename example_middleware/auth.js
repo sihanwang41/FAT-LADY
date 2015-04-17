@@ -13,6 +13,11 @@ router.use(function(req, res, next) {
   var auth;
   var username;
   var password;
+
+  if (res.statuscode == 304 || res.statuscode == 412 || res.statuscode == 403 || res.statuscode == 404 || res.statuscode == 401)
+  {
+    next();
+  }
   // check whether an autorization header was send    
   if (req.headers.authorization) {
     // only accepting basic auth, so:
@@ -76,15 +81,7 @@ router.use(function(req, res, next) {
     		}
     		else
     		{
-    			  //res.statusCode = 401;
-            //res.status = 401
-            //req.status = 401;
-            //res.setHeader('WWW-Authenticate', 'Basic realm="soa_project"');
-          	// this will displayed in the browser when authorization is cancelled
-          	//next(res);
-            //res.end('unauthorized');
-
-
+    			res.statuscode = 401;
           console.log("Wrong Login/password, not authenticated")
           console.log("not authorized")
        	}

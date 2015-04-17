@@ -22,7 +22,6 @@ router.use(function(request, response, next){
 
 		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403 || response.statuscode == 404)
 		{
-
 			next();
 		}
 		else if (request.method == 'GET')
@@ -97,6 +96,7 @@ router.use(function(request, response, next){
 						jsonRes = json
 		        	}
 		        	else{
+		        		console.log(json);
 		        		jsonRes = JSON.parse(json);
 		        	}
 
@@ -108,9 +108,11 @@ router.use(function(request, response, next){
 					var md5 = crypto.createHash('md5');
 					var tag = md5.update(str).digest('base64');
 
+					var tableName = response.table;
+
 					var last_update = jsonRes[tableName][0].last_update;
 
-					var json = {"Etag": tag, "LastModified": last_update};
+					json = {"Etag": tag, "LastModified": last_update};
 					var json_str = JSON.stringify(json);
 					console.log(json_str);
 
@@ -128,10 +130,22 @@ router.use(function(request, response, next){
 		  		return next(err);
 			});
 			req.end();
+
+			next();
 		
 		}
 		else if (request.method == "DELETE")
 		{
+			json = {"Etag": '', "LastModified": ''};
+			var json_str = JSON.stringify(json);
+			console.log(json_str);
+
+			client.on("error", function (err) {
+			    console.log("Error " + err);
+			});
+
+			client.set(request.url, json_str, redis.print);
+			
 			next();
 		}
 		else
