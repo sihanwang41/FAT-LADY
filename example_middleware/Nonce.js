@@ -6,7 +6,12 @@ module.exports = {
 	// req : request
 	// res : response
 	// next : call next middleware
+
 	checkNonce: function(req, res, next) {
+		if (res.statuscode == 304 || res.statuscode == 412 || res.statuscode == 403 || res.statuscode == 404 || res.statuscode == 401)
+		{
+			next();
+		}
 		console.log("in functionssss");
 		var nonceValue = req.headers['nonce'];
 		console.log(nonceValue);
@@ -20,7 +25,9 @@ module.exports = {
 			}
 			
 			else {
-				res.sendStatus(404);
+				// response.status(403);
+				res.statuscode = 403;
+				next();
 				console.log("drop");
 			}
 		});
