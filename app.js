@@ -1,5 +1,4 @@
 'use strict';
-
 // Loading the express library
 var express = require('express');
 var app = express();
@@ -10,39 +9,6 @@ var service = require('./routes/index');
 var logError = require('./routes/logerror');
 var errorHandler = require('./routes/errorhandler');
 
-
-// Testing configurable middleware
-var confirguration = {
-	auth: {
-		priority: 100,
-		enable: true
-	},
-	Nonce: {
-		priority: 110,
-		enable: true
-	},
-	loggingBefore: {
-		priority: 99,
-		enable: true
-	},
-	etagBefore: {
-		priority: 80,
-		enable: true
-	},
-	service: {
-		priority: 50,
-		enable: true
-	},
-	etagAfter: {
-		priority: 30,
-		enable: true
-	},
-	loggingAfter: {
-		priority: 10,
-		enable: true
-	}
-}
-
 var auth = require('./example_middleware/auth');
 var Nonce = require('./example_middleware/Nonce');
 var loggingBefore = require('./example_middleware/logging_before');
@@ -52,7 +18,7 @@ var etagAfter = require('./example_middleware/etag_after');
 // Fake request to simulate the /service
 var fakeRequest = require('./example_middleware/fake_request');
 
-// Function to sort the order of the middleware to be executed
+/// Function to sort the order of the middleware to be executed
 var sortConfig = function(confirguration){
 	var sortable = [];
 	for (var middleware in confirguration)
@@ -64,7 +30,6 @@ var sortConfig = function(confirguration){
 	sortable.sort(function(a, b) {return b[1] - a[1]});
 	return sortable;
 }
-
 function configurableMiddleWare(req, res, next) {
    
    	var operations = [];
@@ -111,15 +76,16 @@ function configurableMiddleWare(req, res, next) {
    // now actually invoke the middleware in series
    	async.series(operations, function(err) {
    		if(err) {
-   	    	console.log('Something blew up at app!!!!!!');
+   	    	console.log('Something blew up!!!!!!');
    			return next(err);
    	  	}
    	  	console.log('middleware get executed');
-   	  	// no errors so pass control back to express
+   	  	// no errors so pass control back to expresss
    	  	next();
    	});
 
 }
+app.use('/service',configuration);
 
 app.use('/service', configurableMiddleWare);
 
