@@ -64,13 +64,13 @@ router.use(function(request, response, next){
     				// reply is null when the key is missing
     				// console.log(reply);
     				var json_obj = JSON.parse(reply);
+    				console.log(json_obj.Etag);
 
     				if (json_obj.Etag != request.headers['if-match'])
     				{
     					console.log("412 Precondition failed");
-    					var err = new Error('412 Precondition failed');
-  						err.status = 412;
-						return next(err);
+  						response.statuscode = 412;
+  						next();
     				}
 					else
 					{
@@ -83,9 +83,8 @@ router.use(function(request, response, next){
 			else
 			{
 				console.log("403 Forbidden");
-				var err = new Error('403 Forbidden');
-  				err.status = 403;
-				return next(err);
+  				response.statuscode = 403;
+  				next();
 			}
 		}
 		else if (request.method == "POST")

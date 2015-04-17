@@ -28,7 +28,7 @@ router.use(function(request, response, next){
 		{
 			console.log('This is middleware Etag AFTER');
 
-	  		console.log(response.content);
+	  		// console.log(response.content);
 
 	  		var tableName = response.table;
 
@@ -64,7 +64,7 @@ router.use(function(request, response, next){
 			next();
 
 		}
-		else if (request.method == "PUT" )
+		else if (request.method == "PUT" || request.method == "POST")
 		{
 
 			var options = {
@@ -101,7 +101,7 @@ router.use(function(request, response, next){
 		        	}
 
 		        	// response.status(hres.statusCode).json(jsonRes);
-		        	console.log("GET data: " + jsonRes);
+		        	// console.log("GET data: " + jsonRes);
 
 		        	var str = JSON.stringify(jsonRes);
 
@@ -121,6 +121,8 @@ router.use(function(request, response, next){
 			    	});
 
 					client.set(request.url, json_str, redis.print);
+
+					next();
 		       	});
 
 			});
@@ -130,8 +132,6 @@ router.use(function(request, response, next){
 		  		return next(err);
 			});
 			req.end();
-
-			next();
 		
 		}
 		else if (request.method == "DELETE")
