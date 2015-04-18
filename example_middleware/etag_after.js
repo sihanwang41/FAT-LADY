@@ -20,7 +20,7 @@ router.use(function(request, response, next){
 
 		// console.log(response.statuscode);
 
-		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403 || response.statuscode == 404)
+		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403 || response.statuscode == 401)
 		{
 			next();
 		}

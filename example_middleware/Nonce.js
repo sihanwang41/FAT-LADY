@@ -8,7 +8,7 @@ module.exports = {
 	// next : call next middleware
 
 	checkNonce: function(req, res, next) {
-		if (res.statuscode == 304 || res.statuscode == 412 || res.statuscode == 403 || res.statuscode == 404 || res.statuscode == 401)
+		if (res.statuscode == 304 || res.statuscode == 412 || res.statuscode == 403 || res.statuscode == 401)
 		{
 			next();
 		}

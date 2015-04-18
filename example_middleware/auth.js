@@ -17,7 +17,7 @@ router.use(function(req, res, next) {
     AWS.config.loadFromPath('./configAuthConfig.json');
     AWS.config.update({region: 'us-west-2'});
 
-    if (res.statuscode == 304 || res.statuscode == 412 || res.statuscode == 403 || res.statuscode == 404 || res.statuscode == 401)
+    if (res.statuscode == 304 || res.statuscode == 412 || res.statuscode == 403 || res.statuscode == 401)
     {
         next();
     }
