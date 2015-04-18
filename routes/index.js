@@ -33,7 +33,7 @@ router.route('/:table')
 			response.table = 'street_addresses';
 		}
 
-		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403)
+		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403 || response.statuscode == 401)
 			next('route');
 		else
 			next();
@@ -95,7 +95,7 @@ router.route('/:table/:id')
 			response.table = 'street_addresses';
 		}
 
-		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403)
+		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403 || response.statuscode == 401)
 			next('route');
 		else
 			next();
