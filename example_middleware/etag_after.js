@@ -22,6 +22,8 @@ router.use(function(request, response, next){
 
 		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403 || response.statuscode == 401)
 		{
+			// Send the response
+			response.status(response.statuscode).json(response.content);
 			next();
 		}
 		else if (request.method == 'GET')
@@ -74,6 +76,9 @@ router.use(function(request, response, next){
 			  	method: 'GET',
 			  	headers: {}
 			};
+
+			// Send the response
+			response.status(response.statuscode).json(response.content);
 
 			var req = http.request(options, function(hres) {
 				var json = '';
@@ -145,11 +150,16 @@ router.use(function(request, response, next){
 			});
 
 			client.set(request.url, json_str, redis.print);
+
+			// Send the response
+			response.status(response.statuscode).json(response.content);
 			
 			next();
 		}
 		else
 		{
+			// Send the response
+			response.status(response.statuscode).json(response.content);
 			next();
 		}
 
