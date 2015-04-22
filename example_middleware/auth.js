@@ -95,9 +95,10 @@ router.use(function(req, res, next) {
     else
     {
         //next(req);
-
+        res.statuscode = 401;
         console.log("authentication header empty")
         console.log("not authorized")
+        next();
     }
 
 });
