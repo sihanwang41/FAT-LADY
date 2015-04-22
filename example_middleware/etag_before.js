@@ -34,7 +34,7 @@ router.use(function(request, response, next){
 						// var err = new Error('304 not modified');
 						// err.status = 304;
 						// return next(err);
-						response.status(304);
+						// response.status(304);
 						response.statuscode = 304;
 						next();
 					}
