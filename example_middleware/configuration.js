@@ -39,7 +39,7 @@ router.use(function (req,res,next){
 
                 var config = {};
                 var priority;
-                var enabled;
+                var enable;
 
                 for(var middleware in data.Items[0]){
                     // Do not add action to the configuration list 
@@ -47,7 +47,7 @@ router.use(function (req,res,next){
                         
                         // get charactersitics of each middleware
                         var characteristics = data.Items[0][middleware].L;
-                        config[middleware] = { priority:characteristics[0].N, enabled : characteristics[1].BOOL};
+                        config[middleware] = { priority:characteristics[0].N, enable : characteristics[1].BOOL};
                     }
 
                 }        
