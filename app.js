@@ -1,4 +1,5 @@
 'use strict';
+
 // Loading the express library
 var express = require('express');
 var app = express();
@@ -12,7 +13,7 @@ var errorHandler = require('./routes/errorhandler');
 
 // Testing configurable middleware
 var confirguration = {
-	before1: {
+	logging_before: {
 		priority: 100,
 		enable: true
 	},
@@ -24,19 +25,19 @@ var confirguration = {
 		priority: 50,
 		enable: true
 	},
-	after1: {
-		priority: 30,
-		enable: true
-	},
+//	logging_after: {
+//		priority: 30,
+//		enable: true
+//	},
 	after2: {
 		priority: 10,
 		enable: true
 	}
 }
 
-var before1 = require('./example_middleware/before1');
+var logging_before = require('./example_middleware/logging_before');
 var before2 = require('./example_middleware/before2');
-var after1 = require('./example_middleware/after1');
+var logging_after = require('./example_middleware/logging_after');
 var after2 = require('./example_middleware/after2');
 // Fake request to simulate the /service
 var fakeRequest = require('./example_middleware/fake_request');
@@ -61,13 +62,13 @@ function configurableMiddleWare(req, res, next) {
    	var middleware;
 
    	var sortedConfig = sortConfig(confirguration);
-
+ 
    // push each middleware you want to run
    	sortedConfig.forEach(function(fn) {
 
    		switch(fn[0]){
-			case 'before1':
-				middleware = before1;
+			case 'logging_before':
+				middleware = logging_before;
 				break;
 			case 'before2':
 				middleware = before2;
@@ -75,9 +76,9 @@ function configurableMiddleWare(req, res, next) {
 			case 'service':
 				middleware = service;
 				break;
-			case 'after1':
-				middleware = after1;
-				break;
+			//case 'logging_after':
+			//	middleware = logging_after;
+			//	break;
 			case 'after2':
 				middleware = after2;
 				break;
@@ -95,9 +96,16 @@ function configurableMiddleWare(req, res, next) {
    	async.series(operations, function(err) {
    		if(err) {
    	    	console.log('Something blew up at app!!!!!!');
+			res.statusCode = 500;
+			res.statusMessage = 'Internal Server Error';
+			logging_after.log(req, res);
    			return next(err);
    	  	}
-   	  	console.log('middleware get executed');
+		else {
+			logging_after.log(req, res);
+		}
+
+   	  	console.log('middleware got executed------------------------------------------------------');
    	  	// no errors so pass control back to express
    	  	next();
    	});
@@ -105,10 +113,7 @@ function configurableMiddleWare(req, res, next) {
 }
 
 app.use('/service', configurableMiddleWare);
-
 app.use(logError);
 app.use(errorHandler);
-
-
 // export the module so that it could be called elsewhere
 module.exports = app;
