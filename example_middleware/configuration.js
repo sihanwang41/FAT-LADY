@@ -36,32 +36,21 @@ router.use(function (req,res,next){
         {
             if(data.Count) // returned array > 0
             {
-                var config = {
-                    auth:{priority:0,enable:false},
-                    Nonce:{priority:0,enable:false},
-                    loggingBefore:{priority:0,enable:false},
-                    etagBefore:{priority:0,enable:false},
-                    service:{priority:0,enable:false},
-                    loggingAfter:{priority:0,enable:false},
-                    etagAfter:{priority:0,enable:false}
-                };
 
-                config.auth.priority = data.Items[0].auth.L[0].N;
-                config.auth.enable = data.Items[0].auth.L[1].BOOL;
-                config.Nonce.priority = data.Items[0].Nonce.L[0].N;
-                config.Nonce.enable = data.Items[0].Nonce.L[1].BOOL;
-                config.loggingBefore.priority = data.Items[0].loggingBefore.L[0].N;
-                config.loggingBefore.enable = data.Items[0].loggingBefore.L[1].BOOL;
-                config.etagBefore.priority = data.Items[0].etagBefore.L[0].N;
-                config.etagBefore.enable = data.Items[0].etagBefore.L[1].BOOL;
-                config.service.priority = data.Items[0].service.L[0].N;
-                config.service.enable = data.Items[0].service.L[1].BOOL;
-                config.loggingAfter.priority = data.Items[0].loggingAfter.L[0].N;
-                config.loggingAfter.enable = data.Items[0].loggingAfter.L[1].BOOL;
-                config.etagAfter.priority = data.Items[0].etagAfter.L[0].N;
-                config.etagAfter.enable = data.Items[0].etagAfter.L[1].BOOL;
+                var config = {};
+                var priority;
+                var enabled;
 
+                for(var middleware in data.Items[0]){
+                    // Do not add action to the configuration list 
+                    if(middleware!="action"){
+                        
+                        // get charactersitics of each middleware
+                        var characteristics = data.Items[0][middleware].L;
+                        config[middleware] = { priority:characteristics[0].N, enabled : characteristics[1].BOOL};
+                    }
 
+                }        
                 req.configuration = config;
                 console.log(config);
                 next();
