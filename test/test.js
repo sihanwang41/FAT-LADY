@@ -1,5 +1,5 @@
 var request = require('supertest');
-var app = require('./app');
+var app = require('../app');
 
 // Body-parser
 var bodyParser = require('body-parser');

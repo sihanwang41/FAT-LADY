@@ -9,15 +9,13 @@ var service = require('./routes/index');
 var logError = require('./routes/logerror');
 var errorHandler = require('./routes/errorhandler');
 
-var configuration = require('./example_middleware/configuration');
-var auth = require('./example_middleware/auth');
-var Nonce = require('./example_middleware/Nonce');
-var loggingBefore = require('./example_middleware/logging_before');
-var etagBefore = require('./example_middleware/etag_before');
-var loggingAfter = require('./example_middleware/logging_after');
-var etagAfter = require('./example_middleware/etag_after');
-// Fake request to simulate the /service
-var fakeRequest = require('./example_middleware/fake_request');
+var configuration = require('./middleware/configuration');
+var auth = require('./middleware/auth');
+var Nonce = require('./middleware/Nonce');
+var loggingBefore = require('./middleware/logging_before');
+var etagBefore = require('./middleware/etag_before');
+var loggingAfter = require('./middleware/logging_after');
+var etagAfter = require('./middleware/etag_after');
 
 /// Function to sort the order of the middleware to be executed
 var sortConfig = function(confirguration){
