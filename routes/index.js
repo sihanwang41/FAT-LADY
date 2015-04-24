@@ -33,6 +33,8 @@ router.route('/:table')
 			response.table = 'street_addresses';
 		}
 
+		console.log("In service middleware");
+
 		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403 || response.statuscode == 401)
 			next('route');
 		else
@@ -70,11 +72,13 @@ router.route('/:table')
 		};
 		
 		var data = JSON.stringify(request.body);
+		// var data = request.body;
 		console.log(data);
 
 		// 400 Bad request if no JSON was received
 		if (data == '{}'){
 			response.statuscode = 403;
+			next();
 			// return response.sendStatus(400);
 		}
 
@@ -94,6 +98,8 @@ router.route('/:table/:id')
 		if (response.table == 'address'){
 			response.table = 'street_addresses';
 		}
+
+		console.log("In service middleware");
 
 		if (response.statuscode == 304 || response.statuscode == 412 || response.statuscode == 403 || response.statuscode == 401)
 			next('route');
@@ -137,6 +143,7 @@ router.route('/:table/:id')
 		// 400 Bad request if no JSON was received
 		if (data == '{}'){
 			response.statuscode = 403;
+			next();
 			// return response.sendStatus(400);
 		}
 
