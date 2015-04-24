@@ -32,7 +32,7 @@ var makeRequest = function(options, data, response, next){
         	response.content = jsonRes;
         	response.statuscode = hres.statusCode;
 
-        	next('route');
+        	next();
        	});
 
 	});

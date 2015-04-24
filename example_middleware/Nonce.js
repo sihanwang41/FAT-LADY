@@ -12,7 +12,7 @@ module.exports = {
 		{
 			next();
 		}
-		console.log("in functionssss");
+		console.log("In Nonce");
 		var nonceValue = req.headers['nonce'];
 		console.log(nonceValue);
 		redisClient.get(nonceValue, function(err, reply){
