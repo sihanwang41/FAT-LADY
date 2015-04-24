@@ -69,6 +69,11 @@ router.use(function(request, response, next){
 		else if (request.method == "PUT" || request.method == "POST")
 		{
 
+			if (request.method == "POST"){
+				var id = /.+\/(\d+)/.exec(JSON.stringify(response.content));
+				console.log(id);
+				request.url = request.url + '/' + id[1];
+			}
 			var options = {
 			  	host: '127.0.0.1',
 			  	port: 9000,
@@ -76,9 +81,7 @@ router.use(function(request, response, next){
 			  	method: 'GET',
 			  	headers: {}
 			};
-
-			// Send the response
-			response.status(response.statuscode).json(response.content);
+			console.log(request.url);
 
 			var req = http.request(options, function(hres) {
 				var json = '';
@@ -86,11 +89,7 @@ router.use(function(request, response, next){
 		  		console.log('HEADERS: ' + JSON.stringify(hres.headers));
 		  		hres.setEncoding('utf8');
 			    hres.on('data', function (chunk) {
-			    	// if (err){
-			    	// 	return next(err);
-			    	// }
 			    	json += chunk;
-			        // console.log("body: " + chunk);
 			    });
 			    
 			    hres.on('end', function () {
@@ -107,15 +106,18 @@ router.use(function(request, response, next){
 
 		        	// response.status(hres.statusCode).json(jsonRes);
 		        	// console.log("GET data: " + jsonRes);
+		        	var tableName = response.table;
+		        	console.log(jsonRes);
+		        	console.log(tableName);
+		        	var last_update = jsonRes[tableName][0].last_update;
 
 		        	var str = JSON.stringify(jsonRes);
 
 					var md5 = crypto.createHash('md5');
 					var tag = md5.update(str).digest('base64');
 
-					var tableName = response.table;
-
-					var last_update = jsonRes[tableName][0].last_update;
+					response.setHeader('ETag', tag);
+					response.setHeader('Last-Modified', last_update);
 
 					json = {"Etag": tag, "LastModified": last_update};
 					var json_str = JSON.stringify(json);
@@ -126,6 +128,9 @@ router.use(function(request, response, next){
 			    	});
 
 					client.set(request.url, json_str, redis.print);
+
+					// Send the response
+					response.status(response.statuscode).json(response.content);
 
 					next();
 		       	});
