@@ -60,7 +60,7 @@ function configurableMiddleWare(req, res, next) {
 				middleware = service;
 				break;
 			case 'loggingAfter':
-				middleware = loggingAfter;
+				middleware = loggingAfter.log;
 				break;
 			case 'etagAfter':
 				middleware = etagAfter;
@@ -79,7 +79,7 @@ function configurableMiddleWare(req, res, next) {
    	async.series(operations, function(err) {
    		if(err) {
    	    	console.log('Something blew up!!!!!!');
-   			return next(err);
+   	    	loggingAfter.log(req, res);
    	  	}
    	  	console.log('middleware get executed');
    	  	// no errors so pass control back to expresss

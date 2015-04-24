@@ -8,72 +8,69 @@ var username;
 var password;
 
 router.use(function(request, response, next){
-	
-	
-	// Get the current time stamp
 	var date = new Date();
 
-	// Getting the authentication (user and pwd) from the header
 	if (request.headers.authorization) {
-		auth = new Buffer(request.headers.authorization.substring(6), 'base64').toString().split(':');
-	}
+        auth = new Buffer(request.headers.authorization.substring(6), 'base64').toString().split(':');
+    }
 	if (auth ) {
 		username = auth[0];
 		password = auth[1];
 	}
 	
-	// Reformatting the header so that it can be logged
-	delete request.headers.authorization;
-	request.headers.date = date;
-	request.headers.username = username;
-	request.headers.method = request.method;
-	request.headers.url = request.url;
+	var headers2 = request.headers;
+
+	//Reformatting the header
+
+	delete headers2.authorization;
+	headers2.date = date;
+	headers2.username = username;
+	headers2.method = request.method;
+	headers2.url = request.url;
 	
-	// If the request is successful, send SQS message, otherwise send both an SQS and an SNS message
-	var success = true;
-	if (!success) {
-		SQSmsg(request);
-		SNSmsg(request);
-		return next(new Error('Something blew up at logging_before!!!'));
-	}
-	else {
-		SQSmsg(request);
-		next();
-	}
+	SQSmsg(headers2);
+	next();
+
 });
 
 module.exports = router;
 
-// This function sends an SQS message to the AWS SQS queue
-function SQSmsg(request)
+function SQSmsg(headers2)
 {
-	var AWS = require('aws-sdk');
-	AWS.config.loadFromPath('./configLogging.json');
-	var sns = new AWS.SNS();
-	var publishParams = { 
-		TopicArn : "arn:aws:sns:us-east-1:065434505659:VATopic",
-		Message: " " + JSON.stringify(request.headers)
-	};
-	sns.publish(publishParams, publishCallback);
-	function publishCallback(err, data) {
-		console.log("published message");
-		console.log(data);
-	}
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath('./configLogging.json');
+
+var sns = new AWS.SNS();
+
+var publishParams = { 
+  TopicArn : "arn:aws:sns:us-east-1:065434505659:VATopic",
+  Message: JSON.stringify(headers2)
+};
+
+sns.publish(publishParams, publishCallback);
+
+function publishCallback(err, data) {
+  console.log("published message");
+  console.log(data);
+}
 }
 
-// This function sends an SNS message
-function SNSmsg(request)
+function SNSmsg(headers2)
 {
-	var AWS = require('aws-sdk');
-	AWS.config.loadFromPath('./configLogging.json');
-	var sns = new AWS.SNS();
-	var publishParams = { 
-		TopicArn : "arn:aws:sns:us-east-1:065434505659:EmailTopic",
-		Message: " " + JSON.stringify(request.headers)
-	};
-	sns.publish(publishParams, publishCallback);
-	function publishCallback(err, data) {
-		console.log("published message");
-		console.log(data);
-	}
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath('./configLogging.json');
+
+var sns = new AWS.SNS();
+
+var publishParams = { 
+  TopicArn : "arn:aws:sns:us-east-1:065434505659:EmailTopic",
+  Message: JSON.stringify(headers2)
+};
+
+sns.publish(publishParams, publishCallback);
+
+function publishCallback(err, data) {
+  console.log("published message");
+  console.log(data);
+}
 }
